@@ -4,10 +4,11 @@
 namespace App\Controller;
 
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProjectController
+class ProjectController extends AbstractController
 {
 
     /**
@@ -25,6 +26,9 @@ class ProjectController
      */
     public function show($slug): Response
     {
-        return new Response(sprintf('Showing specific project "%s"!',ucwords(str_replace('-',' ',$slug))));
+        return $this->render('project/show.html.twig',[
+            'question' => ucwords(str_replace('-',' ',$slug)),
+            'answers' =>[1,2,3]
+        ]);
     }
 }
