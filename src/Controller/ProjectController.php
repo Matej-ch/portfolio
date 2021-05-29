@@ -17,7 +17,6 @@ class ProjectController extends AbstractController
      */
     public function homepage(MarkdownHelper $markdownHelper): Response
     {
-
         $text = 'some text';
         return $this->render('project/homepage.html.twig',['text' =>  $markdownHelper->parse($text)]);
     }
