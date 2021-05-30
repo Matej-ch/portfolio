@@ -4,18 +4,20 @@
 
 {% block body %}
 
-<h1>{{ question }}</h1>
+<h1>{{ project.name }}</h1>
 
 <div>
     Eventually this WILL BE awesome
 </div>
 
-<h4>Answers ({{ answers|length }})</h4>
-<ul>
-{% for answer in answers %}
-    <li>{{ answer }}</li>
-{% endfor %}
-</ul>
+<h4>Description ({{ project.description }})</h4>
+
+    {% if project.createdAt %}
+        <div>Created: {{ project.createdAt|ago }}</div>
+    {% else %}
+        (not published)
+    {% endif %}
+
 
     <a href="{{ path('app_homepage') }}">Home</a>
 

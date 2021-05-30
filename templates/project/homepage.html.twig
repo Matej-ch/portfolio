@@ -8,9 +8,13 @@
 {% block body %}
 
     <h1>All my free time project</h1>
-    <a href="{{ path('app_show',{slug:'test project'}) }}">Project</a>
 
-    <p>{{ text }}</p>
+    {% for project in projects %}
+        <p>{{ project.name }}</p>
+        <div>{{ project.description }}</div>
+        <a href="{{ path('app_show',{slug:project.slug}) }}">Project {{ project.name }}</a>
+
+    {% endfor %}
 
 {% endblock %}
 
