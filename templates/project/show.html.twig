@@ -18,6 +18,12 @@
         (not published)
     {% endif %}
 
+    <form action="{{ path('app_update',{ slug:project.slug }) }}" method="post">
+        <textarea name="description" id="" cols="30" rows="10">
+            {{ project.description }}
+        </textarea>
+        <input type="submit" value="Update">
+    </form>
 
     <a href="{{ path('app_homepage') }}">Home</a>
 

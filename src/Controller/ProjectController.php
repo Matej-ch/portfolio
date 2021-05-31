@@ -9,6 +9,8 @@ use App\Repository\ProjectRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,8 +35,7 @@ class ProjectController extends AbstractController
         $project = new Project();
         $project->setName('first')->setSlug('first_project' . random_int(0,1000))->setDescription(<<<EOF
         here is description of my project
-EOF
-);
+EOF);
         if(random_int(1,10) > 2) {
             $project->setCreatedAt(new \DateTime(sprintf('-%d days', random_int(1,100))));
         }
@@ -52,6 +53,22 @@ EOF
     {
         return $this->render('project/show.html.twig',[
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * @Route("/projects/{slug}/update",name="app_update", methods="POST")
+     */
+    public function updateDescription(Project $project,Request $request,EntityManagerInterface $entityManager): RedirectResponse
+    {
+        $description = $request->request->get('description');
+
+        $project->setDescription($description);
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_show',[
+            'slug' => $project->getSlug()
         ]);
     }
 }
