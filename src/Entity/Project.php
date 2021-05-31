@@ -71,7 +71,7 @@ class Project
 
     public function setDescription(?string $description): self
     {
-        $this->description = $description;
+        $this->description = trim($description);
 
         return $this;
     }
@@ -84,6 +84,13 @@ class Project
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function setIsActive(string $isActive): self
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }

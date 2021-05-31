@@ -32,18 +32,7 @@ class ProjectController extends AbstractController
      */
     public function new(EntityManagerInterface $entityManager)
     {
-        $project = new Project();
-        $project->setName('first')->setSlug('first_project' . random_int(0,1000))->setDescription(<<<EOF
-        here is description of my project
-EOF);
-        if(random_int(1,10) > 2) {
-            $project->setCreatedAt(new \DateTime(sprintf('-%d days', random_int(1,100))));
-        }
-
-        $entityManager->persist($project);
-        $entityManager->flush();
-
-        return new Response(sprintf("New project is id #%d , name %s",$project->getId(),$project->getName()));
+        return new Response();
     }
 
     /**

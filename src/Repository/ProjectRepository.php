@@ -37,6 +37,6 @@ class ProjectRepository extends ServiceEntityRepository
 
     private function addIsActiveQueryBuilder(QueryBuilder $qb): QueryBuilder
     {
-        return $qb->andWhere('p.isActive = :active')->setParameter('active',0);
+        return $qb->andWhere('p.isActive = :active')->setParameter('active',1);
     }
 }
