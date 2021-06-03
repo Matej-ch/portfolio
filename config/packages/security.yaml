@@ -1,5 +1,7 @@
 security:
-    encoders:
+    #enable_authenticator_manager: true
+
+    password_hashers:
         App\Entity\User:
             algorithm: auto
 
@@ -19,6 +21,10 @@ security:
             anonymous: true
             lazy: true
             provider: app_user_provider
+            logout:
+                path: app_logout
+            #login_throttling:
+            #    max_attempts: 5
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -28,6 +34,6 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    #access_control:
+    #    - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+    #    - { path: ^/admin, roles: ROLE_ADMIN }

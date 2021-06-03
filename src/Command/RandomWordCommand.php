@@ -12,7 +12,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class RandomWordCommand extends Command
 {
     protected static $defaultName = 'app:random-word';
-    protected static string $defaultDescription = 'This command generates random word';
+    protected static $defaultDescription = 'This command generates random word';
 
     protected function configure(): void
     {
