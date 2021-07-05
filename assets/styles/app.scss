@@ -1,0 +1,14 @@
+@use 'components/admin';
+@use 'components/profile';
+@use 'components/projects';
+
+@use 'layout/footer';
+@use 'layout/header';
+
+body {
+    background-color: lightgray;
+}
+
+h1 {
+    color: cornflowerblue;
+}
