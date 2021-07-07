@@ -19,7 +19,16 @@
     },
     "dependencies": {
         "autoprefixer": "^10.2.6",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "sass": "^1.35.1",
         "sass-loader": "^12.1.0"
-    }
+    },
+    "browserslist": [
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead"
+    ]
 }
