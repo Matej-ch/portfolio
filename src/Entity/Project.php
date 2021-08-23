@@ -15,27 +15,27 @@ class Project
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $isActive;
+    private int $isActive;
 
     /**
      * @ORM\Column(type="string", length=1024, nullable=true)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
      */
-    private $slug;
+    private ?string $slug;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -93,6 +93,11 @@ class Project
         $this->isActive = $isActive;
 
         return $this;
+    }
+
+    public function getIsActive(): ?string
+    {
+        return $this->isActive;
     }
 
     public function setCreatedAt($createdAt): self

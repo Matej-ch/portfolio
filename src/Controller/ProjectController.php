@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Project;
+use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,9 +31,27 @@ class ProjectController extends AbstractController
     /**
      * @Route("/projects/new", name="app_new")
      */
-    public function new(EntityManagerInterface $entityManager)
+    public function new(Request $request): Response
     {
-        return new Response();
+        $project = new Project();
+        $project->setIsActive(1);
+        $project->setName('First project');
+        $project->setDescription('First project description');
+
+        $form = $this->createForm(ProjectType::class, $project);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $project = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($project);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_homepage');
+        }
+
+        return $this->render('project/new.html.twig',['form' => $form->createView()]);
     }
 
     /**
