@@ -5,6 +5,11 @@
 @use 'layout/footer';
 @use 'layout/header';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
     background-color: lightgray;
 }

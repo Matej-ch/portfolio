@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
 
-    #[Route('/', name: 'app_homepage')]
+    #[Route('/projects', name: 'app_project')]
     public function homepage(MarkdownHelper $markdownHelper,ProjectRepository $repository): Response
     {
         $projects = $repository->findAllOrderByNewest();
@@ -26,7 +26,7 @@ class ProjectController extends AbstractController
         return $this->render('project/homepage.html.twig',['projects' =>  $projects]);
     }
 
-    #[Route('/projects/new', name: 'app_new')]
+    #[Route('/projects/new', name: 'project_new')]
     public function new(Request $request): Response
     {
         $project = new Project();
@@ -50,7 +50,7 @@ class ProjectController extends AbstractController
         return $this->render('project/new.html.twig',['form' => $form->createView()]);
     }
 
-    #[Route('/projects/{slug}', name: 'app_show')]
+    #[Route('/projects/{slug}', name: 'project_show')]
     public function show(Project $project): Response
     {
         return $this->render('project/show.html.twig',[
@@ -58,7 +58,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/projects/{slug}/update', name: 'app_update', methods: "POST")]
+    #[Route('/projects/{slug}/update', name: 'project_update', methods: "POST")]
     public function updateDescription(Project $project,Request $request,EntityManagerInterface $entityManager): RedirectResponse
     {
         $description = $request->request->get('description');
