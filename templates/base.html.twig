@@ -14,6 +14,11 @@
         {% endblock %}
     </head>
     <body>
+
+        {% block header %}
+            {{ include('fragments/_header.htm.twig') }}
+        {% endblock %}
+
         {% block body %}{% endblock %}
     </body>
 </html>
