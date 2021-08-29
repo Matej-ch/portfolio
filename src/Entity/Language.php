@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LanguageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +35,20 @@ class Language
     private $icon;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity=LanguageType::class, inversedBy="languages")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $type;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Project::class, mappedBy="language")
+     */
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,14 +91,44 @@ class Language
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?LanguageType
     {
         return $this->type;
     }
 
-    public function setType(?int $type): self
+    public function setType(?LanguageType $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): self
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getLanguage() === $this) {
+                $project->setLanguage(null);
+            }
+        }
 
         return $this;
     }

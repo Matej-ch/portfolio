@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,17 @@ class Project
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Language::class, inversedBy="projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $language;
+
+    public function __construct()
+    {
+        $this->language = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +116,18 @@ class Project
     public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?Language $language): self
+    {
+        $this->language = $language;
 
         return $this;
     }
