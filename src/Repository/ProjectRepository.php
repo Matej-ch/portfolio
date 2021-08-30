@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Project;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -15,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProjectRepository extends ServiceEntityRepository
 {
+    public const PAGINATOR_PER_PAGE = 10;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Project::class);
@@ -30,7 +33,7 @@ class ProjectRepository extends ServiceEntityRepository
         return $this->addIsActiveQueryBuilder($qb)
             ->andWhere('p.createdAt IS NOT NULL')
             ->orderBy('p.createdAt', 'DESC')
-            ->setMaxResults(10)
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
             ->getQuery()
             ->getResult();
     }
@@ -38,5 +41,16 @@ class ProjectRepository extends ServiceEntityRepository
     private function addIsActiveQueryBuilder(QueryBuilder $qb): QueryBuilder
     {
         return $qb->andWhere('p.isActive = :active')->setParameter('active',1);
+    }
+
+    public function getProjectPaginator(int $offset): Paginator
+    {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
+            ->setFirstResult($offset)
+            ->getQuery();
+
+        return new Paginator($query);
     }
 }

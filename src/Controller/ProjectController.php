@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
-use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,11 +18,18 @@ class ProjectController extends AbstractController
 {
 
     #[Route('/projects', name: 'app_project')]
-    public function homepage(MarkdownHelper $markdownHelper,ProjectRepository $repository): Response
+    public function homepage(Request $request,ProjectRepository $repository): Response
     {
         $projects = $repository->findAllOrderByNewest();
 
-        return $this->render('project/homepage.html.twig',['projects' =>  $projects]);
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $repository->getProjectPaginator($offset);
+
+        return $this->render('project/index.html.twig',[
+            'projects' =>  $paginator,
+            'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
+            'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
+        ]);
     }
 
     #[Route('/projects/new', name: 'project_new')]
@@ -67,7 +73,7 @@ class ProjectController extends AbstractController
 
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_show',[
+        return $this->redirectToRoute('project_show',[
             'slug' => $project->getSlug()
         ]);
     }

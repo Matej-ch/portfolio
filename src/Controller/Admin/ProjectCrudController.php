@@ -21,8 +21,8 @@ class ProjectCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Conference Comment')
-            ->setEntityLabelInPlural('Conference Comments')
+            ->setEntityLabelInSingular('Project')
+            ->setEntityLabelInPlural('Projects')
             ->setSearchFields(['name', 'description'])
             ->setDefaultSort(['createdAt' => 'DESC']);
     }
