@@ -10,3 +10,13 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+import React from "react";
+import ReactDOM from "react-dom";
+import Navbar from "./js/components/header";
+
+
+ReactDOM.render(
+    <Navbar/>,
+    document.getElementById('react-app')
+);
