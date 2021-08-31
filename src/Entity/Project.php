@@ -6,9 +6,13 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("slug")
  */
 class Project
 {
@@ -37,7 +41,7 @@ class Project
     /**
      * @ORM\Column(type="string", length=100, unique=true)
      */
-    private ?string $slug;
+    private string $slug;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -101,6 +105,13 @@ class Project
         return $this;
     }
 
+    public function computeSlug(SluggerInterface $slugger)
+    {
+        if (!$this->slug || '-' === $this->slug) {
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
+    }
+
     public function setIsActive(string $isActive): self
     {
         $this->isActive = $isActive;
@@ -113,9 +124,12 @@ class Project
         return $this->isActive;
     }
 
-    public function setCreatedAt($createdAt): self
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime();
 
         return $this;
     }
