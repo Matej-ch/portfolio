@@ -6,6 +6,7 @@ use App\Repository\LanguageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=LanguageRepository::class)
@@ -35,9 +36,10 @@ class Language
     private $icon;
 
     /**
-     * @ORM\ManyToOne(targetEntity=LanguageType::class, inversedBy="languages")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=512, nullable=false)
+     *
      */
+    #[Assert\NotBlank]
     private $type;
 
     /**
@@ -60,9 +62,21 @@ class Language
         return $this->name;
     }
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
@@ -87,18 +101,6 @@ class Language
     public function setIcon(?string $icon): self
     {
         $this->icon = $icon;
-
-        return $this;
-    }
-
-    public function getType(): ?LanguageType
-    {
-        return $this->type;
-    }
-
-    public function setType(?LanguageType $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
