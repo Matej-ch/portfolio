@@ -37,3 +37,6 @@ services:
             - { name: 'doctrine.orm.entity_listener', event: 'preUpdate', entity: 'App\Entity\Project'}
 
     Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider: ~
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - '%env(DATABASE_URL)%'
