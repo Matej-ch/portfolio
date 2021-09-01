@@ -16,7 +16,7 @@ import './bootstrap';
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Navbar from "./js/components/header";
+import Navbar from "./js/components/navbar";
 
 
 ReactDOM.render(
