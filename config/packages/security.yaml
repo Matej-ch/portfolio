@@ -4,6 +4,8 @@ security:
     password_hashers:
         App\Entity\User:
             algorithm: auto
+        App\Entity\Admin:
+            algorithm: auto
 
     # enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -11,8 +13,9 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
-                property: email
+                class: App\Entity\Admin
+                property: username
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -26,6 +29,8 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
+                    - App\Security\AppAuthenticator
+                entry_point: App\Security\AppAuthenticator
             remember_me:
                     secret: '%kernel.secret%'
                     lifetime: 604800 # 1 week in seconds
@@ -41,6 +46,6 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    #access_control:
+    access_control:
     #    - { path: ^/admin/login, roles: PUBLIC_ACCESS }
-    #    - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
