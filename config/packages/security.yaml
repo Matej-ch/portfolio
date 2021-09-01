@@ -2,8 +2,6 @@ security:
     #enable_authenticator_manager: true
 
     password_hashers:
-        App\Entity\User:
-            algorithm: auto
         App\Entity\Admin:
             algorithm: auto
 
@@ -28,7 +26,6 @@ security:
                 path: app_logout
             guard:
                 authenticators:
-                    - App\Security\LoginFormAuthenticator
                     - App\Security\AppAuthenticator
                 entry_point: App\Security\AppAuthenticator
             remember_me:

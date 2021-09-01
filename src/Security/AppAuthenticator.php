@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -66,7 +66,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator
         $user = $this->entityManager->getRepository(Admin::class)->findOneBy(['username' => $credentials['username']]);
 
         if (!$user) {
-            throw new UsernameNotFoundException('Username could not be found.');
+            throw new UserNotFoundException('Username could not be found.');
         }
 
         return $user;
@@ -76,7 +76,8 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator
     {
         // Check the user's password or other credentials and return true or false
         // If there are no credentials to check, you can just return true
-        throw new \Exception('TODO: check the credentials inside '.__FILE__);
+        return true;
+        //throw new \Exception('TODO: check the credentials inside '.__FILE__);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
