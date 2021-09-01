@@ -21,7 +21,7 @@ class LanguageController extends AbstractController
     }
 
     #[Route('/language/new', name: 'language_new')]
-    public function new(Request $request, string $photoDir): Response
+    public function new(Request $request, string $iconDir): Response
     {
         $language = new Language();
 
@@ -34,7 +34,7 @@ class LanguageController extends AbstractController
             if ($icon = $form['icon']->getData()) {
                 $filename = bin2hex(random_bytes(6)).'.'.$icon->guessExtension();
                 try {
-                    $icon->move($photoDir, $filename);
+                    $icon->move($iconDir, $filename);
                 } catch (FileException $e) {
                     // unable to upload the photo, give up
                 }
