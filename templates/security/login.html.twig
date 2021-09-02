@@ -1,35 +1,73 @@
 {% extends 'base.html.twig' %}
 
+{% block header %}{% endblock %}
+
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    <section class="absolute w-full h-full">
+        <div class="container mx-auto px-4 h-full">
+            <div class="flex content-center items-center justify-center h-full">
+                <div class="w-full lg:w-4/12 px-4">
+                    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
+                        <div class="flex-auto px-4 lg:px-10 py-10 pt-4">
+                            <div class="text-gray-500 text-center mb-3 font-bold text-xl">Sign in</div>
+
+                            <form method="post">
+                                {% if error %}
+                                    <div class="pb-1 pt-1 bg-red-300 mb-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+
+                                {% if app.user %}
+                                    <div class="mb-3">
+                                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                    </div>
+                                {% endif %}
+
+                                <div class="relative w-full mb-3">
+                                    <label for="inputUsername" class="block uppercase text-gray-700 text-xs font-bold mb-2">Username</label>
+                                    <input type="text" value="{{ last_username }}" name="username"
+                                           id="inputUsername"
+                                           class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                           autocomplete="username" required autofocus
+                                           style="transition: all 0.15s ease 0s;">
+                                </div>
+
+
+                                <div class="relative w-full mb-3">
+                                    <label for="inputPassword" class="block uppercase text-gray-700 text-xs font-bold mb-2">Password</label>
+                                    <input type="password" name="password" id="inputPassword"
+                                           class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                           autocomplete="current-password"
+                                           style="transition: all 0.15s ease 0s;"
+                                           required>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                                <div class="mb-3">
+                                    <label class="inline-flex items-center cursor-pointer">
+
+                                        <input type="checkbox" name="_remember_me" id="remember_me"
+                                               class="form-checkbox border-0 rounded text-gray-800 ml-1 w-5 h-5"
+                                               style="transition: all 0.15s ease 0s;">
+
+                                        <span class="ml-2 text-sm font-semibold text-gray-700">Keep me logged in</span>
+                                    </label>
+                                </div>
+
+                                <button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                                        style="transition: all 0.15s ease 0s;"
+                                        type="submit">
+                                    Log In
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endif %}
+    </section>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me" id="remember_me"> Keep me logged in
-            </label>
-        </div>
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
 {% endblock %}
