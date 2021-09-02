@@ -54,6 +54,11 @@ class Project
      */
     private $language;
 
+    /**
+     * @ORM\Column(type="string", length=255, options={"default": "wip"})
+     */
+    private $state;
+
     public function __construct()
     {
         $this->language = new ArrayCollection();
@@ -149,5 +154,17 @@ class Project
     public function __toString(): string
     {
         return 'Project';
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
     }
 }
