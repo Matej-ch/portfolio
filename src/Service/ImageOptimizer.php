@@ -20,9 +20,9 @@ class ImageOptimizer
 
     public function resize(string $filename): void
     {
-        [$iwidth, $iheight] = getimagesize($filename);
+        [$iWidth, $iHeight] = getimagesize($filename);
 
-        $ratio = $iwidth / $iheight;
+        $ratio = $iWidth / $iHeight;
         $width = self::MAX_WIDTH;
         $height = self::MAX_HEIGHT;
 
