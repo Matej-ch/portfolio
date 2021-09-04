@@ -15,4 +15,12 @@ class SiteController extends AbstractController
             'controller_name' => 'SiteController',
         ]);
     }
+
+    #[Route('/about', name: 'app_about')]
+    public function about(): Response
+    {
+        return $this->render('site/about.html.twig', [
+            'controller_name' => 'SiteController',
+        ]);
+    }
 }
