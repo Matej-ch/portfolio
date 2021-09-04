@@ -18,8 +18,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navbar from "./js/components/navbar";
 
+if(document.getElementById('react-app')) {
+    ReactDOM.render(
+        <Navbar github="https://github.com/Matej-ch" linkedin="https://www.linkedin.com"/>,
+        document.getElementById('react-app')
+    );
+}
 
-ReactDOM.render(
-    <Navbar/>,
-    document.getElementById('react-app')
-);

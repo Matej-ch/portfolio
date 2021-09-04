@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 
-export default function Navbar({ fixed }) {
+const Navbar = ({ fixed,github,linkedin }) => {
     const [navbarOpen, setNavbarOpen] = useState(false);
 
     return (
@@ -9,7 +9,7 @@ export default function Navbar({ fixed }) {
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                         <a className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-                            href="">
+                           href="">
                             Projects
                         </a>
 
@@ -39,16 +39,15 @@ export default function Navbar({ fixed }) {
                             <li className="nav-item">
                                 <a
                                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    href=""
-                                >
-                                    <i className="fab fa-linkedin text-lg leading-lg text-white opacity-75"/><span className="ml-2">LinkedIn</span>
+                                    href={linkedin}>
+                                    <i className="fab fa-linkedin text-lg leading-lg text-white opacity-75"/>
                                 </a>
                             </li>
                             <li className="nav-item">
                                 <a
                                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    href="">
-                                    <i className="fab fa-github text-lg leading-lg text-white opacity-75"/><span className="ml-2">Github</span>
+                                    href={ github }>
+                                    <i className="fab fa-github text-lg leading-lg text-white opacity-75"/>
                                 </a>
                             </li>
                             <li className="nav-item">
@@ -65,3 +64,5 @@ export default function Navbar({ fixed }) {
         </>
     );
 }
+
+export default Navbar;
