@@ -12,5 +12,19 @@
         <li>Your controller at <code><a href="{{ 'C:/wamp64/www/portfolio/src/Controller/SiteController.php'|file_link(0) }}">src/Controller/SiteController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/wamp64/www/portfolio/templates/site/index.html.twig'|file_link(0) }}">templates/site/index.html.twig</a></code></li>
     </ul>
+
+    <ul>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown-language" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ app.request.locale|locale_name(app.request.locale) }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
+                <a class="dropdown-item" href="{{ path('app_homepage', {_locale: 'en'}) }}">English</a>
+                <a class="dropdown-item" href="{{ path('app_homepage', {_locale: 'sk'}) }}">Slovakia</a>
+            </div>
+        </li>
+    </ul>
+
 </div>
 {% endblock %}
