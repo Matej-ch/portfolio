@@ -62,11 +62,27 @@ class LanguageController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
 
+            //$language = $form->getData();
+
+            if ($icon = $form['icon']->getData()) {
+                $filename = bin2hex(random_bytes(6)).'.'.$icon->guessExtension();
+                try {
+                    $icon->move($iconDir, $filename);
+                } catch (FileException $e) {
+                    // unable to upload the photo, give up
+                }
+                $language->setPhotoFilename($filename);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($language);
+            $entityManager->flush();
+
             $this->addFlash('success', "Language type ".$language->getType()." Updated!");
 
             return $this->redirectToRoute('language');
         }
 
-        return $this->render('language/new.html.twig',['form' => $form->createView()]);
+        return $this->render('language/edit.html.twig',['form' => $form->createView(),'language' => $language]);
     }
 }
