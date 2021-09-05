@@ -145,8 +145,10 @@ class Language
         return 'Language';
     }
 
-    public function setPhotoFilename($fileName): void
+    public function setPhotoFilename($fileName): self
     {
         $this->icon = $fileName;
+
+        return $this;
     }
 }

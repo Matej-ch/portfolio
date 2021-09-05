@@ -54,7 +54,7 @@ class LanguageController extends AbstractController
     }
 
     #[Route('/language/{id}/edit', name: 'language_edit')]
-    public function edit(Language $language,Request $request, string $iconDir)
+    public function edit(Language $language,Request $request, string $iconDir): Response
     {
         $form = $this->createForm(LanguageType::class, $language);
 
