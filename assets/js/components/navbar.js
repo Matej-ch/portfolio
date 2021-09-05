@@ -1,4 +1,5 @@
 import React,{ useState } from "react";
+import ReactDOM from "react-dom";
 
 const Navbar = ({ fixed,github,linkedin }) => {
     const [navbarOpen, setNavbarOpen] = useState(false);
@@ -65,4 +66,11 @@ const Navbar = ({ fixed,github,linkedin }) => {
     );
 }
 
-export default Navbar;
+//export default Navbar;
+
+if(document.getElementById('react-app')) {
+    ReactDOM.render(
+        <Navbar github="https://github.com/Matej-ch" linkedin="https://www.linkedin.com"/>,
+        document.getElementById('react-app')
+    );
+}

@@ -16,6 +16,9 @@
 
         {% block header %}
             {{ include('fragments/_header.html.twig') }}
+
+            {{ encore_entry_script_tags('header') }}
+
         {% endblock %}
 
         {% block body %}{% endblock %}
