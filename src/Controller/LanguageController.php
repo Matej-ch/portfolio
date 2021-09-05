@@ -41,10 +41,28 @@ class LanguageController extends AbstractController
                 $language->setPhotoFilename($filename);
             }
 
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($language);
             $entityManager->flush();
+
+            $this->addFlash('success', "Language ".$language->getType()." Created!");
+
+            return $this->redirectToRoute('language');
+        }
+
+        return $this->render('language/new.html.twig',['form' => $form->createView()]);
+    }
+
+    #[Route('/language/{id}/edit', name: 'language_edit')]
+    public function edit(Language $language,Request $request, string $iconDir)
+    {
+        $form = $this->createForm(LanguageType::class, $language);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $this->addFlash('success', "Language type ".$language->getType()." Updated!");
 
             return $this->redirectToRoute('language');
         }

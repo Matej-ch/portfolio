@@ -27,10 +27,12 @@ class LanguageType extends AbstractType
                 ],
             ])
             ->add('type',ChoiceType::class,[
+                'placeholder' => 'Choose type',
                 'choices'  => [
                     'language' => 'Language',
                     'framework' => 'Framework',
                     'library' => 'Library',
+                    'tool' => 'Tool'
                 ],
             ])
             ->add('submit', SubmitType::class)

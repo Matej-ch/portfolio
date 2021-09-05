@@ -105,6 +105,11 @@ class Language
         return $this;
     }
 
+    public function getIconPath(): string
+    {
+        return 'uploads/languages/'.$this->icon;
+    }
+
     /**
      * @return Collection|Project[]
      */
@@ -138,5 +143,10 @@ class Language
     public function __toString(): string
     {
         return 'Language';
+    }
+
+    public function setPhotoFilename($fileName): void
+    {
+        $this->icon = $fileName;
     }
 }
