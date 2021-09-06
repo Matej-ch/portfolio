@@ -6,6 +6,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+// Manually define `process.env.NODE_ENV`, since Encore does not do it already
+//process.env.NODE_ENV = process.env.NODE_ENV || (Encore.isProduction() ? 'production' : 'development');
+
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
@@ -23,6 +26,7 @@ Encore
     .addEntry('app', './assets/app.js')
 
     .addEntry('header', './assets/js/components/navbar.js')
+    .addEntry('tooltip', './assets/js/components/tooltip.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
