@@ -1,0 +1,24 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="" style="background: linear-gradient(to top, #2980b9, #6dd5fa, #ddf5fe);">
+        <div class="w-9/12 m-auto py-16 min-h-screen flex items-center justify-center">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg pb-8">
+                <div class="border-t border-gray-200 text-center pt-8 px-8">
+                    <h1 class="text-9xl font-bold text-red-400">{{ status_code }}</h1>
+                    <h1 class="text-6xl font-medium py-8 text-red-500">{{ status_text }}</h1>
+                    <p class="text-2xl pb-8 px-12 font-medium">Oops! This is probably bad</p>
+                    <a href="{{ path('app_homepage') }}" class="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold px-6 py-3 rounded-md mr-6">
+                        Return home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
