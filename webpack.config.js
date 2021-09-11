@@ -27,6 +27,7 @@ Encore
 
     .addEntry('header', './assets/js/components/navbar.js')
     .addEntry('tooltip', './assets/js/components/tooltip.js')
+    .addEntry('background','./assets/js/components/background.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

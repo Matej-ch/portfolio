@@ -8,13 +8,9 @@
 {% block body %}
     <main class="profile-page">
         <section class="relative block" style="height: 500px;">
-            <div class="absolute top-0 w-full h-full bg-center bg-cover"
-                 style='background-image: url("https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80");'>
-                <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
-
-                <span class="text-black bg-white w-full flex justify-center items-center font-bold">CUSTOM BACKGROUND HERE</span>
+            <div class="absolute top-0 w-full h-full bg-center js-background-parent">
+                <canvas id="background"></canvas>
             </div>
-
         </section>
         <section class="relative py-16 bg-gray-300">
             <div class="container mx-auto px-4">
@@ -97,6 +93,7 @@
     {{ parent() }}
 
     {{ encore_entry_script_tags('tooltip') }}
+    {{ encore_entry_script_tags('background') }}
 {% endblock %}
 
 
