@@ -5,11 +5,11 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -18,8 +18,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     collectionOperations={"get"={"normalization_context"={"groups"="project:list"}}},
  *     itemOperations={"get"={"normalization_context"={"groups"="project:item"}}},
- *     order={"created_at"="DESC", "state"="ASC"},
- *     paginationEnabled=false
+ *     order={"createdAt"="DESC" , "state"="ASC"},
+ *     paginationEnabled=true
  * )
  */
 class Project
@@ -33,6 +33,8 @@ class Project
     private int $id;
 
     /**
+     * Name of the project
+     *
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     #[Groups(['project:list', 'project:item'])]
@@ -129,7 +131,7 @@ class Project
     public function computeSlug(SluggerInterface $slugger)
     {
         if (!$this->slug || '-' === $this->slug) {
-            $this->slug = (string) $slugger->slug((string) $this)->lower();
+            $this->slug = (string)$slugger->slug((string)$this)->lower();
         }
     }
 
