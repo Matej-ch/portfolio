@@ -9,7 +9,7 @@
 import './styles/app.scss';
 
 //require('@fortawesome/fontawesome-free/css/all.min.css');
-//require('@fortawesome/fontawesome-free/js/all.js');
+//require('/node_modules/@fortawesome/fontawesome-free/js/brand.js');
 
 // start the Stimulus application
 import './bootstrap';

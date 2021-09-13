@@ -9,6 +9,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "icons/scss/fontawesome.scss";
+@import "icons/scss/solid.scss";
+@import "icons/scss/brands.scss";
 
 body {
     background-color: lightgray;
