@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -21,6 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     order={"createdAt"="DESC" , "state"="ASC"},
  *     paginationEnabled=true
  * )
+ * @ApiFilter(SearchFilter::class)
  */
 class Project
 {
@@ -37,6 +40,7 @@ class Project
      *
      * @ORM\Column(type="string", length=255, nullable=false)
      */
+    #[NotBlank]
     #[Groups(['project:list', 'project:item'])]
     private string $name;
 

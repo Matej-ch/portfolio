@@ -4,12 +4,11 @@
     About me
 {% endblock %}
 
-
 {% block body %}
     <main class="profile-page">
-        <section class="relative block" style="height: 500px;">
+        <section class="relative block w-full max-w-full" style="height: 500px;">
             <div class="absolute top-0 w-full h-full bg-center js-background-parent">
-                <canvas id="background"></canvas>
+                <canvas id="background" class="w-full"></canvas>
             </div>
         </section>
         <section class="relative py-16 bg-gray-300">
@@ -19,8 +18,7 @@
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                 <div class="relative">
-                                    <img
-                                            alt="..."
+                                    <img alt="..."
                                             src="https://via.placeholder.com/150"
                                             class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                                             style="max-width: 150px;"/>
