@@ -1,13 +1,11 @@
 get password symfony console security:hash-password
 
-rememberme_token table
+download project
 
-```sql
-CREATE TABLE `rememberme_token` (
-    `series`   char(88)     UNIQUE PRIMARY KEY NOT NULL,
-    `value`    varchar(88)  NOT NULL,
-    `lastUsed` datetime     NOT NULL,
-    `class`    varchar(100) NOT NULL,
-    `username` varchar(200) NOT NULL
-);
-```
+migrate
+
+php bin/console doctrine:database:create
+symfony console doctrine:migrations:migrate
+
+
+load fixtures for default data
