@@ -1,4 +1,4 @@
-get password symfony console security:hash-password
+
 
 download project
 
@@ -9,3 +9,11 @@ symfony console doctrine:migrations:migrate
 
 
 load fixtures for default data
+
+generate password for user symfony console security:hash-password
+
+create record in database
+
+```sql
+INSERT INTO admin (username, roles, password) VALUES ('admin', '[\"ROLE_ADMIN\"]', 'hashed_password')
+```
