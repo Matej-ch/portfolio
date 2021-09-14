@@ -3,12 +3,12 @@
 namespace App\DataFixtures;
 
 use App\Entity\Admin;
-use App\Factory\ProjectFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 
-class AppFixtures extends Fixture
+class AppFixtures extends Fixture implements FixtureGroupInterface
 {
     private $encoderFactory;
 
@@ -19,16 +19,17 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        ProjectFactory::new()->createMany(20);
-
-        ProjectFactory::new()->deactivate()->createMany(5);
-
         $admin = new Admin();
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setUsername('admin');
-        $admin->setPassword($this->encoderFactory->getPasswordHasher(Admin::class)->hash('admin'));
+        $admin->setPassword($this->encoderFactory->getPasswordHasher(Admin::class)->hash('admin12345'));
         $manager->persist($admin);
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['live'];
     }
 }

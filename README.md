@@ -1,6 +1,6 @@
 
 
-download project
+download project git clone https://github.com/Matej-ch/portfolio.git
 
 migrate
 
@@ -12,8 +12,6 @@ load fixtures for default data
 
 generate password for user symfony console security:hash-password
 
-create record in database
+create default records in database (by default data will be purged)
 
-```sql
-INSERT INTO admin (username, roles, password) VALUES ('admin', '[\"ROLE_ADMIN\"]', 'hashed_password')
-```
+symfony console doctrine:fixtures:load --group=live
