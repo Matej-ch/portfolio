@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Language;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class LanguageCrudController extends AbstractCrudController
 {
@@ -12,14 +14,15 @@ class LanguageCrudController extends AbstractCrudController
         return Language::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        yield TextField::new('name');
+        yield TextField::new('versions');
+
+        yield ImageField::new('icon')->setUploadDir('public/uploads/languages')->hideOnIndex();
+        yield ImageField::new('icon')->setBasePath('uploads/languages')->hideOnForm();
+
+        yield TextField::new('type');
     }
-    */
+
 }
