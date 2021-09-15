@@ -45,10 +45,10 @@ class Project
     private string $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default": "1"})
      */
     #[Groups(['project:list', 'project:item'])]
-    private int $isActive;
+    private int $isActive = 1;
 
     /**
      * @ORM\Column(type="string", length=1024, nullable=true)
@@ -139,14 +139,14 @@ class Project
         }
     }
 
-    public function setIsActive(string $isActive): self
+    public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
 
         return $this;
     }
 
-    public function getIsActive(): ?string
+    public function getIsActive(): ?bool
     {
         return $this->isActive;
     }
