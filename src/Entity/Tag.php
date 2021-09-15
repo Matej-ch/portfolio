@@ -27,6 +27,11 @@ class Tag
      */
     private $ordering;
 
+    /**
+     * @ORM\Column(type="integer", options={"default": "1"})
+     */
+    private int $isActive = 1;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Tag
     public function setOrdering(?int $ordering): self
     {
         $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }
