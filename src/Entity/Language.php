@@ -47,6 +47,11 @@ class Language
      */
     private $projects;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default": "0"})
+     */
+    private $hide = false;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -148,6 +153,18 @@ class Language
     public function setPhotoFilename($fileName): self
     {
         $this->icon = $fileName;
+
+        return $this;
+    }
+
+    public function getHide(): ?bool
+    {
+        return $this->hide;
+    }
+
+    public function setHide(bool $hide): self
+    {
+        $this->hide = $hide;
 
         return $this;
     }

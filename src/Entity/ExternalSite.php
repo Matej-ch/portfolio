@@ -37,6 +37,11 @@ class ExternalSite
      */
     private $ordering;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default": "0"})
+     */
+    private $hide = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class ExternalSite
     public function setOrdering(?int $ordering): self
     {
         $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    public function getHide(): ?bool
+    {
+        return $this->hide;
+    }
+
+    public function setHide(bool $hide): self
+    {
+        $this->hide = $hide;
 
         return $this;
     }
