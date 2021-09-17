@@ -52,6 +52,9 @@ class ProjectCrudController extends AbstractCrudController
         $description = TextEditorField::new('description')->setNumOfRows(20);
         $isActive = BooleanField::new('is_active');
 
+        $sourceUrl = TextField::new('source_url');
+        $projectUrl = TextField::new('project_url');
+
         if (Crud::PAGE_NEW === $pageName || Crud::PAGE_EDIT === $pageName) {
             $choices = [];
 
@@ -61,6 +64,8 @@ class ProjectCrudController extends AbstractCrudController
 
             return [
                 $name,
+                $sourceUrl,
+                $projectUrl,
                 $slug,
                 $description,
                 $isActive,
@@ -70,6 +75,8 @@ class ProjectCrudController extends AbstractCrudController
 
         return [
             $name,
+            $sourceUrl,
+            $projectUrl,
             $slug,
             $description,
             $isActive,

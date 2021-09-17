@@ -87,6 +87,16 @@ class Project
      */
     private $tags;
 
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $source_url;
+
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $project_url;
+
     public function __construct()
     {
         $this->language = new ArrayCollection();
@@ -220,6 +230,30 @@ class Project
         if ($this->tags->removeElement($tag)) {
             $tag->removeProject($this);
         }
+
+        return $this;
+    }
+
+    public function getSourceUrl(): ?string
+    {
+        return $this->source_url;
+    }
+
+    public function setSourceUrl(?string $source_url): self
+    {
+        $this->source_url = $source_url;
+
+        return $this;
+    }
+
+    public function getProjectUrl(): ?string
+    {
+        return $this->project_url;
+    }
+
+    public function setProjectUrl(?string $project_url): self
+    {
+        $this->project_url = $project_url;
 
         return $this;
     }
