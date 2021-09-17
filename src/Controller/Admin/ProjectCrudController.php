@@ -3,10 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Project;
+use App\Repository\ProjectRepository;
+use App\Repository\ProjectStateRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -17,6 +20,13 @@ class ProjectCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Project::class;
+    }
+
+    public array $states;
+
+    public function __construct(ProjectStateRepository $repository)
+    {
+        $this->states = $repository->findAll();
     }
 
     public function configureCrud(Crud $crud): Crud
@@ -36,10 +46,34 @@ class ProjectCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('name');
-        yield SlugField::new('slug')->setTargetFieldName('name');
-        yield TextEditorField::new('description');
-        yield BooleanField::new('is_active');
-    }
 
+        $name = TextField::new('name');
+        $slug = SlugField::new('slug')->setTargetFieldName('name');
+        $description = TextEditorField::new('description')->setNumOfRows(20);
+        $isActive = BooleanField::new('is_active');
+
+        if (Crud::PAGE_NEW === $pageName || Crud::PAGE_EDIT === $pageName) {
+            $choices = [];
+
+            foreach ($this->states as $state) {
+                $choices[$state->getName()] = $state->getId();
+            }
+
+            return [
+                $name,
+                $slug,
+                $description,
+                $isActive,
+                ChoiceField::new('state')->setChoices(fn () => $choices )
+            ];
+        }
+
+        return [
+            $name,
+            $slug,
+            $description,
+            $isActive,
+            TextField::new('state')
+        ];
+    }
 }
