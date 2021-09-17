@@ -6,6 +6,7 @@ use App\Entity\Language;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
@@ -20,7 +21,8 @@ class LanguageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('name');
-        yield TextField::new('versions');
+        yield CollectionField::new('versionsArray')->hideOnIndex();
+        yield TextField::new('versions')->hideOnForm();
         yield ImageField::new('icon')->setUploadDir('public/uploads/languages')->hideOnIndex();
         yield ImageField::new('icon')->setBasePath('uploads/languages')->hideOnForm();
         yield TextField::new('type');

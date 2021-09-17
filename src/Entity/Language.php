@@ -168,4 +168,16 @@ class Language
 
         return $this;
     }
+
+    public function getVersionsArray(): array
+    {
+        return explode(',',$this->versions);
+    }
+
+    public function setVersionsArray($versionsArray): self
+    {
+        $this->versions = implode(',',$versionsArray);
+
+        return $this;
+    }
 }
