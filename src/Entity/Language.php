@@ -43,14 +43,14 @@ class Language
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity=Project::class, mappedBy="language")
-     */
-    private $projects;
-
-    /**
      * @ORM\Column(type="boolean", options={"default": "0"})
      */
     private $hide = false;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Project::class, mappedBy="language")
+     */
+    private $projects;
 
     public function __construct()
     {
@@ -115,36 +115,6 @@ class Language
         return 'uploads/languages/'.$this->icon;
     }
 
-    /**
-     * @return Collection|Project[]
-     */
-    public function getProjects(): Collection
-    {
-        return $this->projects;
-    }
-
-    public function addProject(Project $project): self
-    {
-        if (!$this->projects->contains($project)) {
-            $this->projects[] = $project;
-            $project->setLanguage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProject(Project $project): self
-    {
-        if ($this->projects->removeElement($project)) {
-            // set the owning side to null (unless already changed)
-            if ($project->getLanguage() === $this) {
-                $project->setLanguage(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString(): string
     {
         return 'Language';
@@ -177,6 +147,33 @@ class Language
     public function setVersionsArray($versionsArray): self
     {
         $this->versions = implode(',',$versionsArray);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): self
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->addLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            $project->removeLanguage($this);
+        }
 
         return $this;
     }

@@ -70,13 +70,6 @@ class Project
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Language::class, inversedBy="projects")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    #[Groups(['project:list', 'project:item'])]
-    private $language;
-
-    /**
      * @ORM\Column(type="string", length=255, options={"default": "wip"})
      */
     #[Groups(['project:list', 'project:item'])]
@@ -97,10 +90,15 @@ class Project
      */
     private $project_url;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Language::class, inversedBy="projects")
+     */
+    private $language;
+
     public function __construct()
     {
-        $this->language = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->language = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,18 +176,6 @@ class Project
         return $this;
     }
 
-    public function getLanguage(): ?Language
-    {
-        return $this->language;
-    }
-
-    public function setLanguage(?Language $language): self
-    {
-        $this->language = $language;
-
-        return $this;
-    }
-
     public function __toString(): string
     {
         return 'Project';
@@ -254,6 +240,30 @@ class Project
     public function setProjectUrl(?string $project_url): self
     {
         $this->project_url = $project_url;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Language[]
+     */
+    public function getLanguage(): Collection
+    {
+        return $this->language;
+    }
+
+    public function addLanguage(Language $language): self
+    {
+        if (!$this->language->contains($language)) {
+            $this->language[] = $language;
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): self
+    {
+        $this->language->removeElement($language);
 
         return $this;
     }

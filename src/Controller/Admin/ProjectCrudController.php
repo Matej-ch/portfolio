@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Language;
 use App\Entity\Project;
+use App\Form\LanguageType;
 use App\Repository\ProjectRepository;
 use App\Repository\ProjectStateRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -10,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -69,7 +72,15 @@ class ProjectCrudController extends AbstractCrudController
                 $slug,
                 $description,
                 $isActive,
-                ChoiceField::new('state')->setChoices(fn () => $choices )
+                ChoiceField::new('state')->setChoices(fn () => $choices ),
+                CollectionField::new('language', 'Languages')
+                    ->allowDelete(true)
+                    ->allowAdd(true)
+                    ->setEntryType(LanguageType::class)
+                    ->setFormTypeOptions([
+                        'by_reference' => 'false'
+                    ])
+                    ->setEntryIsComplex(true)
             ];
         }
 

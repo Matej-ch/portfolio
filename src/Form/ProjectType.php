@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,14 +18,20 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name',TextType::class)
+            ->add('description',TextType::class)
+            ->add('slug',TextType::class)
             ->add('isActive',ChoiceType::class,[
                 'choices'  => [
                     'Yes' => true,
                     'No' => false,
                 ]
             ])
-            ->add('description',TextType::class)
-            ->add('slug',TextType::class)
+            ->add('language',CollectionType::class,[
+                'entry_type' => LanguageType::class,
+                'allow_delete' => true,
+                'allow_add' => true,
+                'by_reference' => false,
+            ])
             ->add('createdAt', DateType::class)
             ->add('save', SubmitType::class)
         ;
