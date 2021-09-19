@@ -1,5 +1,5 @@
 sentry:
-    dsn: '%env(SENTRY_DSN)%'
-    tracing:
-        dbal:
-            enabled: false
+  dsn: '%env(SENTRY_DSN)%'
+  tracing:
+    dbal:
+      enabled: false

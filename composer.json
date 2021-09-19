@@ -20,7 +20,7 @@
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
-        "sentry/sentry-symfony": "^4.1",
+        "sentry/sentry-symfony": "^4.2",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "5.3.*",
         "symfony/cache": "5.3.*",
