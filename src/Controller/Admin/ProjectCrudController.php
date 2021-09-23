@@ -74,7 +74,7 @@ class ProjectCrudController extends AbstractCrudController
                 $isActive,
                 ChoiceField::new('state')->setChoices(fn () => $choices ),
                 AssociationField::new('language'),
-                AssociationField::new('tags')->autocomplete()
+                AssociationField::new('tags')
             ];
         }
 

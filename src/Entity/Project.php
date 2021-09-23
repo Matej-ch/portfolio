@@ -76,7 +76,7 @@ class Project
     private $state;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="project")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="projects")
      */
     private $tags;
 
@@ -193,6 +193,30 @@ class Project
         return $this;
     }
 
+    public function getSourceUrl(): ?string
+    {
+        return $this->source_url;
+    }
+
+    public function setSourceUrl(?string $source_url): self
+    {
+        $this->source_url = $source_url;
+
+        return $this;
+    }
+
+    public function getProjectUrl(): ?string
+    {
+        return $this->project_url;
+    }
+
+    public function setProjectUrl(?string $project_url): self
+    {
+        $this->project_url = $project_url;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Tag[]
      */
@@ -216,30 +240,6 @@ class Project
         if ($this->tags->removeElement($tag)) {
             $tag->removeProject($this);
         }
-
-        return $this;
-    }
-
-    public function getSourceUrl(): ?string
-    {
-        return $this->source_url;
-    }
-
-    public function setSourceUrl(?string $source_url): self
-    {
-        $this->source_url = $source_url;
-
-        return $this;
-    }
-
-    public function getProjectUrl(): ?string
-    {
-        return $this->project_url;
-    }
-
-    public function setProjectUrl(?string $project_url): self
-    {
-        $this->project_url = $project_url;
 
         return $this;
     }

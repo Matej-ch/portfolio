@@ -37,11 +37,11 @@ class Tag
     /**
      * @ORM\ManyToMany(targetEntity=Project::class, inversedBy="tags")
      */
-    private $project;
+    private $projects;
 
     public function __construct()
     {
-        $this->project = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,15 +88,15 @@ class Tag
     /**
      * @return Collection|Project[]
      */
-    public function getProject(): Collection
+    public function getProjects(): Collection
     {
-        return $this->project;
+        return $this->projects;
     }
 
     public function addProject(Project $project): self
     {
-        if (!$this->project->contains($project)) {
-            $this->project[] = $project;
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
         }
 
         return $this;
@@ -104,7 +104,7 @@ class Tag
 
     public function removeProject(Project $project): self
     {
-        $this->project->removeElement($project);
+        $this->projects->removeElement($project);
 
         return $this;
     }
