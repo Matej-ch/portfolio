@@ -117,7 +117,7 @@ class Language
 
     public function __toString(): string
     {
-        return 'Language';
+        return $this->name;
     }
 
     public function setPhotoFilename($fileName): self

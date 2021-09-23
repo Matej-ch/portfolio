@@ -2,14 +2,15 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Language;
 use App\Entity\Project;
 use App\Form\LanguageType;
-use App\Repository\ProjectRepository;
+use App\Repository\LanguageRepository;
 use App\Repository\ProjectStateRepository;
+use App\Repository\TagRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -26,7 +27,6 @@ class ProjectCrudController extends AbstractCrudController
     }
 
     public array $states;
-
     public function __construct(ProjectStateRepository $repository)
     {
         $this->states = $repository->findAll();
@@ -73,14 +73,8 @@ class ProjectCrudController extends AbstractCrudController
                 $description,
                 $isActive,
                 ChoiceField::new('state')->setChoices(fn () => $choices ),
-                CollectionField::new('language', 'Languages')
-                    ->allowDelete(true)
-                    ->allowAdd(true)
-                    ->setEntryType(LanguageType::class)
-                    ->setFormTypeOptions([
-                        'by_reference' => 'false'
-                    ])
-                    ->setEntryIsComplex(true)
+                AssociationField::new('language'),
+                AssociationField::new('tags')->autocomplete()
             ];
         }
 

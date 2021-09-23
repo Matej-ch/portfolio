@@ -32,6 +32,12 @@ class ProjectType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false,
             ])
+            ->add('tags',CollectionType::class,[
+                'entry_type' => TagType::class,
+                'allow_delete' => true,
+                'allow_add' => true,
+                'by_reference' => false,
+            ])
             ->add('createdAt', DateType::class)
             ->add('save', SubmitType::class)
         ;
