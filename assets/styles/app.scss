@@ -20,3 +20,28 @@ body {
 h1 {
     color: cornflowerblue;
 }
+
+.tag {
+    @apply bg-gray-200 text-gray-500 inline-block relative no-underline;
+    border-radius: 3px;
+    height: 26px;
+    line-height: 23px;
+    padding: 0 20px 0 23px;
+    -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+    @apply absolute bg-white;
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    content: '';
+    height: 6px;
+    left: 10px;
+    width: 6px;
+    top: 10px;
+}
+
+.tag:hover {
+    @apply text-white bg-red-600;
+}
+

@@ -35,7 +35,7 @@ class Tag
     private int $isActive = 1;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Project::class, inversedBy="tags")
+     * @ORM\ManyToMany(targetEntity=Project::class, mappedBy="tags")
      */
     private $projects;
 

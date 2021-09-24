@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Repository\LanguageRepository;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class SiteController extends AbstractController
 {
@@ -26,13 +29,22 @@ class SiteController extends AbstractController
 
     //#[Route('/{_locale<%app.supported_locales%>}/about', name: 'app_about')]
     #[Route('/about', name: 'app_about')]
-    public function about(TagRepository $tagRepository): Response
+    public function about(TagRepository $tagRepository, LanguageRepository $languageRepository): Response
     {
-        $tags = $tagRepository->findAllActive();
+        $cache = new FilesystemAdapter();
+
+        $tags = $cache->get('tags_cached', function (ItemInterface $item) use ($tagRepository) {
+            $item->expiresAfter(1800);
+
+            return $tagRepository->findAllActive();
+        });
+
+        $languages = $languageRepository->findAllActive();
 
         return $this->render('site/about.html.twig', [
             'controller_name' => 'SiteController',
-            'tags' => $tags
+            'tags' => $tags,
+            'languages' => $languages
         ]);
     }
 }
