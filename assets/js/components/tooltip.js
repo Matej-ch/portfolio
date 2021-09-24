@@ -31,18 +31,17 @@ const Tooltip = ({color, position = 'left'}) => {
                         onMouseEnter={openLeftTooltip}
                         onMouseLeave={closeLeftTooltip}
                         ref={btnRef}>
-                        Contact me
+                        Get int touch
                     </button>
                     <div
                         className={
-                            (tooltipShow ? "" : "hidden ") + "bg-" + color +
-                            "-600 border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
+                            (tooltipShow ? "" : "hidden ") + "bg-blue-600 border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
                         }
                         ref={tooltipRef}>
                         <div>
                             <div
                                 className={
-                                    "bg-" + color + "-600 text-white opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg"
+                                    "bg-blue-600 text-white opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg"
                                 }>
                                 {color} tooltip title
                             </div>
