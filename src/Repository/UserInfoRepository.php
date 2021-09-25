@@ -19,32 +19,12 @@ class UserInfoRepository extends ServiceEntityRepository
         parent::__construct($registry, UserInfo::class);
     }
 
-    // /**
-    //  * @return UserInfo[] Returns an array of UserInfo objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findActive()
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('u.data,u.avatar')
+            ->andWhere('u.is_active = :active')->setParameter('active',1)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?UserInfo
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
