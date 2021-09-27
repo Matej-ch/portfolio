@@ -46,3 +46,54 @@ h1 {
     @apply text-white bg-red-600;
 }
 
+.btn {
+    @apply relative inline-block isolate rounded;
+    color: var(--btn-clr, black);
+    border: 2px solid var(--btn-clr, black);
+    padding: .5em 1.5em;
+    font-family: inherit;
+    text-decoration: none;
+    line-height: inherit;
+    transition: color 300ms linear;
+}
+
+.btn-sm {
+    @apply relative inline-block isolate rounded-sm;
+    color: var(--btn-clr, #b3b3b3);
+    border: 1px solid var(--btn-clr, #b3b3b3);
+    padding: 0.25em 1.0em;
+    font-family: inherit;
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 300ms linear;
+}
+
+.btn-blue {
+    --btn-clr: rgba(59, 130, 246, 1);
+    --transform-origin: bottom;
+}
+
+.btn-gold {
+    --btn-clr: rgba(245, 158, 11, 1);
+    --transform-origin: center;
+}
+
+.btn:hover, .btn:focus,.btn-sm:hover, .btn-sm:focus {
+    color: white;
+}
+
+.btn::after,.btn-sm::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--btn-clr);
+    transform: scale(1, 0);
+    transform-origin: var(--transform-origin, center);
+    transition: transform 300ms ease;
+}
+
+.btn:hover::after,.btn-sm:hover::after {
+    transform: scale(1, 1);
+}
+

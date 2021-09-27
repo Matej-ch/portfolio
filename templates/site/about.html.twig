@@ -25,14 +25,8 @@
                                 </div>
                             </div>
                             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                                <div class="py-6 px-3 mt-32 sm:mt-0" id="tooltip-wrapper">
-                                    {# <button
-                                            class="bg-blue-500 active:bg-pink-blue uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
-                                            type="button"
-                                            style="transition: all 0.15s ease 0s;">
-                                        <i class="fas fa-envelope text-lg"></i>
-                                        Contact modal email
-                                    </button> #}
+                                <div class="py-6 px-3 mt-32 sm:mt-0">
+                                    <button class="btn btn-blue"><i class="fas fa-envelope"></i> Contact me</button>
                                 </div>
                             </div>
                             <div class="w-full lg:w-4/12 px-4 lg:order-1">
@@ -72,7 +66,7 @@
                         <div class="mt-4 py-5 border-t border-gray-300 text-center">
                             <div class="flex flex-wrap justify-center">
                                 <div class="w-full px-4">
-                                    <p class="w-full px-4 flex flex-wrap space-x-2 justify-center">
+                                    <div class="w-full px-4 flex flex-row space-x-2 justify-center items-center">
                                         {% for language in languages %}
                                             {% if language.icon|length %}
                                                 <a href="{{ path('app_project', { language: language.name }) }}">
@@ -80,10 +74,10 @@
                                                 </a>
 
                                             {% else %}
-                                                <a class="" href="{{ path('app_project', { language: language.name }) }}">{{ language.name }}</a>
+                                                <a class="btn-sm btn-gold" href="{{ path('app_project', { language: language.name }) }}">{{ language.name }}</a>
                                             {% endif %}
                                         {% endfor %}
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +104,6 @@
 
     {{ parent() }}
 
-    {{ encore_entry_script_tags('tooltip') }}
     {{ encore_entry_script_tags('background') }}
 {% endblock %}
 
