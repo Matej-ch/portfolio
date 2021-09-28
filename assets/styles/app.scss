@@ -18,6 +18,12 @@ body {
     font-family: 'Spartan', sans-serif;
 }
 
+.login-bg {
+    @apply  absolute top-0 w-full h-full bg-gray-900;
+
+    background: linear-gradient(#141e30, #243b55);
+}
+
 h1 {
     color: cornflowerblue;
 }
@@ -78,6 +84,12 @@ h1 {
     --transform-origin: center;
 }
 
+.btn-login {
+    --btn-clr: rgba(17, 24, 39, 1);
+    --transform-origin: top;
+    @apply font-bold uppercase mr-1 mb-1 w-full px-6 py-3 shadow outline-none focus:outline-none;
+}
+
 .btn:hover, .btn:focus,.btn-sm:hover, .btn-sm:focus {
     color: white;
 }
@@ -94,6 +106,6 @@ h1 {
 }
 
 .btn:hover::after,.btn-sm:hover::after {
-    transform: scale(1, 1);
+    transform: scale(1.01, 1.01);
 }
 
