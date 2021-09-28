@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=UserInfoRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class UserInfo
 {
@@ -31,6 +32,9 @@ class UserInfo
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
+
+    private $decodedData;
+
 
     public function getId(): ?int
     {
@@ -69,6 +73,82 @@ class UserInfo
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\postLoad
+     */
+    public function setDecodedData(): void
+    {
+        $this->decodedData = json_decode($this->getData(), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * @ORM\prePersist
+     */
+    public function getDecodedData()
+    {
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+    }
+
+    public function getName()
+    {
+        return $this->decodedData['name'] ?? '';
+    }
+
+    public function getLocation()
+    {
+        return $this->decodedData['location'] ?? '';
+    }
+
+    public function getEducation()
+    {
+        return $this->decodedData['education'] ?? '';
+    }
+
+    public function getWork()
+    {
+        return $this->decodedData['work'] ?? '';
+    }
+
+    public function getDescription()
+    {
+        return $this->decodedData['description'] ?? '';
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->decodedData['name'] = $name;
+
+        return $this;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->decodedData['location'] = $location;
+
+        return $this;
+    }
+
+    public function setEducation(?string $education): self
+    {
+        $this->decodedData['education'] = $education;
+
+        return $this;
+    }
+
+    public function setWork(?string $work): self
+    {
+        $this->decodedData['work'] = $work;
+
+        return $this;
+    }
+
+    public function setDescription(?string $desc): self
+    {
+        $this->decodedData['description'] = $desc;
 
         return $this;
     }
