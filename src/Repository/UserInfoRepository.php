@@ -22,7 +22,6 @@ class UserInfoRepository extends ServiceEntityRepository
     public function findActive()
     {
         return $this->createQueryBuilder('u')
-            ->select('u.data,u.avatar')
             ->andWhere('u.is_active = :active')->setParameter('active',1)
             ->getQuery()
             ->getOneOrNullResult();

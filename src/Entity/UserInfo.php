@@ -88,7 +88,7 @@ class UserInfo
     /**
      * @ORM\prePersist
      */
-    public function getDecodedData()
+    public function getDecodedData(): void
     {
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
     }
