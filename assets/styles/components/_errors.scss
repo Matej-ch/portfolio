@@ -1,0 +1,9 @@
+.error-bg {
+  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+  @apply relative flex flex-col;
+}
+
+.waves {
+  min-height:100px;
+  @apply mt-auto w-full relative;
+}
