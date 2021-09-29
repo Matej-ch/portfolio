@@ -93,6 +93,11 @@ class UserInfo
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
     }
 
+    public function getUserData()
+    {
+        return $this->decodedData;
+    }
+
     public function getName()
     {
         return $this->decodedData['name'] ?? '';

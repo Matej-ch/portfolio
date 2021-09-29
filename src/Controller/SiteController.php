@@ -41,7 +41,11 @@ class SiteController extends AbstractController
             return $tagRepository->findAllActive();
         });
 
-        $languages = $languageRepository->findAllActive();
+        $languages = $cache->get('langs_cached', function (ItemInterface $item) use ($languageRepository) {
+            $item->expiresAfter(1800);
+
+            return $languageRepository->findAllActive();
+        });
 
         $repository = $entityManager->getRepository(UserInfo::class);
         $user = $repository->findActive();
