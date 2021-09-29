@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\ExternalSite;
 use App\Entity\UserInfo;
+use App\Repository\ExternalSiteRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,7 +33,7 @@ class SiteController extends AbstractController
 
     //#[Route('/{_locale<%app.supported_locales%>}/about', name: 'app_about')]
     #[Route('/about', name: 'app_about')]
-    public function about(TagRepository $tagRepository, LanguageRepository $languageRepository,EntityManagerInterface $entityManager): Response
+    public function about(TagRepository $tagRepository, LanguageRepository $languageRepository,EntityManagerInterface $entityManager,ExternalSiteRepository $externalSiteRepository): Response
     {
         $cache = new FilesystemAdapter();
 
@@ -50,11 +52,14 @@ class SiteController extends AbstractController
         $repository = $entityManager->getRepository(UserInfo::class);
         $user = $repository->findActive();
 
+        $personalSites = $externalSiteRepository->findPersonal();
+
         return $this->render('site/about.html.twig', [
             'controller_name' => 'SiteController',
             'tags' => $tags,
             'languages' => $languages,
             'user' => $user,
+            'personalSites' => $personalSites
         ]);
     }
 }

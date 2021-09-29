@@ -35,7 +35,8 @@ class ExternalSiteCrudController extends AbstractCrudController
             ImageField::new('icon')->setUploadDir('public/uploads/sites')->hideOnIndex(),
             ImageField::new('icon')->setBasePath('uploads/sites')->hideOnForm(),
             'ordering',
-            'hide'
+            'hide',
+            'isPersonal'
         ];
     }
 

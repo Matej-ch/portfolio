@@ -31,8 +31,17 @@
                                 </div>
                             </div>
                             <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                                <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                                    something here, external sites ?
+                                <div class="flex justify-center py-4 lg:pt-4 pt-8 space-x-2">
+                                    {% for site in personalSites %}
+                                        {% if site.icon|length %}
+                                            <a href="{{ site.url }}">
+                                                <img style="max-width: 50px;height: auto" src="{{ asset('uploads/sites/%s' | format(site.icon)) }}" alt="{{ site.name }}">
+                                            </a>
+
+                                        {% else %}
+                                            <a href="{{ site.url }}" aria-placeholder="{{ site.name }}" title="{{ site.name }}"><i class="fas fa-globe-europe fa-3x text-gray-400"></i></a>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

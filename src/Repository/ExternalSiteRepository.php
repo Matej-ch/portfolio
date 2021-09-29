@@ -19,32 +19,14 @@ class ExternalSiteRepository extends ServiceEntityRepository
         parent::__construct($registry, ExternalSite::class);
     }
 
-    // /**
-    //  * @return ExternalSite[] Returns an array of ExternalSite objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findPersonal()
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('e.isPersonal = :personal')
+            ->setParameter('personal',1)
+            ->orderBy('e.ordering', 'ASC')
+            ->setMaxResults(5)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?ExternalSite
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

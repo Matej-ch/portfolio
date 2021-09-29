@@ -15,13 +15,13 @@ const Navbar = ({ fixed,github,linkedin }) => {
                         </a>
 
                         <a className="text-sm font-bold leading-relaxed hidden mr-4 py-2 whitespace-nowrap uppercase text-white md:inline-block"
-                           href="/projects">
+                           href="/projects?tag=game">
                             <i className="fas fa-gamepad text-lg leading-lg text-white opacity-75"/>
                             <span className="ml-2">Games</span>
                         </a>
 
                         <a className="text-sm font-bold leading-relaxed hidden mr-4 py-2 whitespace-nowrap uppercase text-white md:inline-block"
-                           href="/projects">
+                           href="/projects?tag=package">
                             <i className="fas fa-cubes text-lg leading-lg text-white opacity-75"/>
                             <span className="ml-2">Packages</span>
                         </a>
@@ -53,7 +53,7 @@ const Navbar = ({ fixed,github,linkedin }) => {
                             </li>
                             <li>
                                 <a
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="px-3 py-2 flex items-baseline text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                                     href="/about">
                                     <i className="fas fa-user text-lg leading-lg text-white opacity-75"/><span className="ml-2">About me</span>
                                 </a>

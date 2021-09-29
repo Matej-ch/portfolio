@@ -25,15 +25,11 @@ body {
     background: linear-gradient(#141e30, #243b55);
 }
 
-h1 {
-    color: cornflowerblue;
-}
-
 .tag {
     @apply bg-gray-200 text-gray-500 inline-block relative no-underline;
     border-radius: 3px;
     height: 26px;
-    line-height: 23px;
+    line-height: 27px;
     padding: 0 20px 0 23px;
     -webkit-transition: color 0.2s;
 }

@@ -15,32 +15,37 @@ class ExternalSite
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=1024)
      */
-    private $url;
+    private ?string $url;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $icon;
+    private ?string $icon;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $ordering;
+    private ?int $ordering;
 
     /**
      * @ORM\Column(type="boolean", options={"default": "0"})
      */
-    private $hide = false;
+    private bool $hide = false;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private ?bool $isPersonal;
 
     public function getId(): ?int
     {
@@ -103,6 +108,18 @@ class ExternalSite
     public function setHide(bool $hide): self
     {
         $this->hide = $hide;
+
+        return $this;
+    }
+
+    public function getIsPersonal(): ?bool
+    {
+        return $this->isPersonal;
+    }
+
+    public function setIsPersonal(?bool $isPersonal): self
+    {
+        $this->isPersonal = $isPersonal;
 
         return $this;
     }
