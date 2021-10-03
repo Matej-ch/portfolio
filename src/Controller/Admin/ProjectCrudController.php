@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -68,6 +69,7 @@ class ProjectCrudController extends AbstractCrudController
                 $slug,
                 $description,
                 $isActive,
+                ImageField::new('bg_img')->setUploadDir('public/uploads/projects'),
                 ChoiceField::new('state')->setChoices(fn () => $choices ),
                 AssociationField::new('language'),
                 AssociationField::new('tags')

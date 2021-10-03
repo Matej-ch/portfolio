@@ -6,14 +6,43 @@
 
 {% block body %}
 
-    <h1>All my projects</h1>
+    <h1>Projects</h1>
 
     {% if projects|length > 0 %}
-        <p>There are {{ projects|length }} projects</p>
         {% for project in projects %}
-            <p>{{ project.name }}</p>
-            <div>{{ project.description }}</div>
-            <a href="{{ path('project_show',{slug:project.slug}) }}">Project {{ project.name }}</a>
+            <div class="project">
+
+                <div class="project__header">
+                    {% if project.bgImg %}
+                        <div class="cover" style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'></div>
+                    {% else %}
+                        <div class="no-cover"></div>
+                    {% endif %}
+                </div>
+
+                <div class="project__body">
+                    <div>
+                        <a class="text-gray-700" href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
+                    </div>
+
+                    <div class="text-gray-600">{{ project.description }}</div>
+
+                    <div class="blog-tags">tags here </div>
+                </div>
+
+                <div class="project__footer">
+                    <ul>
+                        <li class="language">project language</li>
+
+                        {% if project.projectUrl %}
+                            <li class="project_url"><a href="#">project url</a></li>
+                        {% endif %}
+                        {% if project.sourceUrl %}
+                            <li class="source_url"><a href="#">source url</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
 
         {% endfor %}
 

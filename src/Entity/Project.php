@@ -95,6 +95,11 @@ class Project
      */
     private $language;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $bg_img;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -264,6 +269,18 @@ class Project
     public function removeLanguage(Language $language): self
     {
         $this->language->removeElement($language);
+
+        return $this;
+    }
+
+    public function getBgImg(): ?string
+    {
+        return $this->bg_img;
+    }
+
+    public function setBgImg(?string $bg_img): self
+    {
+        $this->bg_img = $bg_img;
 
         return $this;
     }

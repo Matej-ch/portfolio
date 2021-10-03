@@ -68,9 +68,9 @@ const Navbar = ({ fixed,github,linkedin }) => {
 
 //export default Navbar;
 
-if(document.getElementById('react-app')) {
+if(document.getElementById('react-header')) {
     ReactDOM.render(
         <Navbar github="https://github.com/Matej-ch" linkedin="https://www.linkedin.com"/>,
-        document.getElementById('react-app')
+        document.getElementById('react-header')
     );
 }
