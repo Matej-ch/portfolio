@@ -15,13 +15,13 @@ const Navbar = ({ fixed,github,linkedin }) => {
                         </a>
 
                         <a className="text-sm font-bold leading-relaxed hidden mr-4 py-2 whitespace-nowrap uppercase text-white md:inline-block"
-                           href="/projects?tag=game">
+                           href="/projects?q=game">
                             <i className="fas fa-gamepad text-lg leading-lg text-white opacity-75"/>
                             <span className="ml-2">Games</span>
                         </a>
 
                         <a className="text-sm font-bold leading-relaxed hidden mr-4 py-2 whitespace-nowrap uppercase text-white md:inline-block"
-                           href="/projects?tag=package">
+                           href="/projects?q=package">
                             <i className="fas fa-cubes text-lg leading-lg text-white opacity-75"/>
                             <span className="ml-2">Packages</span>
                         </a>

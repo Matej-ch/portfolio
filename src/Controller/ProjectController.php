@@ -17,8 +17,9 @@ class ProjectController extends AbstractController
     #[Route('/projects', name: 'app_project')]
     public function homepage(Request $request,ProjectRepository $repository): Response
     {
+
         $offset = max(0, $request->query->getInt('offset', 0));
-        $paginator = $repository->getProjectPaginator($offset);
+        $paginator = $repository->getProjectPaginator($request->query->get('q'),$offset);
 
         return $this->render('project/index.html.twig',[
             'projects' =>  $paginator,

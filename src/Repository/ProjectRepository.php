@@ -43,14 +43,28 @@ class ProjectRepository extends ServiceEntityRepository
         return $qb->andWhere('p.isActive = :active')->setParameter('active',1);
     }
 
-    public function getProjectPaginator(int $offset): Paginator
+    public function getProjectPaginator(string $search = null,int $offset = 0): Paginator
     {
-        $query = $this->createQueryBuilder('p')
-            ->orderBy('p.createdAt', 'DESC')
+
+        $queryBuilder = $this
+            ->createQueryBuilder('project')
+            ->orderBy('project.createdAt', 'DESC')
+
+            ->innerJoin('project.tags', 'tag')
+            ->addSelect('tag')
+
+            ->innerJoin('project.language', 'language')
+            ->addSelect('language');
+
+        if ($search) {
+            $queryBuilder
+                ->andWhere('project.name LIKE :searchTerm OR project.description LIKE :searchTerm OR tag.name LIKE :searchTerm OR language.name LIKE :searchTerm')
+                ->setParameter('searchTerm', '%'.$search.'%');
+        }
+
+        return new Paginator($queryBuilder
             ->setMaxResults(self::PAGINATOR_PER_PAGE)
             ->setFirstResult($offset)
-            ->getQuery();
-
-        return new Paginator($query);
+            ->getQuery());
     }
 }
