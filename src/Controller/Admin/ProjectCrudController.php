@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use App\Repository\ProjectStateRepository;
+use App\Service\ImageOptimizer;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;

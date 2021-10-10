@@ -20,42 +20,44 @@
     </form>
 
     {% if projects|length > 0 %}
-        {% for project in projects %}
-            <div class="project">
+        <div class="flex flex-row flex-wrap w-4/5 mx-auto">
+            {% for project in projects %}
+                <div class="project">
 
-                <div class="project__header">
-                    {% if project.bgImg %}
-                        <div class="cover" style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'></div>
-                    {% else %}
-                        <div class="no-cover"></div>
-                    {% endif %}
-                </div>
-
-                <div class="project__body">
-                    <div>
-                        <a class="text-gray-700" href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
+                    <div class="project__header">
+                        {% if project.bgImg %}
+                            <div class="cover" style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'></div>
+                        {% else %}
+                            <div class="no-cover"></div>
+                        {% endif %}
                     </div>
 
-                    <div class="text-gray-600">{{ project.description }}</div>
+                    <div class="project__body">
+                        <div>
+                            <a class="text-gray-700" href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
+                        </div>
 
-                    <div class="blog-tags">tags here </div>
+                        <div class="text-gray-600">{{ project.description }}</div>
+
+                        <div class="blog-tags">tags here </div>
+                    </div>
+
+                    <div class="project__footer">
+                        <ul>
+                            <li class="language">project language</li>
+
+                            {% if project.projectUrl %}
+                                <li class="project_url"><a href="#">project url</a></li>
+                            {% endif %}
+                            {% if project.sourceUrl %}
+                                <li class="source_url"><a href="#">source url</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
+            {% endfor %}
+        </div>
 
-                <div class="project__footer">
-                    <ul>
-                        <li class="language">project language</li>
-
-                        {% if project.projectUrl %}
-                            <li class="project_url"><a href="#">project url</a></li>
-                        {% endif %}
-                        {% if project.sourceUrl %}
-                            <li class="source_url"><a href="#">source url</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-
-        {% endfor %}
 
         {% if previous >= 0 %}
             <a href="{{ path('app_project', { offset: previous }) }}">Previous</a>

@@ -113,7 +113,7 @@ body {
 
 .project {
 
-    @apply bg-white w-4/5 lg:w-1/4 rounded mx-auto my-24;
+    @apply bg-white rounded m-4 w-1/4;
     box-shadow: hsla(0, 0, 0, .2) 0 4px 2px -2px;
 
     &__header {
@@ -131,11 +131,11 @@ body {
     }
 
     &__body {
-        @apply w-4/5 my-0 mx-auto;
+        @apply my-0 mx-auto;
     }
 
     &__footer {
-        @apply w-4/5 pb-0.5 my-0 mx-auto;
+        @apply pb-0.5 my-0 mx-auto;
         border-top: 1px solid lighten(#333, 70%);
 
         ul {

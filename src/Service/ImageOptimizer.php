@@ -32,7 +32,7 @@ class ImageOptimizer
             $height = $width / $ratio;
         }
 
-        $photo =$this->imagine->open($filename);
+        $photo = $this->imagine->open($filename);
         $photo->resize(new Box($width,$height))->save($filename);
     }
 

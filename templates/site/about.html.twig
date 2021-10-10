@@ -39,7 +39,10 @@
                                             </a>
 
                                         {% else %}
-                                            <a href="{{ site.url }}" aria-placeholder="{{ site.name }}" title="{{ site.name }}"><i class="fas fa-globe-europe fa-2x text-gray-400"></i></a>
+                                            <a href="{{ site.url }}" aria-placeholder="{{ site.name }}" title="{{ site.name }}" class="relative">
+                                                <i class="fas fa-globe-europe fa-2x text-gray-400"></i>
+                                                <span class="font-bold absolute z-10 text-gray-700 text-xl flex justify-center items-center top-0 bottom-0 left-0 right-0">{{ site.name|first|capitalize }}</span>
+                                            </a>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
