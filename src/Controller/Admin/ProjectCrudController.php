@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use App\Repository\ProjectStateRepository;
-use App\Service\ImageOptimizer;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -25,6 +24,7 @@ class ProjectCrudController extends AbstractCrudController
     }
 
     public array $states;
+
     public function __construct(ProjectStateRepository $repository)
     {
         $this->states = $repository->findAll();
