@@ -5,18 +5,20 @@ namespace App\EventSubscriber;
 use App\Entity\Project;
 use App\Service\ImageOptimizer;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    #[ArrayShape([AfterEntityPersistedEvent::class => "string[]"])]
+    public static function getSubscribedEvents(): array
     {
         return [
             AfterEntityPersistedEvent::class => ['updateImageSize'],
         ];
     }
 
-    public function updateImageSize(AfterEntityPersistedEvent $event)
+    public function updateImageSize(AfterEntityPersistedEvent $event): void
     {
         $entity = $event->getEntityInstance();
 
