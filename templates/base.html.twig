@@ -20,7 +20,7 @@
 
 
 {% block header %}
-    {{ include('fragments/_header.html.twig') }}
+    {{ render_esi(url('app_navbar')) }}
 
     {{ encore_entry_script_tags('header') }}
 

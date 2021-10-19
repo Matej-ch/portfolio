@@ -66,9 +66,13 @@ class SiteController extends AbstractController
     #[Route('/navbar', name: 'app_navbar')]
     public function navbarItems(): Response
     {
-        return $this->render('fragments/_header.html.twig',[
+        $response = $this->render('fragments/_header.html.twig',[
             'github' => 'github',
             'linkedin' => 'linkedin'
         ]);
+        $response->setPublic();
+        $response->setMaxAge(60);
+
+        return $response;
     }
 }
