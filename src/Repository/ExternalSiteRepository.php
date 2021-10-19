@@ -29,4 +29,28 @@ class ExternalSiteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findGithub()
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e.url')
+            ->andWhere("e.isPersonal = :personal AND e.name LIKE 'github%' ")
+            ->setParameter('personal',1)
+            ->orderBy('e.ordering', 'ASC')
+            //->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findLinkedin()
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e.url')
+            ->andWhere("e.isPersonal = :personal AND e.name LIKE 'linked%'")
+            ->setParameter('personal',1)
+            ->orderBy('e.ordering', 'ASC')
+            //->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

@@ -64,14 +64,17 @@ class SiteController extends AbstractController
     }
 
     #[Route('/navbar', name: 'app_navbar')]
-    public function navbarItems(): Response
+    public function navbarItems(ExternalSiteRepository $externalSiteRepository): Response
     {
+        $githubUrl = $externalSiteRepository->findGithub();
+        $linkedinUrl = $externalSiteRepository->findLinkedin();
+
         $response = $this->render('fragments/_header.html.twig',[
-            'github' => 'github',
-            'linkedin' => 'linkedin'
+            'github' => $githubUrl['url'] ?? 'https://github.com/',
+            'linkedin' => $linkedinUrl['url'] ?? 'https://www.linkedin.com/'
         ]);
-        $response->setPublic();
-        $response->setMaxAge(60);
+        //$response->setPublic();
+        //$response->setMaxAge(60);
 
         return $response;
     }

@@ -1,1 +1,10 @@
 <div id="react-header"></div>
+
+{#
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        window.githubUrl = {{ github|json_encode|raw }};
+        window.linkedinUrl = {{ linkedin|json_encode|raw }};
+    </script>
+{% endblock %}#}
