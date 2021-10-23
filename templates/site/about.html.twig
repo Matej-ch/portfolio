@@ -8,7 +8,7 @@
     <main class="profile-page">
         <section class="relative block w-full max-w-full" style="height: 500px;">
             <div class="absolute top-0 w-full h-full bg-center js-background-parent" data-controller="particle">
-                <canvas data-particle-target="canvas" class="w-full"></canvas>
+                <canvas id="canvas" data-particle-target="canvas" class="w-full"></canvas>
 
                 <div class="js-controls absolute right-0 bottom-0 mr-1 mb-1">
                     <a href="#" data-particle-target="settingBtn" data-action="particle#showMenu"><i class="fas fa-cogs text-gray-500 text-xl"></i></a>
@@ -126,13 +126,5 @@
     </main>
 
 {% endblock %}
-
-{% block javascripts %}
-
-    {{ parent() }}
-
-    {#{{ encore_entry_script_tags('background') }}#}
-{% endblock %}
-
 
 {% block footer %}{% endblock %}
