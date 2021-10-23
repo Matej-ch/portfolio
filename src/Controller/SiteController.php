@@ -69,13 +69,9 @@ class SiteController extends AbstractController
         $githubUrl = $externalSiteRepository->findGithub();
         $linkedinUrl = $externalSiteRepository->findLinkedin();
 
-        $response = $this->render('fragments/_header.html.twig',[
+        return $this->render('fragments/_header.html.twig',[
             'github' => $githubUrl['url'] ?? 'https://github.com/',
             'linkedin' => $linkedinUrl['url'] ?? 'https://www.linkedin.com/'
         ]);
-        //$response->setPublic();
-        //$response->setMaxAge(60);
-
-        return $response;
     }
 }

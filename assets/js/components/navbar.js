@@ -70,7 +70,7 @@ const Navbar = ({ fixed,github,linkedin }) => {
 
 if(document.getElementById('react-header')) {
     ReactDOM.render(
-        <Navbar github="https://github.com/Matej-ch" linkedin="https://www.linkedin.com"/>,
+        <Navbar github={window.githubUrl} linkedin={window.linkedinUrl} />,
         document.getElementById('react-header')
     );
 }
