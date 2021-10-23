@@ -7,7 +7,15 @@
 {% block body %}
     <main class="profile-page">
         <section class="relative block w-full max-w-full" style="height: 500px;">
-            <div class="absolute top-0 w-full h-full bg-center js-background-parent" data-controller="particle">
+            <div
+                    {{ stimulus_controller('particle',{
+                        'speedMod': 0.2,
+                        'particleCount': 200,
+                        'lineModifier': 10000
+                    }) }}
+
+                    class="absolute top-0 w-full h-full bg-center js-background-parent"
+            >
                 <canvas id="canvas" data-particle-target="canvas" class="w-full"></canvas>
 
                 <div class="js-controls absolute right-1 bottom-1">

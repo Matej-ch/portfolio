@@ -2,11 +2,22 @@ import { Controller } from 'stimulus';
 import PBackground from "bg_particles/src/js/PBackground";
 
 export default class extends Controller {
+
     static targets = ['canvas','settingBtn','settingMenu'];
+
+    static values = {
+        speedMod: Number,
+        particleCount: Number,
+        lineModifier: Number,
+    };
 
     connect()
     {
-        this.initializeParticles();
+        this.initializeParticles({
+            speedMod: this.speedModValue,
+            particleCount: this.particleCountValue,
+            lineModifier: this.lineModifierValue
+        });
     }
 
     showMenu()
@@ -28,6 +39,8 @@ export default class extends Controller {
 
     initializeParticles(options = {}) {
 
+        let bg = {};
+
         let bgOptions = {
             canvasSelector: `#${this.canvasTarget.id}`,
             bgColor:'linear-gradient(0.15turn, rgb(223, 185, 106, 1), rgb(135, 190, 231, 1)90% )',
@@ -41,7 +54,7 @@ export default class extends Controller {
 
         bgOptions = {...bgOptions,...options};
 
-        const bg = new PBackground(bgOptions);
+        bg = new PBackground(bgOptions);
 
         /** initialize particles */
         bg.init();
