@@ -10,11 +10,17 @@
             <div class="absolute top-0 w-full h-full bg-center js-background-parent" data-controller="particle">
                 <canvas id="canvas" data-particle-target="canvas" class="w-full"></canvas>
 
-                <div class="js-controls absolute right-0 bottom-0 mr-1 mb-1">
+                <div class="js-controls absolute right-1 bottom-1">
                     <a href="#" data-particle-target="settingBtn" data-action="particle#showMenu"><i class="fas fa-cogs text-gray-500 text-xl"></i></a>
 
-                    <div class="hidden" data-particle-target="settingMenu">
-                        <div>Control 1</div>
+                    <div class="hidden bg-white p-4 space-y-2 rounded-sm relative" data-particle-target="settingMenu">
+                        <a href="#"
+                           class="absolute right-1 top-1 rounded-sm bg-gray-100 border border-red-500 flex justify-center items-center"
+                           data-action="particle#hideMenu"
+                           style="height:20px;width:20px;">
+                            <i class="fas fa-times text-red-900"></i>
+                        </a>
+                        <div class="pt-4">Control 1</div>
                         <div>Control 2</div>
                         <div>Control 3</div>
                         <div>Control 4</div>

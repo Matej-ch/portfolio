@@ -13,6 +13,11 @@ export default class extends Controller {
         this.settingMenuTarget.classList.remove('hidden');
     }
 
+    hideMenu() {
+        this.settingMenuTarget.classList.add('hidden');
+        this.settingBtnTarget.classList.remove('hidden');
+    }
+
     initializeParticles() {
         const bg = new PBackground({
             canvasSelector: `#${this.canvasTarget.id}`,
