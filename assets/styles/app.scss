@@ -15,7 +15,7 @@
 @import "components/errors";
 
 body {
-    background-color: lightgray;
+    @apply bg-gray-300;
     font-family: 'Spartan', sans-serif;
 }
 

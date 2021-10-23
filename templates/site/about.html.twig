@@ -7,8 +7,21 @@
 {% block body %}
     <main class="profile-page">
         <section class="relative block w-full max-w-full" style="height: 500px;">
-            <div class="absolute top-0 w-full h-full bg-center js-background-parent">
-                <canvas id="background" class="w-full"></canvas>
+            <div class="absolute top-0 w-full h-full bg-center js-background-parent" data-controller="particle">
+                <canvas data-particle-target="canvas" class="w-full"></canvas>
+
+                <div class="js-controls absolute right-0 bottom-0 mr-1 mb-1">
+                    <a href="#" data-particle-target="settingBtn" data-action="particle#showMenu"><i class="fas fa-cogs text-gray-500 text-xl"></i></a>
+
+                    <div class="hidden" data-particle-target="settingMenu">
+                        <div>Control 1</div>
+                        <div>Control 2</div>
+                        <div>Control 3</div>
+                        <div>Control 4</div>
+                        <div>Control 5</div>
+                    </div>
+                </div>
+
             </div>
         </section>
         <section class="relative py-16 bg-gray-300">
@@ -30,6 +43,7 @@
                                     <button class="btn btn-blue"><i class="fas fa-envelope"></i> Contact me</button>
                                 </div>
                             </div>
+
                             <div class="w-full lg:w-4/12 px-4 lg:order-1">
                                 <div class="flex justify-center py-4 lg:pt-4 pt-8 space-x-2">
                                     {% for site in personalSites %}
@@ -117,7 +131,7 @@
 
     {{ parent() }}
 
-    {{ encore_entry_script_tags('background') }}
+    {#{{ encore_entry_script_tags('background') }}#}
 {% endblock %}
 
 
