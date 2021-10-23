@@ -48,7 +48,6 @@
         "symfony/translation": "5.3.*",
         "symfony/twig-bundle": "^5.3",
         "symfony/validator": "5.3.*",
-        "symfony/var-dumper": "^5.3",
         "symfony/web-link": "5.3.*",
         "symfony/web-profiler-bundle": "^5.3",
         "symfony/webpack-encore-bundle": "^1.11",
@@ -67,7 +66,8 @@
         "symfony/css-selector": "^5.3",
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^5.3",
-        "zenstruck/foundry": "^1.10"
+        "zenstruck/foundry": "^1.10",
+        "symfony/var-dumper": "^5.3"
     },
     "config": {
         "optimize-autoloader": true,

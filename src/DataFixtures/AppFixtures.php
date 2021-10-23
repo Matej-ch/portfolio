@@ -22,6 +22,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $admin = new Admin();
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setUsername('admin');
+        $admin->setEmail('admin@example.com');
         $admin->setPassword($this->encoderFactory->getPasswordHasher(Admin::class)->hash('admin12345'));
         $manager->persist($admin);
 

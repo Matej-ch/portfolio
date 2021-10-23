@@ -78,7 +78,7 @@ class UserInfo
     }
 
     /**
-     * @ORM\postLoad
+     * @ORM\PostLoad
      */
     public function setDecodedData(): void
     {
@@ -86,7 +86,7 @@ class UserInfo
     }
 
     /**
-     * @ORM\prePersist
+     * @ORM\PrePersist
      */
     public function getDecodedData(): void
     {
