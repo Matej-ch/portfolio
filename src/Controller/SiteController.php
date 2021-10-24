@@ -17,19 +17,14 @@ use Symfony\Contracts\Cache\ItemInterface;
 class SiteController extends AbstractController
 {
 
-    #[Route('/')]
+    /*#[Route('/')]
     public function indexNoLocale(): Response
     {
         return $this->redirectToRoute('app_homepage', ['_locale' => 'en']);
-    }
+    }*/
 
-    #[Route('/{_locale<%app.supported_locales%>}/', name: 'app_homepage')]
-    public function index(): Response
-    {
-        return $this->render('site/index.html.twig', [
-            'controller_name' => 'SiteController',
-        ]);
-    }
+    /*#[Route('/{_locale<%app.supported_locales%>}/', name: 'app_homepage')]
+    public function index(): Response{}*/
 
     //#[Route('/{_locale<%app.supported_locales%>}/about', name: 'app_about')]
     #[Route('/about', name: 'app_about')]

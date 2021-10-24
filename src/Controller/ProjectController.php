@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
 
-    #[Route('/projects', name: 'app_project')]
+    #[Route('/projects', name: 'app_homepage')]
     public function homepage(Request $request,ProjectRepository $repository): Response
     {
 

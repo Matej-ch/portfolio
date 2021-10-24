@@ -130,12 +130,12 @@
                                     <div class="w-full px-4 flex flex-row space-x-2 justify-center items-center">
                                         {% for language in languages %}
                                             {% if language.icon|length %}
-                                                <a href="{{ path('app_project', { q: language.name }) }}">
+                                                <a href="{{ path('app_homepage', { q: language.name }) }}">
                                                     <img style="max-width: 50px;height: auto" src="{{ asset('uploads/languages/%s' | format(language.icon)) }}" alt="{{ language.name }}">
                                                 </a>
 
                                             {% else %}
-                                                <a class="btn-sm btn-gold" href="{{ path('app_project', { q: language.name }) }}">{{ language.name }}</a>
+                                                <a class="btn-sm btn-gold" href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -147,7 +147,7 @@
                             <div class="flex flex-wrap justify-center">
                                 <div class="w-full px-4 flex flex-wrap space-x-2 justify-center">
                                     {% for tag in tags %}
-                                        <a class="tag" href="{{ path('app_project', { q: tag.name }) }}">{{ tag.name }}</a>
+                                        <a class="tag" href="{{ path('app_homepage', { q: tag.name }) }}">{{ tag.name }}</a>
                                     {% endfor %}
                                 </div>
                             </div>
