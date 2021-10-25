@@ -7,7 +7,7 @@
 
 {% block body %}
 
-    <form action="{{ path('app_homepage') }}" class="flex flex-row flex-wrap w-4/5 mx-auto justify-start mt-8" {{ stimulus_controller('search-preview',{
+    <form action="{{ path('app_homepage') }}" class="flex flex-col flex-wrap w-4/5 mx-auto justify-start mt-8 relative" {{ stimulus_controller('search-preview',{
         url: path('app_homepage')
     }) }}>
         <input
@@ -21,7 +21,7 @@
                 data-action="search-preview#onSearchInput"
         >
 
-        <div class="search-preview" data-search-preview-target="result"></div>
+        <div class="search-preview relative" data-search-preview-target="result"></div>
     </form>
 
     {% if projects|length > 0 %}
