@@ -1,0 +1,11 @@
+<div class="flex flex-row ">
+    {% for project in projects %}
+        <a href="{{ path('project_show',{slug:project.slug}) }}">
+            {{ project.name }}
+        </a>
+    {% else %}
+        <div>
+            No results found
+        </div>
+    {% endfor %}
+</div>

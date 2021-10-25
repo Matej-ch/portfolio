@@ -19,7 +19,14 @@ class ProjectController extends AbstractController
     {
 
         $offset = max(0, $request->query->getInt('offset', 0));
+
         $paginator = $repository->getProjectPaginator($request->query->get('q'),$offset);
+
+        if($request->query->get('preview')) {
+            return $this->render('project/_searchPreview.html.twig',[
+                'projects' =>  $paginator,
+            ]);
+        }
 
         return $this->render('project/index.html.twig',[
             'projects' =>  $paginator,
