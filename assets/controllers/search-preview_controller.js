@@ -18,7 +18,7 @@ export default class extends Controller {
     }
 
     clickOutside(event) {
-        event.preventDefault()
+       // event.preventDefault()
         this.resultTarget.innerHTML = '';
     }
 
