@@ -58,8 +58,8 @@ export default class extends Controller {
         //console.log(event.currentTarget.value)
         this.bg.speedModValue = parseFloat(event.currentTarget.value);
 
-        console.log('parseFloat(event.currentTarget.value)',parseFloat(event.currentTarget.value));
-        console.log('this.bg.speedModValue',this.bg.speedModValue);
+        //console.log('parseFloat(event.currentTarget.value)',parseFloat(event.currentTarget.value));
+        //console.log('this.bg.speedModValue',this.bg.speedModValue);
 
         this.initializeParticles(this.bg);
     }
@@ -67,7 +67,7 @@ export default class extends Controller {
     initializeParticles(bg) {
 
         //bg.speedModValue = this.speedModValue;
-        console.log('initializeParticles bg.speedModValue',bg.speedModValue);
+        //console.log('initializeParticles bg.speedModValue',bg.speedModValue);
         //console.log('this.speedModValue',this.speedModValue);
         /** initialize particles */
         bg.init();
