@@ -1,4 +1,7 @@
-<div id="react-header"></div>
+<div id="react-header"  {{ stimulus_controller('header',{
+    'github': github|json_encode|raw,
+    'linkedin': linkedin|json_encode|raw
+}) }}></div>
 
 {% block javascripts %}
     <script>
