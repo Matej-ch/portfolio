@@ -2,14 +2,12 @@ import { Controller } from 'stimulus';
 
 export default class extends Controller {
 
-    openModal(event) {
-        console.log(event);
-        //function toggleModal(modalID){
-            document.getElementById('modal-id').classList.toggle("hidden");
-            document.getElementById('modal-id' + "-backdrop").classList.toggle("hidden");
-            document.getElementById('modal-id').classList.toggle("flex");
-            document.getElementById('modal-id' + "-backdrop").classList.toggle("flex");
-        //}
+    static targets = ['modal','backdrop'];
 
+    openModal(event) {
+        this.modalTarget.classList.toggle("hidden");
+        this.backdropTarget.classList.toggle("hidden");
+        this.modalTarget.classList.toggle("flex");
+        this.backdropTarget.classList.toggle("flex");
     }
 }
