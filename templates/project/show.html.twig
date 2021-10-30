@@ -10,7 +10,7 @@
     Eventually this WILL BE awesome project detail
 </div>
 
-<h4>Description ({{ project.description }})</h4>
+<h4>Description ({{ project.description|raw }})</h4>
 
     {% if project.createdAt %}
         <div>Created: {{ project.createdAt|ago }}</div>
@@ -18,12 +18,6 @@
         (not published)
     {% endif %}
 
-    <form action="{{ path('app_update',{ slug:project.slug }) }}" method="post">
-        <textarea name="description" id="" cols="30" rows="10">
-            {{ project.description }}
-        </textarea>
-        <input type="submit" value="Update">
-    </form>
 
     <a href="{{ path('app_homepage') }}">Home</a>
 
