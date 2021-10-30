@@ -118,7 +118,7 @@ body {
 
 .project {
 
-    @apply bg-white rounded m-4 w-1/4;
+    @apply bg-white rounded;
     box-shadow: hsla(0, 0, 0, .2) 0 4px 2px -2px;
 
     &__header {
@@ -140,11 +140,11 @@ body {
     }
 
     &__footer {
-        @apply pb-0.5 my-0 mx-auto;
+        @apply my-0 mx-auto p-2;
         border-top: 1px solid lighten(#333, 70%);
 
         ul {
-            @apply flex flex-row justify-end flex-wrap pl-0 list-none;
+            @apply flex flex-row justify-end flex-wrap pl-0 list-none items-center;
         }
 
         li:first-child {
@@ -159,9 +159,7 @@ body {
             @apply relative uppercase whitespace-nowrap text-center;
             color: lighten(#333, 40%);
             font-size: .75rem;
-            height: 1.5rem;
             letter-spacing: 1px;
-            line-height: 1.5rem;
 
             & a {
                 color: lighten(#333, 40%);

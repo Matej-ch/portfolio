@@ -7,7 +7,7 @@
 
 {% block body %}
 
-    <form action="{{ path('app_homepage') }}" class="flex flex-col flex-wrap w-4/5 mx-auto justify-start mt-8 relative" {{ stimulus_controller('search-preview',{
+    <form action="{{ path('app_homepage') }}" class="grid grid-rows-1 mt-8 relative px-10" {{ stimulus_controller('search-preview',{
         url: path('app_homepage')
     }) }}>
         <input
@@ -25,7 +25,7 @@
     </form>
 
     {% if projects|length > 0 %}
-        <div class="flex flex-row flex-wrap w-4/5 mx-auto justify-start">
+        <div class="grid grid-cols-3 gap-6 px-10 pt-6">
             {% for project in projects %}
                 <div class="project">
 
@@ -42,7 +42,7 @@
                             <a class="text-gray-700" href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
                         </div>
 
-                        <div class="text-gray-600">{{ project.description|raw }}</div>
+                        <div class="text-gray-600">{{ project.description|striptags }}</div>
 
                         <div class="blog-tags">tags here </div>
                     </div>
@@ -52,17 +52,16 @@
                             <li class="language">project language</li>
 
                             {% if project.projectUrl %}
-                                <li class="project_url"><a href="#">project url</a></li>
+                                <li class="project_url"><a href="{{ project.projectUrl }}"><i class="fas fa-globe-europe fa-2x"></i></a></li>
                             {% endif %}
                             {% if project.sourceUrl %}
-                                <li class="source_url"><a href="#">source url</a></li>
+                                <li class="source_url"><a target="_blank" rel="noreferrer noopener" href="{{ project.sourceUrl }}"><i class="fab fa-github fa-2x"></i></a></li>
                             {% endif %}
                         </ul>
                     </div>
                 </div>
             {% endfor %}
         </div>
-
 
         {% if previous >= 0 %}
             <a href="{{ path('app_homepage', { offset: previous }) }}">Previous</a>
