@@ -86,13 +86,18 @@ body {
     --transform-origin: center;
 }
 
+.btn-success {
+    --btn-clr: rgba(16, 185, 129, 1);
+    --transform-origin: center;
+}
+
 .btn-login {
     --btn-clr: rgba(17, 24, 39, 1);
     --transform-origin: top;
     @apply font-bold uppercase mr-1 mb-1 w-full px-6 py-3 shadow outline-none focus:outline-none;
 }
 
-.btn:hover, .btn:focus,.btn-sm:hover, .btn-sm:focus {
+.btn:hover, .btn-sm:hover {
     color: white;
 }
 
