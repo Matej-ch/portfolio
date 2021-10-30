@@ -2,7 +2,11 @@ import { Controller } from 'stimulus';
 
 export default class extends Controller {
 
-    static targets = ['modal','backdrop','close'];
+    static targets = ['modal','backdrop','close','body'];
+
+    static values = {
+        formUrl: String
+    }
 
     connect()
     {
@@ -22,8 +26,15 @@ export default class extends Controller {
         }
     }
 
-    openModal(event) {
+    async openModal(event) {
+        this.bodyTarget.innerHTML = 'Loading... ';
+
         this.toggleModal();
+
+        const response = await fetch(this.formUrlValue);
+
+        this.bodyTarget.innerHTML = await response.text();
+
     }
 
     closeModal(event) {
