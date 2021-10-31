@@ -1,1 +1,52 @@
-{{ form(form) }}
+{{ form_start(form) }}
+<div class="flex flex-col space-y-4">
+    <div class="flex flex-col">
+        {{ form_label(form.name) }}
+
+        <div class="text-red-700 text-sm">
+            {{ form_errors(form.name) }}
+        </div>
+
+        {{ form_widget(form.name) }}
+    </div>
+    <div class="flex flex-col">
+        {{ form_label(form.email) }}
+
+        <div class="text-red-700 text-sm">
+            {{ form_errors(form.email) }}
+        </div>
+
+        {{ form_widget(form.email) }}
+    </div>
+
+    <div class="flex flex-col">
+        {{ form_label(form.website) }}
+
+        <div class="text-red-700 text-sm">
+            {{ form_errors(form.website) }}
+        </div>
+
+        {{ form_widget(form.website) }}
+    </div>
+
+    <div class="flex flex-col">
+        {{ form_label(form.phone) }}
+
+        <div class="text-red-700 text-sm">
+            {{ form_errors(form.phone) }}
+        </div>
+
+        {{ form_widget(form.phone) }}
+    </div>
+
+    <div class="flex flex-col">
+        {{ form_label(form.message) }}
+
+        <div class="text-red-700 text-sm">
+            {{ form_errors(form.message) }}
+        </div>
+
+        {{ form_widget(form.message) }}
+    </div>
+</div>
+{{ form_end(form) }}

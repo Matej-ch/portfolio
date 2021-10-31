@@ -31,10 +31,23 @@ export default class extends Controller {
 
         this.toggleModal();
 
-        const response = await fetch(this.formUrlValue);
+        const response = await fetch(`${this.formUrlValue}?fetch=1`);
 
         this.bodyTarget.innerHTML = await response.text();
 
+    }
+
+    async submitForm()
+    {
+        const form = this.bodyTarget.querySelector('form');
+        const formData = new FormData(form);
+
+        const response = await fetch(`${this.formUrlValue}?fetch=1`,{
+            method:'POST',
+            body: formData
+        });
+
+        this.bodyTarget.innerHTML = await response.text();
     }
 
     closeModal(event) {

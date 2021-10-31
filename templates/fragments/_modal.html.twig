@@ -1,6 +1,6 @@
 <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center text-left"
     data-modal-form-target="modal">
-    <div class="relative my-6 mx-auto max-w-lg">
+    <div class="relative my-6 mx-auto w-full max-w-lg">
         <!--content-->
         <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <!--header-->
@@ -28,7 +28,7 @@
                         data-action="modal-form#closeModal">
                     {{ modalClose|default('Close') }}
                 </button>
-                <button class="btn btn-success ease-linear transition-all duration-150" type="button">
+                <button class="btn btn-success ease-linear transition-all duration-150" type="button" data-action="modal-form#submitForm">
                     {{ modalConfirm|default('OK') }}
                 </button>
             </div>

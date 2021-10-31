@@ -167,3 +167,8 @@ body {
         }
     }
 }
+
+.required::after {
+    content: '*';
+    @apply text-red-700
+}
