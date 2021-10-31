@@ -1,24 +1,23 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
 
-    static targets = ['modal','backdrop','close','body'];
+    static targets = ['modal', 'backdrop', 'close', 'body'];
 
     static values = {
         formUrl: String
     }
 
-    connect()
-    {
+    connect() {
         window.addEventListener('keyup', this.hideOnKeyUp)
     }
 
-    disconnect () {
+    disconnect() {
         window.removeEventListener('keyup', this.hideOnKeyUp)
     }
 
     hideOnKeyUp = (event) => {
-        if(event.code === 'Escape') {
+        if (event.code === 'Escape') {
             this.modalTarget.classList.add("hidden");
             this.backdropTarget.classList.add("hidden");
             this.modalTarget.classList.remove("flex");
@@ -37,17 +36,22 @@ export default class extends Controller {
 
     }
 
-    async submitForm()
-    {
+    async submitForm(event) {
+        event.preventDefault();
         const form = this.bodyTarget.querySelector('form');
         const formData = new FormData(form);
 
-        const response = await fetch(`${this.formUrlValue}?fetch=1`,{
-            method:'POST',
+        const response = await fetch(`${this.formUrlValue}?fetch=1`, {
+            method: 'POST',
             body: formData
         });
 
-        this.bodyTarget.innerHTML = await response.text();
+        if (response.status === 422) {
+            this.bodyTarget.innerHTML = await response.text();
+        } else {
+            this.closeModal();
+        }
+
     }
 
     closeModal(event) {

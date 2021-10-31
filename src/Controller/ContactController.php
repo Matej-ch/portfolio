@@ -62,12 +62,16 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // data is an array with "name", "email", and "message" keys
             $data = $form->getData();
+
+            if($request->get('fetch')) {
+                return new Response(null,204);
+            }
         }
 
+        //422 unprocessable entity
         return $this->render('contact/show.html.twig',[
             'form' => $form->createView(),
-        ]);
+        ], new Response(null,$form->isSubmitted() ? 422 : 200));
     }
 }

@@ -17,7 +17,9 @@
             </div>
             <!--body-->
             <div class="relative p-6 flex-auto">
-                <p class="my-4 text-gray-500 text-lg leading-relaxed" data-modal-form-target="body">
+                <p class="my-4 text-gray-500 text-lg leading-relaxed"
+                   data-modal-form-target="body"
+                    data-action="submit->modal-form#submitForm">
                     {{ modalContent|default('Loading...') }}
                 </p>
             </div>
