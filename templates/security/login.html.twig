@@ -20,11 +20,11 @@
 
                         <div class="flex-auto px-4 lg:px-10 py-10 pt-4 bg-transparent">
 
-                            <div class="text-gray-500 mt-4 text-center mb-4 font-bold text-xl">Log In</div>
+                            <div class="text-gray-900 mt-4 text-center mb-4 font-bold text-xl relative">Log In</div>
 
                             <form method="post">
                                 {% if error %}
-                                    <div class="pb-1 pt-1 bg-red-300 mb-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    <div class="relative pb-1 pt-1 bg-red-300 mb-3">{{ error.messageKey }}</div>
                                 {% endif %}
 
                                 {% if app.user %}
