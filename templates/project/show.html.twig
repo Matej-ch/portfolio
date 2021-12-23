@@ -4,13 +4,10 @@
 
 {% block body %}
 
-<h1>{{ project.name }}</h1>
-
-<div>
-    Eventually this WILL BE awesome project detail
-</div>
-
-<h4>Description ({{ project.description|raw }})</h4>
+    <h1>{{ project.name }}</h1>
+    <p>
+        Short description
+    </p>
 
     {% if project.createdAt %}
         <div>Created: {{ project.createdAt|ago }}</div>
@@ -18,6 +15,24 @@
         (not published)
     {% endif %}
 
+    <div>
+        <div>Url btn to page</div>
+        <div>Other links or source code btn ?</div>
+    </div>
+
+
+    <div>
+        Pictures, or something
+    </div>
+
+    <div>
+        Long description Or types of languages and frameworks used
+    </div>
+
+    <div>Tags for projects</div>
+
+
+    <h4>Description ({{ project.description|raw }})</h4>
 
     <a href="{{ path('app_homepage') }}">Home</a>
 
