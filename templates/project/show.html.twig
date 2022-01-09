@@ -4,36 +4,49 @@
 
 {% block body %}
 
-    <h1>{{ project.name }}</h1>
-    <p>
-        Short description
-    </p>
+    <div class="w-full max-w-5xl mx-auto my-0 pt-6">
+        <header>
+            <h1 class="text-gray-700 text-3xl leading-10">{{ project.name }} - {{ project.state }}</h1>
+            <p class="text-base">
+                Short description about this project. It's about project, Must be added to database
+            </p>
 
-    {% if project.createdAt %}
-        <div>Created: {{ project.createdAt|ago }}</div>
-    {% else %}
-        (not published)
-    {% endif %}
+            <div class="flex flex-row justify-between">
+                <div>
+                    <button class="btn btn-blue"><i
+                                class="fas fa-external-link-alt"></i>
+                        Url btn to page
+                    </button>
+                </div>
+                <div>Other links or source code btn ?</div>
+            </div>
 
-    <div>
-        <div>Url btn to page</div>
-        <div>Other links or source code btn ?</div>
+        </header>
+
+        {% if project.createdAt %}
+            <div>Created: {{ project.createdAt|ago }}</div>
+        {% else %}
+            (not published)
+        {% endif %}
+
+        {% if project.bgImg %}
+            <div class="cover h-64"
+                 style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'>
+            </div>
+        {% endif %}
+
+        <div>
+            Description ({{ project.description|raw }})
+        </div>
+
+        <h2 class="text-xl leading-10 text-gray-700">Technical Sheet</h2>
+
+        <div>Languages for projects</div>
+
+        <div>Tags for projects</div>
+
+        <a class="btn btn-blue" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Home</a>
     </div>
 
-
-    <div>
-        Pictures, or something
-    </div>
-
-    <div>
-        Long description Or types of languages and frameworks used
-    </div>
-
-    <div>Tags for projects</div>
-
-
-    <h4>Description ({{ project.description|raw }})</h4>
-
-    <a href="{{ path('app_homepage') }}">Home</a>
 
 {% endblock %}
