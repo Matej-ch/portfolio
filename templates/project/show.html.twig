@@ -7,9 +7,13 @@
     <div class="w-full max-w-5xl mx-auto my-0 pt-6">
         <header>
             <h1 class="text-gray-700 text-3xl leading-10">{{ project.name }} - {{ project.state }}</h1>
-            <p class="text-base">
-                Short description about this project. It's about project, Must be added to database
-            </p>
+
+            {% if project.shortDescription %}
+                <p class="text-base">
+                    {{ project.shortDescription }}
+                </p>
+            {% endif %}
+
 
             <div class="flex flex-row justify-between">
                 <div>

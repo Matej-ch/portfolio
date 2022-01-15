@@ -68,10 +68,11 @@ class ProjectCrudController extends AbstractCrudController
                 $sourceUrl,
                 $projectUrl,
                 $slug,
+                TextField::new('short_description'),
                 $description,
                 $isActive,
                 ImageField::new('bg_img')->setUploadDir('public/uploads/projects'),
-                ChoiceField::new('state')->setChoices(fn () => $choices ),
+                ChoiceField::new('state')->setChoices(fn() => $choices),
                 AssociationField::new('language'),
                 AssociationField::new('tags')
             ];

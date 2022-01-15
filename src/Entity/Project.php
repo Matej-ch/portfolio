@@ -101,6 +101,11 @@ class Project
      */
     private $bg_img;
 
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $short_description;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -282,6 +287,18 @@ class Project
     public function setBgImg(?string $bg_img): self
     {
         $this->bg_img = $bg_img;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->short_description;
+    }
+
+    public function setShortDescription(?string $short_description): self
+    {
+        $this->short_description = $short_description;
 
         return $this;
     }
