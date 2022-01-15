@@ -5,7 +5,6 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProjectRepository;
-use App\Service\ImageOptimizer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -105,6 +104,12 @@ class Project
      * @ORM\Column(type="string", length=512, nullable=true)
      */
     private $short_description;
+
+    /**
+     * @ORM\OneToOne(targetEntity=ProjectState::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false,name="state")
+     */
+    private $fullState;
 
     public function __construct()
     {
@@ -299,6 +304,18 @@ class Project
     public function setShortDescription(?string $short_description): self
     {
         $this->short_description = $short_description;
+
+        return $this;
+    }
+
+    public function getFullState(): ?ProjectState
+    {
+        return $this->fullState;
+    }
+
+    public function setFullState(ProjectState $fullState): self
+    {
+        $this->fullState = $fullState;
 
         return $this;
     }
