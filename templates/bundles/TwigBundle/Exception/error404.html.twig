@@ -6,10 +6,11 @@
     <div class="error-bg min-h-screen">
         <div class="w-8/12 md:w-6/12 lg:w-3/12 m-auto py-4 md:py-16 flex items-center justify-center">
             <div class="bg-white shadow overflow-hidden rounded md:rounded-lg">
-                <div class="border-t border-gray-200 text-center py-8">
+                <div class="border-t border-slate-200 text-center py-8">
                     <h1 class="text-3xl md:text-6xl font-bold text-red-400 py-4">{{ status_code }}</h1>
                     <h1 class="text-xl md:text-3xl font-medium py-4 text-red-500">{{ status_text }}</h1>
-                    <p class="text-sm md:text-xl pb-4 px-6 md:pb-8 md:px-12 font-medium">Oops! The page you are looking for does not exist. It might have been moved or deleted.</p>
+                    <p class="text-sm md:text-xl pb-4 px-6 md:pb-8 md:px-12 font-medium">Oops! The page you are looking
+                        for does not exist. It might have been moved or deleted.</p>
                     <a href="{{ path('app_homepage') }}" class="btn btn-red">
                         Return home
                     </a>

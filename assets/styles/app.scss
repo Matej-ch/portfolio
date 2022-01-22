@@ -15,18 +15,18 @@
 @import "components/errors";
 
 body {
-  @apply bg-gray-300;
+  @apply bg-slate-300;
   font-family: 'Spartan', sans-serif;
 }
 
 .login-bg {
-  @apply absolute top-0 w-full h-full bg-gray-900;
+  @apply absolute top-0 w-full h-full bg-slate-900;
 
   background: linear-gradient(#141e30, #243b55);
 }
 
 .tag {
-  @apply bg-gray-200 text-gray-500 inline-block relative no-underline;
+  @apply bg-slate-200 text-slate-500 inline-block relative no-underline;
   border-radius: 3px;
   height: 26px;
   line-height: 27px;
@@ -140,7 +140,7 @@ body {
   }
 
   &__footer {
-    @apply my-0 mx-auto p-2 text-gray-600;
+    @apply my-0 mx-auto p-2 text-slate-600;
     border-top: 1px solid lighten(#333, 70%);
 
     ul {

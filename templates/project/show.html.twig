@@ -6,7 +6,7 @@
 
     <div class="w-full max-w-5xl mx-auto my-0 pt-6">
         <header>
-            <h1 class="text-gray-700 text-3xl leading-10 mb-2">{{ project.name }} - ({{ project.fullState.name }})</h1>
+            <h1 class="text-slate-700 text-3xl leading-10 mb-2">{{ project.name }} - ({{ project.fullState.name }})</h1>
 
             {% if project.shortDescription %}
                 <p class="text-base mb-2">
@@ -43,11 +43,11 @@
             {{ project.description|raw }}
         </div>
 
-        <h2 class="text-xl leading-10 text-gray-700">Technical Sheet</h2>
+        <h2 class="text-xl leading-10 text-slate-700">Technical Sheet</h2>
 
         <div>Languages for projects</div>
 
-        <div class="mt-4 py-5 border-t border-gray-300 text-center">
+        <div class="mt-4 py-5 border-t border-slate-300 text-center">
             <div class="flex flex-wrap justify-start">
                 <div class="w-full px-4 flex flex-wrap space-x-2 justify-start">
                     {% for language in project.language %}
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div class="mt-4 py-5 border-t border-gray-300 text-center">
+        <div class="mt-4 py-5 border-t border-slate-300 text-center">
             <div class="flex flex-wrap justify-start">
                 <div class="w-full px-4 flex flex-wrap space-x-2 justify-start">
                     {% for tag in project.tags %}

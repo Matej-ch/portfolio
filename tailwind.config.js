@@ -1,15 +1,10 @@
 module.exports = {
-    mode: 'jit',
-    purge: [
+    content: [
         './templates/**/*.html.twig',
         './assets/**/*.{js,jsx,ts,tsx,vue}',
         './assets/**/*.scss'
     ],
-    darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
-    },
-    variants: {
         extend: {},
     },
     plugins: [

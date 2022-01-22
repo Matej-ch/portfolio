@@ -11,9 +11,9 @@
           class="grid grid-rows-1 mt-8 relative px-10" {{ stimulus_controller('search-preview',{
         url: path('app_homepage')
     }) }}>
-        <div class="bg-white rounded flex items-center w-full p-3 shadow-sm border border-gray-200">
-            <button class="outline-none focus:outline-none">
-                <svg class=" w-5 text-gray-600 h-5 cursor-pointer" fill="none" stroke-linecap="round"
+        <div class="bg-white rounded flex items-center w-full p-3 shadow-sm border border-slate-200">
+            <button class="">
+                <svg class=" w-5 text-slate-600 h-5 cursor-pointer" fill="none" stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
@@ -22,7 +22,7 @@
                     type="search"
                     name="q"
                     value="{{ app.request.query.get('q') }}"
-                    class="w-full pl-4 text-sm outline-none focus:outline-none bg-white border-none focus:border-none active:border-none rounded"
+                    class="w-full pl-4 text-sm bg-white rounded border-0 outline-0 focus:outline-0 focus:border-0"
                     placeholder="Search..."
                     aria-label="Search"
                     autocomplete="off"
@@ -50,13 +50,13 @@
 
                     <div class="project__body px-2">
                         <div class="py-2">
-                            <a class="text-gray-700 hover:text-blue-900 font-bold text-xl"
+                            <a class="text-slate-700 hover:text-blue-900 font-bold text-xl"
                                href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
                         </div>
 
-                        <div class="text-gray-600 py-2">{{ project.shortDescription }}</div>
+                        <div class="text-slate-600 py-2">{{ project.shortDescription }}</div>
 
-                        <div class="mt-2 py-2 border-t border-gray-100 text-center">
+                        <div class="mt-2 py-2 border-t border-slate-100 text-center">
                             <div class="flex flex-wrap">
                                 <div class="w-full">
                                     <div class="w-full flex flex-row space-x-2 items-center">
