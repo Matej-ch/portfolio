@@ -7,19 +7,29 @@
 
 {% block body %}
 
-    <form action="{{ path('app_homepage') }}" class="grid grid-rows-1 mt-8 relative px-10" {{ stimulus_controller('search-preview',{
+    <form action="{{ path('app_homepage') }}"
+          class="grid grid-rows-1 mt-8 relative px-10" {{ stimulus_controller('search-preview',{
         url: path('app_homepage')
     }) }}>
-        <input
-                type="search"
-                name="q"
-                value="{{ app.request.query.get('q') }}"
-                class="form-control"
-                placeholder="Search..."
-                aria-label="Search"
-                autocomplete="off"
-                data-action="search-preview#onSearchInput"
-        >
+        <div class="bg-white rounded flex items-center w-full p-3 shadow-sm border border-gray-200">
+            <button class="outline-none focus:outline-none">
+                <svg class=" w-5 text-gray-600 h-5 cursor-pointer" fill="none" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+            <input
+                    type="search"
+                    name="q"
+                    value="{{ app.request.query.get('q') }}"
+                    class="w-full pl-4 text-sm outline-none focus:outline-none bg-white border-none focus:border-none active:border-none rounded"
+                    placeholder="Search..."
+                    aria-label="Search"
+                    autocomplete="off"
+                    data-action="search-preview#onSearchInput"
+            >
+        </div>
+
 
         <div class="search-preview relative" data-search-preview-target="result"></div>
     </form>
@@ -31,31 +41,60 @@
 
                     <a class="project__header" href="{{ path('project_show',{slug:project.slug}) }}">
                         {% if project.bgImg %}
-                            <div class="cover" style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'></div>
+                            <div class="cover"
+                                 style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'></div>
                         {% else %}
                             <div class="no-cover"></div>
                         {% endif %}
                     </a>
 
-                    <div class="project__body">
-                        <div>
-                            <a class="text-gray-700" href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
+                    <div class="project__body px-2">
+                        <div class="py-2">
+                            <a class="text-gray-700 hover:text-blue-900 font-bold text-xl"
+                               href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
                         </div>
 
-                        <div class="text-gray-600">{{ project.description|striptags }}</div>
+                        <div class="text-gray-600 py-2">{{ project.shortDescription }}</div>
 
-                        <div class="blog-tags">tags here </div>
+                        <div class="mt-2 py-2 border-t border-gray-100 text-center">
+                            <div class="flex flex-wrap">
+                                <div class="w-full">
+                                    <div class="w-full flex flex-row space-x-2 items-center">
+                                        {% for language in project.language %}
+                                            {% if language.icon|length %}
+                                                <a href="{{ path('app_homepage', { q: language.name }) }}">
+                                                    <img style="max-width: 50px;height: auto"
+                                                         src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
+                                                         alt="{{ language.name }}">
+                                                </a>
+
+                                            {% else %}
+                                                <a class="btn-sm btn-gold"
+                                                   href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="project__footer">
                         <ul>
-                            <li class="language">project language</li>
-
                             {% if project.projectUrl %}
-                                <li class="project_url"><a href="{{ project.projectUrl }}"><i class="fas fa-globe-europe fa-2x"></i></a></li>
+                                <li class="project_url">
+                                    <a href="{{ project.projectUrl }}">
+                                        <i class="fas fa-globe-europe fa-2x"></i>
+                                    </a>
+                                </li>
                             {% endif %}
                             {% if project.sourceUrl %}
-                                <li class="source_url"><a target="_blank" rel="noreferrer noopener" href="{{ project.sourceUrl }}"><i class="fab fa-github fa-2x"></i></a></li>
+                                <li class="source_url">
+                                    <a target="_blank" rel="noreferrer noopener" href="{{ project.sourceUrl }}">
+                                        <i class="fab fa-github fa-2x"></i>
+                                    </a>
+                                </li>
                             {% endif %}
                         </ul>
                     </div>
