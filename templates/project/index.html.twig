@@ -8,12 +8,12 @@
 {% block body %}
 
     <form action="{{ path('app_homepage') }}"
-          class="grid grid-rows-1 mt-8 relative px-10" {{ stimulus_controller('search-preview',{
+          class="grid grid-rows-1 mt-4 lg:mt-8 relative px-4 lg:px-10" {{ stimulus_controller('search-preview',{
         url: path('app_homepage')
     }) }}>
 
 
-        <div class="relative mt-6 mx-auto w-full">
+        <div class="relative mt-1 lg:mt-6 mx-auto w-full">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
                 <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
                     <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
@@ -37,13 +37,13 @@
     </form>
 
     {% if projects|length > 0 %}
-        <div class="grid grid-cols-3 gap-6 px-10 pt-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6 px-4 lg:px-10 pt-6">
             {% for project in projects %}
                 <div class="project">
 
                     <a class="project__header" href="{{ path('project_show',{slug:project.slug}) }}">
                         {% if project.bgImg %}
-                            <div class="cover"
+                            <div class="cover h-32 lg:h-60"
                                  style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'></div>
                         {% else %}
                             <div class="no-cover"></div>
@@ -59,24 +59,23 @@
                         <div class="text-slate-600 py-2">{{ project.shortDescription }}</div>
 
                         <div class="mt-2 py-2 border-t border-slate-100 text-center">
-                            <div class="flex flex-wrap">
-                                <div class="w-full">
-                                    <div class="w-full flex flex-row space-x-2 items-center">
-                                        {% for language in project.language %}
-                                            {% if language.icon|length %}
-                                                <a href="{{ path('app_homepage', { q: language.name }) }}">
-                                                    <img style="max-width: 50px;height: auto"
-                                                         src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
-                                                         alt="{{ language.name }}">
-                                                </a>
+                            <div class="w-full flex flex-row flex-wrap space-x-2 space-y-1 items-center">
 
-                                            {% else %}
-                                                <a class="btn-sm btn-gold"
-                                                   href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
+                                {% for language in project.language %}
+                                    {% if language.icon|length %}
+                                        <a href="{{ path('app_homepage', { q: language.name }) }}">
+                                            <img style="max-width: 50px;height: auto"
+                                                 src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
+                                                 alt="{{ language.name }}">
+                                        </a>
+
+                                    {% else %}
+                                        <a class="btn-sm btn-gold"
+                                           href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                                    {% endif %}
+                                {% endfor %}
+
+
                             </div>
                         </div>
 
