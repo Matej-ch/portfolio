@@ -34,7 +34,7 @@ body {
   -webkit-transition: color 0.2s;
 }
 
-.tag::before {
+.tag::before, .sm-tag::before {
   @apply absolute bg-white;
   border-radius: 10px;
   box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
@@ -47,6 +47,16 @@ body {
 
 .tag:hover {
   @apply text-white bg-red-600;
+}
+
+.sm-tag {
+  @apply bg-slate-800 text-slate-300 inline-block relative no-underline;
+  border-radius: 3px;
+  height: 26px;
+  line-height: 27px;
+  padding: 0 20px 0 23px;
+  -webkit-transition: color 0.2s;
+  pointer-events: none;
 }
 
 .btn {

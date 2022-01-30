@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="w-full max-w-5xl mx-auto my-0 pt-6">
+    <div class="w-full max-w-5xl mx-auto my-0 pt-6 lg:px-0 px-4">
         <header>
             <div class="flex flex-row justify-between">
                 <h1 class="text-slate-700 text-3xl leading-10 font-bold">{{ project.name }}</h1>
@@ -24,7 +24,7 @@
             {% endif %}
 
             {% if project.projectUrl or project.sourceUrl %}
-                <div class="flex flex-row justify-between py-2 mb-2">
+                <div class="flex flex-row justify-between py-2 mb-2 flex-wrap gap-1">
                     {% if project.projectUrl %}
                         <div>
                             <a class="btn btn-blue" href="{{ project.projectUrl }}">

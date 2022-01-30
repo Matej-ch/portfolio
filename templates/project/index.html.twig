@@ -39,7 +39,12 @@
     {% if projects|length > 0 %}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6 px-4 lg:px-10 pt-6">
             {% for project in projects %}
-                <div class="project">
+                <div class="project relative">
+                    <div class="w-full flex flex-wrap gap-1 absolute top-1 left-1 hidden">
+                        {% for tag in project.tags %}
+                            <a class="sm-tag" href="{{ path('app_homepage', { q: tag.name }) }}">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
 
                     <a class="project__header" href="{{ path('project_show',{slug:project.slug}) }}">
                         {% if project.bgImg %}
@@ -59,7 +64,7 @@
                         <div class="text-slate-600 py-2">{{ project.shortDescription }}</div>
 
                         <div class="mt-2 py-2 border-t border-slate-100 text-center">
-                            <div class="w-full flex flex-row flex-wrap space-x-2 space-y-1 items-center">
+                            <div class="w-full flex flex-row flex-wrap gap-1 items-center">
 
                                 {% for language in project.language %}
                                     {% if language.icon|length %}
