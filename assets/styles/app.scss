@@ -192,3 +192,53 @@ body {
 .fade-enter-to, .fade-leave-from {
   opacity: 1;
 }
+
+.section__title {
+  margin-bottom: .25em;
+}
+
+.my-services {
+  background-color: #303030;
+  //background-image: url(../img/services-bg.jpg);
+  background-size: cover;
+  /* background-blend-mode: multiply; */
+  color: #fff;
+  text-align: center;
+}
+
+.section__title--services {
+  color: #16e0bd;
+  position: relative;
+}
+
+.section__title--services::after {
+  content: '';
+  display: block;
+  width: 20em;
+  height: 1px;
+  margin: 0.5em auto 1em;
+  background: #fff;
+  opacity: 0.25;
+}
+
+.services {
+  margin-bottom: 2em;
+}
+
+.service {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+  .services {
+    display: flex;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .service + .service {
+    margin-left: 2em;
+  }
+}
