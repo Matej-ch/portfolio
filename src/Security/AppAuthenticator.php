@@ -23,7 +23,6 @@ use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class AppAuthenticator extends AbstractAuthenticator
@@ -39,7 +38,7 @@ class AppAuthenticator extends AbstractAuthenticator
 
     private AdminRepository $adminRepository;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager,AdminRepository $adminRepository, RouterInterface $router)
+    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, AdminRepository $adminRepository, RouterInterface $router)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
@@ -100,13 +99,13 @@ class AppAuthenticator extends AbstractAuthenticator
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 
-    public function authenticate(Request $request): PassportInterface
+    public function authenticate(Request $request): Passport
     {
         $userName = $request->request->get('username');
         $password = $request->request->get('password');
 
         return new Passport(
-            new UserBadge($userName, function($userIdentifier) {
+            new UserBadge($userName, function ($userIdentifier) {
                 // optionally pass a callback to load the User manually
                 $user = $this->adminRepository->findOneBy(['username' => $userIdentifier]);
                 if (!$user) {
@@ -114,9 +113,9 @@ class AppAuthenticator extends AbstractAuthenticator
                 }
                 return $user;
             }),
-            new CustomCredentials(function ($credentials,Admin $admin) {
+            new CustomCredentials(function ($credentials, Admin $admin) {
                 return $credentials === 'tada';
-            },$password)
+            }, $password)
         );
     }
 
