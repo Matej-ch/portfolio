@@ -1,12 +1,14 @@
-
-
 download project git clone https://github.com/Matej-ch/portfolio.git
 
 migrate
 
 php bin/console doctrine:database:create
-symfony console doctrine:migrations:migrate
 
+php bin/console make:entity
+
+php bin/console make:migration
+
+symfony console doctrine:migrations:migrate
 
 load fixtures for default data
 
