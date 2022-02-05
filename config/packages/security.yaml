@@ -1,58 +1,58 @@
 security:
-    enable_authenticator_manager: true
+  enable_authenticator_manager: true
 
-    hide_user_not_found: false
+  hide_user_not_found: false
 
-    password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
-    #password_hashers:
-    #    App\Entity\Admin:
-    #        algorithm: auto
+  #password_hashers:
+  #    App\Entity\Admin:
+  #        algorithm: auto
 
-    # enable_authenticator_manager: true
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\Admin
-                property: username
-        # used to reload user from session & other features (e.g. switch_user)
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            #anonymous: true
-            lazy: true
-            provider: app_user_provider
-            logout:
-                path: app_logout
-            custom_authenticator: App\Security\AppAuthenticator
+  # enable_authenticator_manager: true
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+  providers:
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
+      entity:
+        class: App\Entity\Admin
+        property: username
+    # used to reload user from session & other features (e.g. switch_user)
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      #anonymous: true
+      lazy: true
+      provider: app_user_provider
+      logout:
+        path: app_logout
+      custom_authenticator: App\Security\AppAuthenticator
 
-            #guard:
-            #    authenticators:
-            #        - App\Security\AppAuthenticator
-                #entry_point: App\Security\AppAuthenticator
-            # entry_point: App\Security\AppAuthenticator
-            remember_me:
-                    secret: '%kernel.secret%'
-                    lifetime: 172800 # 2 days in seconds
-                    path: /admin
-                    token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
-            #login_throttling:
-            #    max_attempts: 5
+        #guard:
+        #    authenticators:
+      #        - App\Security\AppAuthenticator
+      #entry_point: App\Security\AppAuthenticator
+      # entry_point: App\Security\AppAuthenticator
+      remember_me:
+        secret: '%kernel.secret%'
+        lifetime: 172800 # 2 days in seconds
+        path: /admin
+        token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
+      #login_throttling:
+      #    max_attempts: 5
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
+      # activate different ways to authenticate
+      # https://symfony.com/doc/current/security.html#firewalls-authentication
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+      # https://symfony.com/doc/current/security/impersonating_user.html
+      # switch_user: true
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        - { path: ^/admin/login, roles: PUBLIC_ACCESS }
-        - { path: ^/admin, roles: PUBLIC_ACCESS }
-        #- { path: ^/admin, roles: ROLE_ADMIN }
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+    - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+    - { path: ^/admin, roles: PUBLIC_ACCESS }
+    #- { path: ^/admin, roles: ROLE_ADMIN }
