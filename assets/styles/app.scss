@@ -199,9 +199,9 @@ body {
 
 .my-services {
   background-color: #303030;
-  //background-image: url(../img/services-bg.jpg);
+  background-image: url(../images/services-bc.jpg);
   background-size: cover;
-  /* background-blend-mode: multiply; */
+  background-blend-mode: darken, multiply;
   color: #fff;
   text-align: center;
 }
