@@ -202,13 +202,12 @@ body {
   background-image: url(../images/services-bc.jpg);
   background-size: cover;
   background-blend-mode: darken, multiply;
-  color: #fff;
-  text-align: center;
+  @apply text-center text-white;
 }
 
 .section__title--services {
   color: #16e0bd;
-  position: relative;
+  @apply relative text-3xl font-bold;
 }
 
 .section__title--services::after {
