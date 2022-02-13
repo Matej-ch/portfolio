@@ -118,8 +118,9 @@
         <div>No projects found</div>
     {% endif %}
 
+    {{ include('fragments/_services.html.twig',{'services': services}) }}
 
-    {{ include('fragments/_services.html.twig') }}
+    {{ include('fragments/_mywork.html.twig',{'projects': projects}) }}
 
 {% endblock %}
 

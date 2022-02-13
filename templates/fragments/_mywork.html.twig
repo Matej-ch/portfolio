@@ -1,0 +1,20 @@
+<section class="my-work py-10 px-8" id="work">
+    <h2 class="section__title section__title--services">My work</h2>
+    <p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
+
+    <div class="portfolio">
+
+        {% if projects|length > 0 %}
+            {% for project in projects %}
+                {% if project.bgImg %}
+                    <a href="portfolio-item.html" class="portfolio__item">
+                        <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt=""
+                             class="portfolio__img">
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <!-- Portfolio item 01 -->
+    </div>
+</section>

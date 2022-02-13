@@ -28,8 +28,7 @@ class Service
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=UserInfo::class, inversedBy="services")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $relation;
 
@@ -62,12 +61,12 @@ class Service
         return $this;
     }
 
-    public function getRelation(): ?UserInfo
+    public function getRelation(): int
     {
         return $this->relation;
     }
 
-    public function setRelation(?UserInfo $relation): self
+    public function setRelation(int $relation): self
     {
         $this->relation = $relation;
 
