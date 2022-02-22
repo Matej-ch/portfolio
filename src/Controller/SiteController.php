@@ -6,6 +6,7 @@ use App\Entity\ExternalSite;
 use App\Entity\UserInfo;
 use App\Repository\ExternalSiteRepository;
 use App\Repository\LanguageRepository;
+use App\Repository\ServiceRepository;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +29,7 @@ class SiteController extends AbstractController
 
     //#[Route('/{_locale<%app.supported_locales%>}/about', name: 'app_about')]
     #[Route('/about', name: 'app_about')]
-    public function about(TagRepository $tagRepository, LanguageRepository $languageRepository,EntityManagerInterface $entityManager,ExternalSiteRepository $externalSiteRepository): Response
+    public function about(TagRepository $tagRepository, LanguageRepository $languageRepository, EntityManagerInterface $entityManager, ExternalSiteRepository $externalSiteRepository, ServiceRepository $serviceRepository): Response
     {
         $cache = new FilesystemAdapter();
 
@@ -54,6 +55,7 @@ class SiteController extends AbstractController
             'tags' => $tags,
             'languages' => $languages,
             'user' => $user,
+            'services' => $serviceRepository->findAll(),
             'personalSites' => $personalSites
         ]);
     }
@@ -64,7 +66,7 @@ class SiteController extends AbstractController
         $githubUrl = $externalSiteRepository->findGithub();
         $linkedinUrl = $externalSiteRepository->findLinkedin();
 
-        return $this->render('fragments/_header.html.twig',[
+        return $this->render('fragments/_header.html.twig', [
             'github' => $githubUrl['url'] ?? 'https://github.com/',
             'linkedin' => $linkedinUrl['url'] ?? 'https://www.linkedin.com/'
         ]);
