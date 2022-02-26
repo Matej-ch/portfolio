@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    <div class="w-full max-w-5xl mx-auto my-0 pt-6 lg:px-0 px-4">
-        <header>
+    <div class="w-full max-w-5xl mx-auto my-0 pt-6 lg:px-0 px-4 flex-1">
+        <header class="pb-4 mb-4">
             <div class="flex flex-row justify-between">
                 <h1 class="text-slate-700 text-3xl leading-10 font-bold">{{ project.name }}</h1>
                 <p>{{ project.fullState.name }}</p>
@@ -59,7 +59,7 @@
 
         <h2 class="text-xl leading-10 text-slate-700 font-bold border-b-2 mb-2">Technical Sheet</h2>
 
-        <div class="mt-4 py-4 border-t border-slate-300 text-center">
+        <div class="mt-4 py-4 text-center">
             <div class="w-full flex flex-wrap gap-1">
                 {% for language in project.language %}
                     <a class="tag" href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>

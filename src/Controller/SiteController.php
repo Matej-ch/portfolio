@@ -29,7 +29,11 @@ class SiteController extends AbstractController
 
     //#[Route('/{_locale<%app.supported_locales%>}/about', name: 'app_about')]
     #[Route('/about', name: 'app_about')]
-    public function about(TagRepository $tagRepository, LanguageRepository $languageRepository, EntityManagerInterface $entityManager, ExternalSiteRepository $externalSiteRepository, ServiceRepository $serviceRepository): Response
+    public function about(TagRepository          $tagRepository,
+                          LanguageRepository     $languageRepository,
+                          EntityManagerInterface $entityManager,
+                          ExternalSiteRepository $externalSiteRepository,
+                          ServiceRepository      $serviceRepository): Response
     {
         $cache = new FilesystemAdapter();
 
