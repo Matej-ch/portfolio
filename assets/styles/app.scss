@@ -207,7 +207,7 @@ body {
 }
 
 .section__title--services {
-  @apply relative text-3xl font-bold text-blue-400;
+  @apply relative text-3xl font-bold text-blue-500;
 }
 
 .section__title--services::after {
@@ -256,7 +256,7 @@ body {
 
 .footer {
   background: #111;
-  @apply text-3xl text-blue-400 text-center;
+  @apply text-3xl text-blue-500 text-center;
   padding: 1em 0;
 
 }
@@ -307,7 +307,7 @@ body {
 }
 
 .portfolio__item {
-  @apply text-blue-400 overflow-hidden;
+  @apply text-blue-500 overflow-hidden;
 }
 
 .portfolio__img {
@@ -335,7 +335,7 @@ body {
 }
 
 .section__subtitle--about {
-  @apply bg-blue-400 text-white font-bold;
+  @apply bg-blue-500 text-white font-bold;
   padding: .25em 1em;
   margin-bottom: 1em;
 }
