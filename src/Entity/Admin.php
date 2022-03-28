@@ -4,41 +4,38 @@ namespace App\Entity;
 
 use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+#[ORM\Entity(repositoryClass: AdminRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 /**
  * @ORM\Entity(repositoryClass=AdminRepository::class)
  * @ORM\Table(name="`admin`")
  */
 class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, unique: true, nullable: true)]
     private $username;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: 'json')]
     private $roles = [];
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    private ?string $plainPassword;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
     private $email;
 
     public function getId(): ?int
@@ -46,17 +43,14 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
+    public function getEmail(): ?string
     {
-        return (string) $this->username;
+        return $this->email;
     }
 
-    public function setUsername(string $username): self
+    public function setEmail(string $email): self
     {
-        $this->username = $username;
+        $this->email = $email;
 
         return $this;
     }
@@ -68,7 +62,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return (string)$this->email;
     }
 
     /**
@@ -91,9 +85,27 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @see PasswordAuthenticatedUserInterface
+     * @see UserInterface
      */
-    public function getPassword(): string
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        $this->plainPassword = null;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(?string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -106,38 +118,29 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
+     * @return string
      */
-    public function getSalt(): ?string
+    public function getPlainPassword(): ?string
     {
-        return null;
+        return $this->plainPassword;
     }
 
     /**
-     * @see UserInterface
+     * @param string $plainPassword
      */
-    public function eraseCredentials()
+    public function setPlainPassword(string $plainPassword): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = $plainPassword;
     }
 
-    public function __toString()
+    public function getIsVerified(): ?bool
     {
-        return $this->username;
+        return $this->isVerified;
     }
 
-    public function getEmail(): ?string
+    public function setIsVerified(bool $isVerified): self
     {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
+        $this->isVerified = $isVerified;
 
         return $this;
     }
