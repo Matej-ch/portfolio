@@ -5,26 +5,19 @@ namespace App\Entity;
 use App\Repository\ProjectStateRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ProjectStateRepository::class)
- */
+
+#[ORM\Entity(repositoryClass: ProjectStateRepository::class)]
 class ProjectState
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=1024, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 1024, nullable: true)]
     private $description;
 
     public function getId(): ?int

@@ -7,46 +7,33 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=UserInfoRepository::class)
- * @ORM\HasLifecycleCallbacks()
- */
+#[ORM\Entity(repositoryClass: UserInfoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class UserInfo
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: 'boolean')]
     private $is_active;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: 'text', nullable: true)]
     private $data;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $avatar;
 
     private $decodedData;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Service::class, mappedBy="relation")
-     */
+    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Service::class)]
     private $services;
 
     public function __construct()
     {
         $this->services = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -89,17 +76,13 @@ class UserInfo
         return $this;
     }
 
-    /**
-     * @ORM\PostLoad
-     */
+    #[ORM\PostLoad]
     public function setDecodedData(): void
     {
         $this->decodedData = json_decode($this->getData(), true, 512, JSON_THROW_ON_ERROR);
     }
 
-    /**
-     * @ORM\PrePersist
-     */
+    #[ORM\PrePersist]
     public function getDecodedData(): void
     {
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);

@@ -5,31 +5,22 @@ namespace App\Entity;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ServiceRepository::class)
- */
+
+#[ORM\Entity(repositoryClass: ServiceRepository::class)]
 class Service
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $title;
 
-    /**
-     * @ORM\Column(type="string", length=512, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $description;
 
-    /**
-     * @ORM\Column(type="integer", nullable=false)
-     */
+    #[ORM\Column(type: 'integer', nullable: false)]
     private $relation;
 
     public function getId(): ?int

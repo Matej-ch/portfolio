@@ -5,47 +5,31 @@ namespace App\Entity;
 use App\Repository\ExternalSiteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ExternalSiteRepository::class)
- */
+#[ORM\Entity(repositoryClass: ExternalSiteRepository::class)]
 class ExternalSite
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
-    /**
-     * @ORM\Column(type="string", length=1024)
-     */
+    #[ORM\Column(type: 'string', length: 1024, nullable: true)]
     private ?string $url;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $icon;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $ordering;
+    #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
+    private int $ordering;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": "0"})
-     */
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $hide = false;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private ?bool $isPersonal;
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
+    private bool $isPersonal = false;
 
     public function getId(): ?int
     {
@@ -88,19 +72,19 @@ class ExternalSite
         return $this;
     }
 
-    public function getOrdering(): ?int
+    public function getOrdering(): int
     {
         return $this->ordering;
     }
 
-    public function setOrdering(?int $ordering): self
+    public function setOrdering(int $ordering): self
     {
         $this->ordering = $ordering;
 
         return $this;
     }
 
-    public function getHide(): ?bool
+    public function getHide(): bool
     {
         return $this->hide;
     }
@@ -112,12 +96,12 @@ class ExternalSite
         return $this;
     }
 
-    public function getIsPersonal(): ?bool
+    public function getIsPersonal(): bool
     {
         return $this->isPersonal;
     }
 
-    public function setIsPersonal(?bool $isPersonal): self
+    public function setIsPersonal(bool $isPersonal): self
     {
         $this->isPersonal = $isPersonal;
 

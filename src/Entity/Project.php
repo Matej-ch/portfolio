@@ -14,101 +14,69 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-/**
- * @ORM\Entity(repositoryClass=ProjectRepository::class)
- * @ORM\HasLifecycleCallbacks()
- * @UniqueEntity("slug")
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="project:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="project:item"}}},
- *     order={"createdAt"="DESC" , "state"="ASC"},
- *     paginationEnabled=true
- * )
- * @ApiFilter(SearchFilter::class)
- */
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+#[UniqueEntity("slug")]
+#[ApiResource(
+    collectionOperations: ["get" => ['normalization_context' => ['groups' => 'project:list']]],
+    itemOperations: ["get" => ['normalization_context' => ['groups' => 'project:item']]],
+    order: ["createdAt" => "DESC", "state" => "ASC"],
+    paginationEnabled: true)]
+#[ApiFilter(SearchFilter::class)]
 class Project
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     #[Groups(['project:list', 'project:item'])]
     private int $id;
 
-    /**
-     * Name of the project
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     #[NotBlank]
     #[Groups(['project:list', 'project:item'])]
     private string $name;
 
-    /**
-     * @ORM\Column(type="integer", options={"default": "1"})
-     */
+    #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
     #[Groups(['project:list', 'project:item'])]
     private int $isActive = 1;
 
-    /**
-     * @ORM\Column(type="string", length=1024, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 1024, nullable: true)]
     #[Groups(['project:list', 'project:item'])]
     private ?string $description;
 
-    /**
-     * @ORM\Column(type="string", length=100, unique=true)
-     */
+    #[ORM\Column(type: 'string', length: 100, unique: true)]
     #[Groups(['project:list', 'project:item'])]
     private string $slug;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
     #[Groups(['project:list', 'project:item'])]
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="string", length=255, options={"default": "wip"})
-     */
+    #[ORM\Column(type: 'string', length: 255, options: ['default' => 'wip'])]
     #[Groups(['project:list', 'project:item'])]
     private $state;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="projects")
-     */
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'projects')]
     private $tags;
 
-    /**
-     * @ORM\Column(type="string", length=512, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $source_url;
 
-    /**
-     * @ORM\Column(type="string", length=512, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $project_url;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Language::class, inversedBy="projects")
-     */
+    #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'projects')]
     private $language;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $bg_img;
 
-    /**
-     * @ORM\Column(type="string", length=512, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $short_description;
 
-    /**
-     * @ORM\OneToOne(targetEntity=ProjectState::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false,name="state")
-     */
+    #[ORM\OneToOne(targetEntity: ProjectState::class, cascade: ["persist", "remove"])]
+    #[ORM\JoinColumn(name: 'state', nullable: false)]
     private $fullState;
 
     public function __construct()

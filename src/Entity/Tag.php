@@ -7,36 +7,24 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=TagRepository::class)
- */
+#[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $name;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $ordering;
+    #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
+    private int $ordering;
 
-    /**
-     * @ORM\Column(type="integer", options={"default": "1"})
-     */
+    #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
     private int $isActive = 1;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Project::class, mappedBy="tags")
-     */
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'tags')]
     private $projects;
 
     public function __construct()

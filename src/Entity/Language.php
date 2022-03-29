@@ -8,48 +8,31 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=LanguageRepository::class)
- */
+#[ORM\Entity(repositoryClass: LanguageRepository::class)]
 class Language
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $name;
 
-    /**
-     * @ORM\Column(type="json", length=512, nullable=true)
-     */
+    #[ORM\Column(type: 'json', length: 512, nullable: true)]
     private $versions;
 
-    /**
-     * @ORM\Column(type="string", length=512, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $icon;
 
-    /**
-     * @ORM\Column(type="string", length=512, nullable=false)
-     *
-     */
+    #[ORM\Column(type: 'string', length: 512, nullable: false)]
     #[Assert\NotBlank]
     private $type;
 
-    /**
-     * @ORM\Column(type="boolean", options={"default": "0"})
-     */
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     private $hide = false;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Project::class, mappedBy="language")
-     */
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'language')]
     private $projects;
 
     public function __construct()
@@ -62,7 +45,7 @@ class Language
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -112,7 +95,7 @@ class Language
 
     public function getIconPath(): string
     {
-        return 'uploads/languages/'.$this->icon;
+        return 'uploads/languages/' . $this->icon;
     }
 
     public function __toString(): string
@@ -141,12 +124,12 @@ class Language
 
     public function getVersionsArray(): array
     {
-        return explode(',',$this->versions);
+        return explode(',', $this->versions);
     }
 
     public function setVersionsArray($versionsArray): self
     {
-        $this->versions = implode(',',$versionsArray);
+        $this->versions = implode(',', $versionsArray);
 
         return $this;
     }
