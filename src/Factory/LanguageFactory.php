@@ -29,23 +29,24 @@ final class LanguageFactory extends ModelFactory
     public function __construct()
     {
         parent::__construct();
-
-        // TODO inject services if required (https://github.com/zenstruck/foundry#factories-as-services)
     }
 
     protected function getDefaults(): array
     {
         return [
             'name' => self::faker()->text(),
+            'hide' => false,
+            'type' => 'Language',
+            'versions' => json_encode([
+                self::faker()->randomFloat(2, 0, 1),
+                self::faker()->randomFloat(2, 1, 2),
+                self::faker()->randomFloat(2, 2, 4)], JSON_THROW_ON_ERROR)
         ];
     }
 
     protected function initialize(): self
     {
-        // see https://github.com/zenstruck/foundry#initialization
-        return $this
-            // ->afterInstantiate(function(Language $language) {})
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

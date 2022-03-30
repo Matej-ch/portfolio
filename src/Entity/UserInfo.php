@@ -17,7 +17,7 @@ class UserInfo
     private $id;
 
     #[ORM\Column(type: 'boolean')]
-    private $is_active;
+    private $isActive;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $data;
@@ -27,7 +27,7 @@ class UserInfo
 
     private $decodedData;
 
-    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Service::class)]
+    #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'userInfo')]
     private $services;
 
     public function __construct()
@@ -42,12 +42,12 @@ class UserInfo
 
     public function getIsActive(): ?bool
     {
-        return $this->is_active;
+        return $this->isActive;
     }
 
-    public function setIsActive(bool $is_active): self
+    public function setIsActive(bool $isActive): self
     {
-        $this->is_active = $is_active;
+        $this->isActive = $isActive;
 
         return $this;
     }
@@ -165,7 +165,7 @@ class UserInfo
     {
         if (!$this->services->contains($service)) {
             $this->services[] = $service;
-            $service->setRelation($this);
+            $service->addUserInfo($this);
         }
 
         return $this;
@@ -174,10 +174,7 @@ class UserInfo
     public function removeService(Service $service): self
     {
         if ($this->services->removeElement($service)) {
-            // set the owning side to null (unless already changed)
-            if ($service->getRelation() === $this) {
-                $service->setRelation(null);
-            }
+            $service->removeUserInfo($this);
         }
 
         return $this;

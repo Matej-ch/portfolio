@@ -22,7 +22,7 @@ class UserInfoRepository extends ServiceEntityRepository
     public function findActive()
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.is_active = :active')->setParameter('active',1)
+            ->andWhere('u.isActive = :active')->setParameter('active', 1)
             ->getQuery()
             ->getOneOrNullResult();
     }

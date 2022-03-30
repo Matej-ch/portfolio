@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ServiceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -20,8 +22,13 @@ class Service
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $description;
 
-    #[ORM\Column(type: 'integer', nullable: false)]
-    private $relation;
+    #[ORM\ManyToMany(targetEntity: UserInfo::class, inversedBy: 'services')]
+    private $userInfo;
+
+    public function __construct()
+    {
+        $this->userInfo = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,14 +59,26 @@ class Service
         return $this;
     }
 
-    public function getRelation(): int
+    /**
+     * @return Collection|UserInfo[]
+     */
+    public function getUserInfo(): Collection
     {
-        return $this->relation;
+        return $this->userInfo;
     }
 
-    public function setRelation(int $relation): self
+    public function addUserInfo(UserInfo $userInfo): self
     {
-        $this->relation = $relation;
+        if (!$this->userInfo->contains($userInfo)) {
+            $this->userInfo[] = $userInfo;
+        }
+
+        return $this;
+    }
+
+    public function removeUserInfo(UserInfo $userInfo): self
+    {
+        $this->userInfo->removeElement($userInfo);
 
         return $this;
     }

@@ -8,6 +8,10 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\Event\PreUpdateEventArgs;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -49,9 +53,12 @@ class Project
     private string $slug;
 
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: false)]
     #[Groups(['project:list', 'project:item'])]
     private $createdAt;
+
+    #[ORM\Column(type: 'datetime', nullable: false)]
+    private $updatedAt;
 
     #[ORM\Column(type: 'string', length: 255, options: ['default' => 'wip'])]
     #[Groups(['project:list', 'project:item'])]
@@ -61,19 +68,19 @@ class Project
     private $tags;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $source_url;
+    private $sourceUrl;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $project_url;
+    private $projectUrl;
 
     #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'projects')]
     private $language;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $bg_img;
+    private $bgImg;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $short_description;
+    private $shortDescription;
 
     #[ORM\OneToOne(targetEntity: ProjectState::class, cascade: ["persist", "remove"])]
     #[ORM\JoinColumn(name: 'state', nullable: false)]
@@ -95,9 +102,14 @@ class Project
         return $this->name;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
     }
 
     public function setName(string $name): self
@@ -150,12 +162,16 @@ class Project
         return $this->isActive;
     }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedAt(): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -179,24 +195,24 @@ class Project
 
     public function getSourceUrl(): ?string
     {
-        return $this->source_url;
+        return $this->sourceUrl;
     }
 
-    public function setSourceUrl(?string $source_url): self
+    public function setSourceUrl(?string $sourceUrl): self
     {
-        $this->source_url = $source_url;
+        $this->sourceUrl = $sourceUrl;
 
         return $this;
     }
 
     public function getProjectUrl(): ?string
     {
-        return $this->project_url;
+        return $this->projectUrl;
     }
 
-    public function setProjectUrl(?string $project_url): self
+    public function setProjectUrl(?string $projectUrl): self
     {
-        $this->project_url = $project_url;
+        $this->projectUrl = $projectUrl;
 
         return $this;
     }
@@ -254,24 +270,24 @@ class Project
 
     public function getBgImg(): ?string
     {
-        return $this->bg_img;
+        return $this->bgImg;
     }
 
-    public function setBgImg(?string $bg_img): self
+    public function setBgImg(?string $bgImg): self
     {
-        $this->bg_img = $bg_img;
+        $this->bgImg = $bgImg;
 
         return $this;
     }
 
     public function getShortDescription(): ?string
     {
-        return $this->short_description;
+        return $this->shortDescription;
     }
 
-    public function setShortDescription(?string $short_description): self
+    public function setShortDescription(?string $shortDescription): self
     {
-        $this->short_description = $short_description;
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }
@@ -286,5 +302,18 @@ class Project
         $this->fullState = $fullState;
 
         return $this;
+    }
+
+    #[PrePersist]
+    public function setTimestamps(LifecycleEventArgs $eventArgs)
+    {
+        $this->createdAt = new \DateTime(date('Y-m-d H:i:s'));
+        $this->updatedAt = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    #[PreUpdate]
+    public function updateTimestamps(PreUpdateEventArgs $eventArgs)
+    {
+        $this->updatedAt = new \DateTime(date('Y-m-d H:i:s'));
     }
 }

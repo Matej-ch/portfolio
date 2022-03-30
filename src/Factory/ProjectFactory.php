@@ -38,16 +38,23 @@ final class ProjectFactory extends ModelFactory
     {
         return [
             'name' => self::faker()->realText(50),
-            'is_active' => 1,
-            'description' => self::faker()->paragraph(self::faker()->numberBetween(1,4),true),
-            'created_at' => self::faker()->dateTimeBetween('-100 days','-1 day')
+            'isActive' => self::faker()->numberBetween(0, 1),
+            'description' => self::faker()->paragraph(self::faker()->numberBetween(1, 4), true),
+            'createdAt' => self::faker()->dateTime(),
+            'updatedAt' => self::faker()->dateTime(),
+            'slug' => self::faker()->slug(),
+            'state' => 'wip',
+            'sourceUrl' => self::faker()->url(),
+            'projectUrl' => self::faker()->url(),
+            'bgImg' => self::faker()->file(),
+            'shortDescription' => self::faker()->realText(20)
         ];
     }
 
     protected function initialize(): self
     {
-        return $this->afterInstantiate(function(Project $project) {
-            if(!$project->getSlug()) {
+        return $this->afterInstantiate(function (Project $project) {
+            if (!$project->getSlug()) {
                 $slugger = new AsciiSlugger();
                 $project->setSlug($slugger->slug($project->getName()));
             }
