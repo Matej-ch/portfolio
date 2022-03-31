@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 #[ApiResource(
     collectionOperations: ["get" => ['normalization_context' => ['groups' => 'project:list']]],
     itemOperations: ["get" => ['normalization_context' => ['groups' => 'project:item']]],
-    order: ["createdAt" => "DESC", "state" => "ASC"],
+    order: ["createdAt" => "DESC"],
     paginationEnabled: true)]
 #[ApiFilter(SearchFilter::class)]
 class Project
@@ -60,10 +60,6 @@ class Project
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $updatedAt;
 
-    #[ORM\Column(type: 'string', length: 255, options: ['default' => 'wip'])]
-    #[Groups(['project:list', 'project:item'])]
-    private $state;
-
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'projects')]
     private $tags;
 
@@ -82,9 +78,8 @@ class Project
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $shortDescription;
 
-    #[ORM\OneToOne(targetEntity: ProjectState::class, cascade: ["persist", "remove"])]
-    #[ORM\JoinColumn(name: 'state', nullable: false)]
-    private $fullState;
+    #[ORM\ManyToOne(targetEntity: ProjectState::class, inversedBy: 'projects')]
+    private $projectState;
 
     public function __construct()
     {
@@ -179,18 +174,6 @@ class Project
     public function __toString(): string
     {
         return 'Project';
-    }
-
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function setState(string $state): self
-    {
-        $this->state = $state;
-
-        return $this;
     }
 
     public function getSourceUrl(): ?string
@@ -292,18 +275,6 @@ class Project
         return $this;
     }
 
-    public function getFullState(): ?ProjectState
-    {
-        return $this->fullState;
-    }
-
-    public function setFullState(ProjectState $fullState): self
-    {
-        $this->fullState = $fullState;
-
-        return $this;
-    }
-
     #[PrePersist]
     public function setTimestamps(LifecycleEventArgs $eventArgs)
     {
@@ -315,5 +286,17 @@ class Project
     public function updateTimestamps(PreUpdateEventArgs $eventArgs)
     {
         $this->updatedAt = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    public function getProjectState(): ?ProjectState
+    {
+        return $this->projectState;
+    }
+
+    public function setProjectState(?ProjectState $projectState): self
+    {
+        $this->projectState = $projectState;
+
+        return $this;
     }
 }

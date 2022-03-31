@@ -43,7 +43,7 @@ final class ProjectFactory extends ModelFactory
             'createdAt' => self::faker()->dateTime(),
             'updatedAt' => self::faker()->dateTime(),
             'slug' => self::faker()->slug(),
-            'state' => 'wip',
+            'state' => null,
             'sourceUrl' => self::faker()->url(),
             'projectUrl' => self::faker()->url(),
             'bgImg' => self::faker()->file(),
