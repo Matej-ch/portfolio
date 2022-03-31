@@ -35,7 +35,7 @@ final class LanguageFactory extends ModelFactory
     {
         return [
             'name' => self::faker()->text(),
-            'hide' => false,
+            'hide' => self::faker()->numberBetween(0, 1),
             'type' => 'Language',
             'versions' => json_encode([
                 self::faker()->randomFloat(2, 0, 1),

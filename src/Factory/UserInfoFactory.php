@@ -3,8 +3,27 @@
 namespace App\Factory;
 
 use App\Entity\UserInfo;
+use App\Repository\UserInfoRepository;
 use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\RepositoryProxy;
 
+/**
+ * @method static UserInfo|Proxy createOne(array $attributes = [])
+ * @method static UserInfo[]|Proxy[] createMany(int $number, $attributes = [])
+ * @method static UserInfo|Proxy find($criteria)
+ * @method static UserInfo|Proxy findOrCreate(array $attributes)
+ * @method static UserInfo|Proxy first(string $sortedField = 'id')
+ * @method static UserInfo|Proxy last(string $sortedField = 'id')
+ * @method static UserInfo|Proxy random(array $attributes = [])
+ * @method static UserInfo|Proxy randomOrCreate(array $attributes = [])
+ * @method static UserInfo[]|Proxy[] all()
+ * @method static UserInfo[]|Proxy[] findBy(array $attributes)
+ * @method static UserInfo[]|Proxy[] randomSet(int $number, array $attributes = [])
+ * @method static UserInfo[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
+ * @method static UserInfoRepository|RepositoryProxy repository()
+ * @method UserInfo|Proxy create($attributes = [])
+ */
 class UserInfoFactory extends ModelFactory
 {
     public function __construct()
