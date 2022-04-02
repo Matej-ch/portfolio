@@ -58,6 +58,8 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $tags[] = TagFactory::createOne(['name' => 'extension']);
         $tags[] = TagFactory::createOne(['name' => 'library']);
         $tags[] = TagFactory::createOne(['name' => 'api']);
+        $tags[] = TagFactory::createOne(['name' => 'Game']);
+        $tags[] = TagFactory::createOne(['name' => 'Package']);
 
         ProjectFactory::createMany(50, static function () use ($projectState, $tags, $languages) {
             return [
