@@ -10,7 +10,7 @@ const Footer = ({sites}) => {
                 {sites.map(function (site) {
                     return <li className="social-list__item" key={site['id']}>
                         <a className="social-list__link" href={site['url']} title={site['name']}>
-                            <i className={'fab ' + site['icon']}/>
+                            <i className={site['icon']}/>
                         </a>
                     </li>
                 })}

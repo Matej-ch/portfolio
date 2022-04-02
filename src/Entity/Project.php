@@ -52,7 +52,6 @@ class Project
     #[Groups(['project:list', 'project:item'])]
     private string $slug;
 
-
     #[ORM\Column(type: 'datetime', nullable: false)]
     #[Groups(['project:list', 'project:item'])]
     private $createdAt;

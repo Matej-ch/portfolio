@@ -35,7 +35,7 @@
     </form>
 
     {% if projects|length > 0 %}
-        <div class="grid justify-center grid-flow-row md:grid-flow-col gap-2 lg:gap-6 px-4 lg:px-10 pt-6 pb-10">
+        <div class="grid justify-center grid-flow-row md:grid-cols-4 gap-2 lg:gap-6 px-4 lg:px-10 pt-6 pb-4 md:pb-8">
             {% for project in projects %}
                 <div class="project relative">
                     <div class="w-full flex flex-wrap gap-1 absolute top-1 left-1 hidden">
@@ -61,26 +61,29 @@
 
                         <div class="text-slate-600 py-2">{{ project.shortDescription }}</div>
 
-                        <div class="mt-2 py-2 border-t border-slate-100 text-center">
-                            <div class="w-full flex flex-row flex-wrap gap-1 items-center">
+                        {% if project.language|length > 0 %}
+                            <div class="mt-2 py-2 border-t border-slate-100 text-center">
+                                <div class="w-full flex flex-row flex-wrap gap-1 items-center">
 
-                                {% for language in project.language %}
-                                    {% if language.icon|length %}
-                                        <a href="{{ path('app_homepage', { q: language.name }) }}">
-                                            <img style="max-width: 50px;height: auto"
-                                                 src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
-                                                 alt="{{ language.name }}">
-                                        </a>
+                                    {% for language in project.language %}
+                                        {% if language.icon|length %}
+                                            <a href="{{ path('app_homepage', { q: language.name }) }}">
+                                                <img style="max-width: 50px;height: auto"
+                                                     src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
+                                                     alt="{{ language.name }}">
+                                            </a>
 
-                                    {% else %}
-                                        <a class="btn-sm btn-gold"
-                                           href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
-                                    {% endif %}
-                                {% endfor %}
+                                        {% else %}
+                                            <a class="btn-sm btn-gold"
+                                               href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                                        {% endif %}
+                                    {% endfor %}
 
 
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
+
 
                     </div>
 
