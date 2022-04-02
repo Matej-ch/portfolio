@@ -113,7 +113,9 @@
             <a href="{{ path('app_homepage', { offset: next }) }}">Next</a>
         {% endif %}
     {% else %}
-        <div>No projects found</div>
+        <div class="grid justify-center grid-flow-row md:grid-flow-col gap-2 lg:gap-6 px-4 lg:px-10 pt-6 pb-10">
+            No projects found
+        </div>
     {% endif %}
 
     {{ include('fragments/_services.html.twig',{'services': services}) }}

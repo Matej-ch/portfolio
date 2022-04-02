@@ -75,4 +75,12 @@ class SiteController extends AbstractController
             'linkedin' => $linkedinUrl['url'] ?? 'https://www.linkedin.com/'
         ]);
     }
+
+    #[Route('/footer', name: 'app_footer')]
+    public function footerItems(ExternalSiteRepository $externalSiteRepository): Response
+    {
+        return $this->render('fragments/_footer.html.twig', [
+            'sites' => $externalSiteRepository->findAll(),
+        ]);
+    }
 }
