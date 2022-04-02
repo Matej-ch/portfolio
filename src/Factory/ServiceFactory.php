@@ -38,7 +38,6 @@ final class ServiceFactory extends ModelFactory
         return [
             'title' => self::faker()->realText(30),
             'description' => self::faker()->text(),
-            'userInfo' => null,
         ];
     }
 

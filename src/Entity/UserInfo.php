@@ -25,7 +25,7 @@ class UserInfo
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $avatar;
 
-    private $decodedData;
+    public $decodedData;
 
     #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'userInfo')]
     private $services;

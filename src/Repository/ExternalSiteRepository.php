@@ -54,12 +54,12 @@ class ExternalSiteRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-    public function findAllForFooter()
+    public function findAllForFooter(): array|float|int|string
     {
         return $this->createQueryBuilder('e')
             ->orderBy('e.ordering', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 }

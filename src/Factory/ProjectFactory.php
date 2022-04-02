@@ -30,23 +30,20 @@ final class ProjectFactory extends ModelFactory
     public function __construct()
     {
         parent::__construct();
-
-        // TODO inject services if required (https://github.com/zenstruck/foundry#factories-as-services)
     }
 
     protected function getDefaults(): array
     {
         return [
             'name' => self::faker()->realText(50),
-            'isActive' => self::faker()->numberBetween(0, 1),
+            'isActive' => 1,
             'description' => self::faker()->paragraph(self::faker()->numberBetween(1, 4), true),
             'createdAt' => self::faker()->dateTime(),
             'updatedAt' => self::faker()->dateTime(),
             'slug' => self::faker()->slug(),
-            'state' => null,
             'sourceUrl' => self::faker()->url(),
             'projectUrl' => self::faker()->url(),
-            'bgImg' => self::faker()->file(),
+            'bgImg' => self::faker()->filePath(),
             'shortDescription' => self::faker()->realText(20)
         ];
     }

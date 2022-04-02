@@ -35,16 +35,15 @@ class UserInfoFactory extends ModelFactory
     {
         return [
             'isActive' => true,
-            'data' => json_encode([
+            'decodedData' => [
                 'name' => self::faker()->name(),
                 'location' => self::faker()->country,
                 'education' => self::faker()->title(),
                 'work' => self::faker()->company(),
-                'description' => self::faker()->text()], JSON_THROW_ON_ERROR),
+                'description' => self::faker()->text()],
             'avatar' => self::faker()->filePath(),
             'avatar_big' => self::faker()->filePath(),
             'who_am_i' => self::faker()->text(1024),
-            'services' => null
         ];
     }
 

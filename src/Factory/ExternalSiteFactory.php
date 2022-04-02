@@ -39,9 +39,9 @@ class ExternalSiteFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'name' => self::faker()->realText(2),
+            'name' => self::faker()->slug(2),
             'url' => self::faker()->url(),
-            'icon' => self::faker()->file(),
+            'icon' => self::faker()->filePath(),
             'ordering' => self::faker()->numberBetween(0, 50),
             'hide' => self::faker()->numberBetween(0, 1),
             'isPersonal' => self::faker()->numberBetween(0, 1),

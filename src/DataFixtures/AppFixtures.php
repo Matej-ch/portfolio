@@ -21,9 +21,10 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
     {
         AdminFactory::createOne(['email' => 'admin@admin.com', 'username' => 'admin', 'roles' => ['ROLE_ADMIN']]);
 
-        ExternalSiteFactory::createOne(['url' => 'https://github.com/', 'name' => 'Github']);
-        ExternalSiteFactory::createOne(['url' => 'https://linkedin.com/', 'name' => 'Linkedin']);
-        ExternalSiteFactory::createOne(['url' => 'https://twitter.com', 'name' => 'Twitter']);
+        ExternalSiteFactory::createOne(['url' => 'https://github.com/', 'name' => 'Github', 'icon' => 'fa-github']);
+        ExternalSiteFactory::createOne(['url' => 'https://linkedin.com/', 'name' => 'Linkedin', 'icon' => 'fa-linkedin']);
+        ExternalSiteFactory::createOne(['url' => 'https://twitter.com', 'name' => 'Twitter', 'icon' => 'fa-twitter']);
+        ExternalSiteFactory::createOne(['url' => 'https://codepenio.com', 'name' => 'Codepen', 'icon' => 'fa-codepen']);
 
         LanguageFactory::createOne(['name' => 'HTML', 'versions' => json_encode(['5'], JSON_THROW_ON_ERROR), 'type' => 'Language']);
         LanguageFactory::createOne(['name' => 'CSS', 'versions' => json_encode(['3'], JSON_THROW_ON_ERROR), 'type' => 'Language']);
@@ -39,12 +40,23 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         LanguageFactory::createOne(['name' => 'Laravel', 'type' => 'Framework']);
         LanguageFactory::createOne(['name' => 'Mysql', 'versions' => json_encode(['5', '8'], JSON_THROW_ON_ERROR), 'type' => 'Database management system']);
         LanguageFactory::createOne(['name' => 'graphQL', 'type' => 'Data query and manipulation language']);
-        LanguageFactory::createOne(['name' => 'Git', 'type' => 'tool']);
-        LanguageFactory::createOne(['name' => 'Webpack', 'type' => 'tool']);
-        LanguageFactory::createOne(['name' => 'NPM', 'type' => 'tool']);
+        LanguageFactory::createOne(['name' => 'Git', 'type' => 'Tool']);
+        LanguageFactory::createOne(['name' => 'Webpack', 'type' => 'Tool']);
+        LanguageFactory::createOne(['name' => 'NPM', 'type' => 'Tool']);
         LanguageFactory::createOne(['name' => 'Kotlin', 'type' => 'Language']);
         LanguageFactory::createOne(['name' => 'Svelte', 'type' => 'Framework']);
-        LanguageFactory::createOne(['name' => '', 'versions' => '', 'type' => '']);
+        LanguageFactory::createOne(['name' => 'Less.js', 'versions' => '', 'type' => 'Tool']);
+
+        ProjectFactory::createMany(50);
+
+        ProjectStateFactory::createOne(['name' => 'WIP', 'description' => 'Work in progress']);
+        ProjectStateFactory::createOne(['name' => 'Finished', 'description' => 'Project finished']);
+        ProjectStateFactory::createOne(['name' => 'Start', 'description' => 'Project started']);
+        ProjectStateFactory::createOne(['name' => 'Deprecated', 'description' => 'Project deprecated']);
+
+        ServiceFactory::createOne(['title' => 'Frontend']);
+        ServiceFactory::createOne(['title' => 'Backend']);
+        ServiceFactory::createOne(['title' => 'FullStack']);
 
         TagFactory::createOne(['name' => 'handler']);
         TagFactory::createOne(['name' => 'jquery']);
@@ -53,18 +65,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         TagFactory::createOne(['name' => 'library']);
         TagFactory::createOne(['name' => 'api']);
 
-        ProjectStateFactory::createOne(['name' => 'WIP', 'description' => 'Work in progress']);
-        ProjectStateFactory::createOne(['name' => 'Finished', 'description' => 'Project finished']);
-        ProjectStateFactory::createOne(['name' => 'Start', 'description' => 'Project started']);
-        ProjectStateFactory::createOne(['name' => 'Deprecated', 'description' => 'Project deprecated']);
-
-        ServiceFactory::createOne([]);
-        ServiceFactory::createOne([]);
-        ServiceFactory::createOne([]);
-
-        ProjectFactory::createMany(5);
-
-        UserInfoFactory::createOne([]);
+        UserInfoFactory::createOne();
 
         $manager->flush();
     }

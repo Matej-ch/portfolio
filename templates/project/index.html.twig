@@ -106,12 +106,21 @@
             {% endfor %}
         </div>
 
-        {% if previous >= 0 %}
-            <a href="{{ path('app_homepage', { offset: previous }) }}">Previous</a>
-        {% endif %}
-        {% if next < projects|length %}
-            <a href="{{ path('app_homepage', { offset: next }) }}">Next</a>
-        {% endif %}
+        <div class="flex flex-row px-4 lg:px-10 pb-6">
+            {% if previous >= 0 %}
+                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-500 border-r-0 ml-0 rounded-l hover:bg-slate-200"
+                   href="{{ path('app_homepage', { offset: previous }) }}">
+                    Previous
+                </a>
+            {% endif %}
+            {% if next < projects|length %}
+                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-500 rounded-r hover:bg-slate-200"
+                   href="{{ path('app_homepage', { offset: next }) }}">
+                    Next
+                </a>
+            {% endif %}
+        </div>
+
     {% else %}
         <div class="grid justify-center grid-flow-row md:grid-flow-col gap-2 lg:gap-6 px-4 lg:px-10 pt-6 pb-10">
             No projects found

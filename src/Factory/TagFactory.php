@@ -37,7 +37,6 @@ class TagFactory extends ModelFactory
             'name' => self::faker()->realText(20),
             'ordering' => self::faker()->numberBetween(0, 50),
             'isActive' => self::faker()->numberBetween(0, 1),
-            'projects' => null
         ];
     }
 
