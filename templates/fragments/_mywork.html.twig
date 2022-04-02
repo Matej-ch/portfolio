@@ -1,13 +1,20 @@
 {% if projects|length > 0 %}
     <section class="my-work py-10 px-8" id="work">
         <h2 class="section__title section__title--services">My work</h2>
-        <div class="portfolio">
+        <div class="portfolio flex-wrap">
 
             {% for project in projects %}
                 {% if project.bgImg %}
-                    <a href="{{ path('project_show',{slug:project.slug}) }}" class="portfolio__item">
+                    <a href="{{ path('project_show',{slug:project.slug}) }}" class="portfolio__item bg-slate-300"
+                       style="width:300px;max-width: 300px;height:300px;max-height: 300px;">
                         <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt=""
-                             class="portfolio__img">
+                             class="portfolio__img"
+                        >
+                    </a>
+                {% else %}
+                    <a href="{{ path('project_show',{slug:project.slug}) }}"
+                       class="portfolio__item bg-slate-300"
+                       style="width:500px;max-width: 500px;height:500px;max-height: 500px;">
                     </a>
                 {% endif %}
             {% endfor %}
