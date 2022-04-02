@@ -23,7 +23,7 @@ class ExternalSiteRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.isPersonal = :personal')
-            ->setParameter('personal',1)
+            ->setParameter('personal', 1)
             ->orderBy('e.ordering', 'ASC')
             ->setMaxResults(5)
             ->getQuery()
@@ -35,7 +35,7 @@ class ExternalSiteRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->select('e.url')
             ->andWhere("e.isPersonal = :personal AND e.name LIKE 'github%' ")
-            ->setParameter('personal',1)
+            ->setParameter('personal', 1)
             ->orderBy('e.ordering', 'ASC')
             //->setMaxResults(1)
             ->getQuery()
@@ -47,10 +47,19 @@ class ExternalSiteRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->select('e.url')
             ->andWhere("e.isPersonal = :personal AND e.name LIKE 'linked%'")
-            ->setParameter('personal',1)
+            ->setParameter('personal', 1)
             ->orderBy('e.ordering', 'ASC')
             //->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function findAllForFooter()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.ordering', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
     }
 }

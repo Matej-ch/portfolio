@@ -80,7 +80,7 @@ class SiteController extends AbstractController
     public function footerItems(ExternalSiteRepository $externalSiteRepository): Response
     {
         return $this->render('fragments/_footer.html.twig', [
-            'sites' => $externalSiteRepository->findAll(),
+            'sites' => $externalSiteRepository->findAllForFooter(),
         ]);
     }
 }

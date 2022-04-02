@@ -1,15 +1,19 @@
-<section class="about-me py-10 px-8" id="about">
-    <h2 class="section__title section__title--about text-3xl font-bold text-slate-700">Who I am</h2>
-    <p class="section__subtitle section__subtitle--about">Frontend & backend developer based out of Europe</p>
+{% if userInfo %}
+    <section class="about-me py-10 px-8" id="about">
+        <h2 class="section__title section__title--about text-3xl font-bold text-slate-700">Who I am</h2>
+        <p class="section__subtitle section__subtitle--about">Frontend & backend developer based out of Europe</p>
 
-    <div class="about-me__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.</p>
-    </div>
+        <div class="about-me__body">
+            <p>
+                {{ userInfo.whoAmI }}
+            </p>
+        </div>
 
-    <img src="img/dev-jane-02.jpg" alt="image of me big" class="about-me__img">
-</section>
+        {% if userInfo.avatarBig %}
+            <img src="{{ asset('uploads/projects/%s' | format(userInfo.avatarBig)) }}"
+                 alt="Image of me"
+                 class="about-me__img">
+        {% endif %}
+
+    </section>
+{% endif %}

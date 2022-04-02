@@ -24,11 +24,11 @@ class ProjectRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return Project[] Returns an array of Project objects
-    */
+     * @return Project[] Returns an array of Project objects
+     */
     public function findAllOrderByNewest()
     {
-         $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('p');
 
         return $this->addIsActiveQueryBuilder($qb)
             ->andWhere('p.createdAt IS NOT NULL')
@@ -40,31 +40,37 @@ class ProjectRepository extends ServiceEntityRepository
 
     private function addIsActiveQueryBuilder(QueryBuilder $qb): QueryBuilder
     {
-        return $qb->andWhere('p.isActive = :active')->setParameter('active',1);
+        return $qb->andWhere('p.isActive = :active')->setParameter('active', 1);
     }
 
-    public function getProjectPaginator(string $search = null,int $offset = 0): Paginator
+    public function getProjectPaginator(string $search = null, int $offset = 0): Paginator
     {
-
         $queryBuilder = $this
             ->createQueryBuilder('project')
             ->orderBy('project.createdAt', 'DESC')
-
-            ->innerJoin('project.tags', 'tag')
+            ->leftJoin('project.tags', 'tag')
             ->addSelect('tag')
-
-            ->innerJoin('project.language', 'language')
+            ->leftJoin('project.language', 'language')
             ->addSelect('language');
 
         if ($search) {
             $queryBuilder
                 ->andWhere('project.name LIKE :searchTerm OR project.description LIKE :searchTerm OR tag.name LIKE :searchTerm OR language.name LIKE :searchTerm')
-                ->setParameter('searchTerm', '%'.$search.'%');
+                ->setParameter('searchTerm', '%' . $search . '%');
         }
 
         return new Paginator($queryBuilder
             ->setMaxResults(self::PAGINATOR_PER_PAGE)
             ->setFirstResult($offset)
             ->getQuery());
+    }
+
+    public function findRandom()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
     }
 }

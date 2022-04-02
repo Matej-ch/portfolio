@@ -1,8 +1,8 @@
-<section class="my-work py-10 px-8" id="work">
-    <h2 class="section__title section__title--services">My work</h2>
-    <div class="portfolio">
+{% if projects|length > 0 %}
+    <section class="my-work py-10 px-8" id="work">
+        <h2 class="section__title section__title--services">My work</h2>
+        <div class="portfolio">
 
-        {% if projects|length > 0 %}
             {% for project in projects %}
                 {% if project.bgImg %}
                     <a href="{{ path('project_show',{slug:project.slug}) }}" class="portfolio__item">
@@ -11,8 +11,6 @@
                     </a>
                 {% endif %}
             {% endfor %}
-        {% endif %}
-
-        <!-- Portfolio item 01 -->
-    </div>
-</section>
+        </div>
+    </section>
+{% endif %}

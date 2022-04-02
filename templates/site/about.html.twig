@@ -68,7 +68,7 @@
                                 <div class="relative">
 
                                     <img alt="avatar"
-                                         src="{{ asset('uploads/users/%s' | format(user.avatar)) | default('https://via.placeholder.com/150') }}"
+                                         src="{{ asset('uploads/users/%s' | format(user.avatar|default('https://via.placeholder.com/150'))) | default('https://via.placeholder.com/150') }}"
                                          class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                                          style="max-width: 150px;"/>
                                 </div>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="text-center mt-12">
                             <h3 class="text-4xl font-semibold leading-normal mb-2 text-slate-800 mb-2">
-                                {{ user.userData['name'] | default('Name') }}
+                                {{ user.userData.name | default('Name') }}
                             </h3>
                             <div class="text-sm leading-normal mt-0 mb-2 text-slate-500 font-bold uppercase">
                                 <i class="fas fa-map-marker-alt mr-2 text-lg text-slate-500"></i>
@@ -130,7 +130,7 @@
                             <div class="flex flex-wrap justify-center">
                                 <div class="w-full lg:w-9/12 px-4">
                                     <p class="mb-4 text-lg leading-relaxed text-slate-800">
-                                        {{ user.userData['description'] | raw }}
+                                        {{ user.userData.description |default('Description')| raw }}
                                     </p>
                                 </div>
                             </div>

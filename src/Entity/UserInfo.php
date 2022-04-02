@@ -30,6 +30,12 @@ class UserInfo
     #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'userInfo')]
     private $services;
 
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
+    private $avatarBig;
+
+    #[ORM\Column(type: 'string', length: 2048, nullable: true)]
+    private $whoAmI;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -176,6 +182,30 @@ class UserInfo
         if ($this->services->removeElement($service)) {
             $service->removeUserInfo($this);
         }
+
+        return $this;
+    }
+
+    public function getAvatarBig(): ?string
+    {
+        return $this->avatarBig;
+    }
+
+    public function setAvatarBig(?string $avatarBig): self
+    {
+        $this->avatarBig = $avatarBig;
+
+        return $this;
+    }
+
+    public function getWhoAmI(): ?string
+    {
+        return $this->whoAmI;
+    }
+
+    public function setWhoAmI(?string $whoAmI): self
+    {
+        $this->whoAmI = $whoAmI;
 
         return $this;
     }

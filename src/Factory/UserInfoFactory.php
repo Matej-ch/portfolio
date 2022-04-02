@@ -42,6 +42,8 @@ class UserInfoFactory extends ModelFactory
                 'work' => self::faker()->company(),
                 'description' => self::faker()->text()], JSON_THROW_ON_ERROR),
             'avatar' => self::faker()->filePath(),
+            'avatar_big' => self::faker()->filePath(),
+            'who_am_i' => self::faker()->text(1024),
             'services' => null
         ];
     }
