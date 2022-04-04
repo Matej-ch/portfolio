@@ -11,12 +11,14 @@
                         <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt=""
                              class="portfolio__img"
                         >
-                        <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span>
+
                     </a>
                 {% else %}
                     <a href="{{ path('project_show',{slug:project.slug}) }}"
-                       class="portfolio__item bg-slate-300"
+                       class="portfolio__item bg-slate-300 relative"
                        style="width:500px;max-width: 500px;height:500px;max-height: 500px;">
+
+                        <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span>
                     </a>
                 {% endif %}
             {% endfor %}
