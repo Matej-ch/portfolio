@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ProjectState;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -27,5 +29,10 @@ class ProjectStateCrudController extends AbstractCrudController
         return $filters
             ->add('name')
             ->add('description');
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return parent::configureActions($actions)->disable(Action::DETAIL);
     }
 }

@@ -36,7 +36,8 @@ class TagCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
+        return parent::configureActions($actions)
+            ->disable(Action::DETAIL)
             ->addBatchAction(Action::new('activate', 'Activate tags')
                 ->linkToCrudAction('activateTags')
                 ->addCssClass('btn btn-primary')
@@ -47,7 +48,7 @@ class TagCrudController extends AbstractCrudController
     {
         $entityManager = $this->getDoctrine()->getManagerForClass($batchActionDto->getEntityFqcn());
         foreach ($batchActionDto->getEntityIds() as $id) {
-            $tag = $entityManager->find(Tag::class,$id);
+            $tag = $entityManager->find(Tag::class, $id);
             $tag->setIsActive(true);
         }
 

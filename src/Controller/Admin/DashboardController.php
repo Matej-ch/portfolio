@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Admin;
 use App\Entity\ExternalSite;
 use App\Entity\Language;
 use App\Entity\Project;
@@ -9,6 +10,9 @@ use App\Entity\ProjectState;
 use App\Entity\Service;
 use App\Entity\Tag;
 use App\Entity\UserInfo;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
@@ -47,6 +51,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl('Back to the website', 'fas fa-home', $this->generateUrl('app_homepage'));
 
         yield MenuItem::linkToCrud('User info', 'fas fa-map-marker-alt', UserInfo::class);
+        yield MenuItem::linkToCrud('Admins', 'fas fa-map-marker-alt', Admin::class);
 
         yield MenuItem::section('Project');
         yield MenuItem::linkToCrud('Projects', 'fas fa-map-marker-alt', Project::class);
@@ -62,5 +67,10 @@ class DashboardController extends AbstractDashboardController
     public function configureUserMenu(UserInterface $user): UserMenu
     {
         return parent::configureUserMenu($user);
+    }
+
+    public function configureActions(): Actions
+    {
+        return parent::configureActions()->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 }

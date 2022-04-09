@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use App\Repository\ProjectStateRepository;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -89,10 +87,5 @@ class ProjectCrudController extends AbstractCrudController
             $isActive,
             TextField::new('state')
         ];
-    }
-
-    public function configureActions(Actions $actions): Actions
-    {
-        return parent::configureActions($actions)->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 }
