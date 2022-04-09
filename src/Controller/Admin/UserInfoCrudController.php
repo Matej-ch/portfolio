@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\UserInfo;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -40,5 +41,7 @@ class UserInfoCrudController extends AbstractCrudController
             ->setLabel('Who am i')
             ->setHelp('Write something about yourself. Text in `Who am i` section on projects page');
         yield BooleanField::new('is_active')->renderAsSwitch(false);
+
+        yield AssociationField::new('services');
     }
 }
