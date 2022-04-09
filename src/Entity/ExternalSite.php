@@ -107,4 +107,9 @@ class ExternalSite
 
         return $this;
     }
+
+    public function getFullIcon(): string
+    {
+        return "<i class='$this->icon'></i>";
+    }
 }

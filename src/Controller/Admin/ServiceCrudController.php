@@ -25,6 +25,7 @@ class ServiceCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('title');
-        yield TextEditorField::new('description')->setNumOfRows(5);
+        yield TextEditorField::new('description')->setNumOfRows(5)->hideOnIndex();
+        yield TextField::new('description')->onlyOnIndex();
     }
 }
