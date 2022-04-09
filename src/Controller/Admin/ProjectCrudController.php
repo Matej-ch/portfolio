@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\TextFilter;
 
 class ProjectCrudController extends AbstractCrudController
@@ -35,12 +36,20 @@ class ProjectCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Project')
             ->setEntityLabelInPlural('Projects')
             ->setSearchFields(['name', 'description'])
-            ->setDefaultSort(['createdAt' => 'DESC']);
+            ->setDefaultSort(['id' => 'DESC'])
+            ->setPageTitle(Crud::PAGE_DETAIL, static function (Project $project) {
+                return sprintf('Project: %s', $project->getName());
+            });
     }
 
     public function configureFilters(Filters $filters): Filters
     {
-        return $filters->add(TextFilter::new('name'));
+        return $filters
+            ->add(TextFilter::new('name'))
+            ->add(BooleanFilter::new('isActive'))
+            ->add('projectState')
+            ->add('language')
+            ->add('tags');
     }
 
     public function configureFields(string $pageName): iterable
