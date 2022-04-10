@@ -26,19 +26,19 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         ExternalSiteFactory::createOne(['url' => 'https://twitter.com', 'name' => 'Twitter', 'icon' => 'fab fa-twitter']);
         ExternalSiteFactory::createOne(['url' => 'https://codepenio.com', 'name' => 'Codepen', 'icon' => 'fab fa-codepen']);
 
-        $languages[] = LanguageFactory::createOne(['name' => 'HTML', 'versions' => json_encode(['5'], JSON_THROW_ON_ERROR), 'type' => 'Language']);
-        $languages[] = LanguageFactory::createOne(['name' => 'CSS', 'versions' => json_encode(['3'], JSON_THROW_ON_ERROR), 'type' => 'Language']);
-        $languages[] = LanguageFactory::createOne(['name' => 'PHP', 'versions' => json_encode(['7', '8'], JSON_THROW_ON_ERROR), 'type' => 'Language']);
+        $languages[] = LanguageFactory::createOne(['name' => 'HTML', 'versions' => '5', 'type' => 'Language']);
+        $languages[] = LanguageFactory::createOne(['name' => 'CSS', 'versions' => '3', 'type' => 'Language']);
+        $languages[] = LanguageFactory::createOne(['name' => 'PHP', 'versions' => '7,8', 'type' => 'Language']);
         $languages[] = LanguageFactory::createOne(['name' => 'Scss', 'type' => 'Extension']);
         $languages[] = LanguageFactory::createOne(['name' => 'Javascript', 'type' => 'Language']);
         $languages[] = LanguageFactory::createOne(['name' => 'Typescript', 'type' => 'Language']);
         $languages[] = LanguageFactory::createOne(['name' => 'Jquery', 'type' => 'Library']);
         $languages[] = LanguageFactory::createOne(['name' => 'VUE', 'type' => 'Framework']);
         $languages[] = LanguageFactory::createOne(['name' => 'React', 'type' => 'Framework']);
-        $languages[] = LanguageFactory::createOne(['name' => 'Yii2', 'versions' => json_encode(['2'], JSON_THROW_ON_ERROR), 'type' => 'Framework']);
-        $languages[] = LanguageFactory::createOne(['name' => 'Symfony', 'versions' => json_encode(['5', '6'], JSON_THROW_ON_ERROR), 'type' => 'Framework']);
+        $languages[] = LanguageFactory::createOne(['name' => 'Yii2', 'versions' => '2', 'type' => 'Framework']);
+        $languages[] = LanguageFactory::createOne(['name' => 'Symfony', 'versions' => '5,6', 'type' => 'Framework']);
         $languages[] = LanguageFactory::createOne(['name' => 'Laravel', 'type' => 'Framework']);
-        $languages[] = LanguageFactory::createOne(['name' => 'Mysql', 'versions' => json_encode(['5', '8'], JSON_THROW_ON_ERROR), 'type' => 'Database management system']);
+        $languages[] = LanguageFactory::createOne(['name' => 'Mysql', 'versions' => '5,8', 'type' => 'Database management system']);
         $languages[] = LanguageFactory::createOne(['name' => 'graphQL', 'type' => 'Data query and manipulation language']);
         $languages[] = LanguageFactory::createOne(['name' => 'Git', 'type' => 'Tool']);
         $languages[] = LanguageFactory::createOne(['name' => 'Webpack', 'type' => 'Tool']);

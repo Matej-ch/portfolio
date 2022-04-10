@@ -1,11 +1,12 @@
-import React,{ useState } from "react";
+import React, {useState} from "react";
 
-const Navbar = ({ fixed,github,linkedin }) => {
+const Navbar = ({fixed, github, linkedin, admin}) => {
     const [navbarOpen, setNavbarOpen] = useState(false);
 
     return (
         <>
-            <nav className={"flex flex-wrap items-center justify-between px-2 py-3 bg-blue-500" + (fixed ? ' fixed z-10 w-full' : ' relative')}>
+            <nav
+                className={"flex flex-wrap items-center justify-between px-2 py-3 bg-blue-500" + (fixed ? ' fixed z-10 w-full' : ' relative')}>
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                         <a className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
@@ -36,6 +37,15 @@ const Navbar = ({ fixed,github,linkedin }) => {
                         className={"lg:flex flex-grow items-center" + (navbarOpen ? " flex" : " hidden")}
                         id="example-navbar-danger">
                         <ul className="flex flex-row md:flex-row list-none lg:ml-auto">
+
+                            {admin ? <li>
+                                <a
+                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    href={admin}>
+                                    ADMIN
+                                </a>
+                            </li> : ''}
+
                             <li>
                                 <a
                                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
@@ -46,7 +56,7 @@ const Navbar = ({ fixed,github,linkedin }) => {
                             <li>
                                 <a
                                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    href={ github }>
+                                    href={github}>
                                     <i className="fab fa-github text-lg leading-lg text-white opacity-75"/>
                                 </a>
                             </li>
@@ -54,7 +64,8 @@ const Navbar = ({ fixed,github,linkedin }) => {
                                 <a
                                     className="px-3 py-2 flex items-baseline text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                                     href="/about">
-                                    <i className="fas fa-user text-lg leading-lg text-white opacity-75"/><span className="ml-2">About me</span>
+                                    <i className="fas fa-user text-lg leading-lg text-white opacity-75"/><span
+                                    className="ml-2">About me</span>
                                 </a>
                             </li>
                         </ul>

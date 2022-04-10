@@ -11,12 +11,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\TextFilter;
 
 class ProjectCrudController extends AbstractCrudController
 {
@@ -38,61 +38,54 @@ class ProjectCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Project')
             ->setEntityLabelInPlural('Projects')
             ->setSearchFields(['name', 'description'])
-            ->setDefaultSort(['createdAt' => 'DESC']);
+            ->setDefaultSort(['id' => 'DESC'])
+            ->setPageTitle(Crud::PAGE_DETAIL, static function (Project $project) {
+                return sprintf('Project: %s', $project->getName());
+            });
     }
 
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add(EntityFilter::new('name'));
-    }
-
-    public function configureFields(string $pageName): iterable
-    {
-
-        $name = TextField::new('name');
-        $slug = SlugField::new('slug')->setTargetFieldName('name');
-        $description = TextEditorField::new('description')->setNumOfRows(20);
-        $isActive = BooleanField::new('is_active');
-
-        $sourceUrl = TextField::new('source_url');
-        $projectUrl = TextField::new('project_url');
-
-        if (Crud::PAGE_NEW === $pageName || Crud::PAGE_EDIT === $pageName) {
-            $choices = [];
-
-            foreach ($this->states as $state) {
-                $choices[$state->getName()] = $state->getId();
-            }
-
-            return [
-                $name,
-                $sourceUrl,
-                $projectUrl,
-                $slug,
-                TextField::new('short_description'),
-                $description,
-                $isActive,
-                ImageField::new('bg_img')->setUploadDir('public/uploads/projects'),
-                ChoiceField::new('state')->setChoices(fn() => $choices),
-                AssociationField::new('language'),
-                AssociationField::new('tags')
-            ];
-        }
-
-        return [
-            $name,
-            $sourceUrl,
-            $projectUrl,
-            $slug,
-            $description,
-            $isActive,
-            TextField::new('state')
-        ];
+            ->add(TextFilter::new('name'))
+            ->add(BooleanFilter::new('isActive'))
+            ->add('projectState')
+            ->add('language')
+            ->add('tags');
     }
 
     public function configureActions(Actions $actions): Actions
     {
-        return parent::configureActions($actions)->add(Crud::PAGE_INDEX, Action::DETAIL);
+        $viewAction = Action::new('view');
+        $viewAction->linkToUrl(function (Project $project) {
+            return $this->generateUrl('project_show', ['slug' => $project->getSlug()]);
+        })->setIcon('fa fa-eye')
+            ->setLabel('View on site')
+            ->addCssClass('btn btn-success');
+
+        return parent::configureActions($actions)
+            ->add(Crud::PAGE_DETAIL, $viewAction)
+            ->add(Crud::PAGE_INDEX, $viewAction);
+    }
+
+    public function configureFields(string $pageName): iterable
+    {
+        yield TextField::new('name');
+        yield TextField::new('source_url');
+        yield TextField::new('project_url');
+        yield ImageField::new('bg_img')
+            ->setBasePath('uploads/projects')
+            ->setUploadDir('public/uploads/projects')
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')->hideOnIndex();
+        yield AssociationField::new('language')->autocomplete()->hideOnIndex();
+        yield AssociationField::new('tags')->autocomplete()->hideOnIndex();
+        yield TextField::new('short_description')->onlyOnForms();
+        yield TextEditorField::new('description')->setNumOfRows(20)->hideOnIndex();
+        yield SlugField::new('slug')
+            ->setTargetFieldName('name')
+            ->setFormTypeOption('disabled', $pageName !== Crud::PAGE_NEW)
+            ->hideOnIndex();
+        yield BooleanField::new('is_active')->renderAsSwitch(false);
+        yield AssociationField::new('projectState');
     }
 }

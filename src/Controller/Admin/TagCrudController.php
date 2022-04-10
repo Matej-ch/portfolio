@@ -10,6 +10,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
 
 class TagCrudController extends AbstractCrudController
@@ -27,16 +29,15 @@ class TagCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            'name',
-            'ordering',
-            BooleanField::new('is_active')
-        ];
+        yield TextField::new('name');
+        yield IntegerField::new('ordering');
+        yield BooleanField::new('is_active');
     }
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
+        return parent::configureActions($actions)
+            ->disable(Action::DETAIL)
             ->addBatchAction(Action::new('activate', 'Activate tags')
                 ->linkToCrudAction('activateTags')
                 ->addCssClass('btn btn-primary')
@@ -47,7 +48,7 @@ class TagCrudController extends AbstractCrudController
     {
         $entityManager = $this->getDoctrine()->getManagerForClass($batchActionDto->getEntityFqcn());
         foreach ($batchActionDto->getEntityIds() as $id) {
-            $tag = $entityManager->find(Tag::class,$id);
+            $tag = $entityManager->find(Tag::class, $id);
             $tag->setIsActive(true);
         }
 

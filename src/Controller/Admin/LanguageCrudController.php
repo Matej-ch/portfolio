@@ -23,8 +23,10 @@ class LanguageCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield CollectionField::new('versionsArray')->hideOnIndex();
         yield TextField::new('versions')->hideOnForm();
-        yield ImageField::new('icon')->setUploadDir('public/uploads/languages')->hideOnIndex();
-        yield ImageField::new('icon')->setBasePath('uploads/languages')->hideOnForm();
+        yield ImageField::new('icon')
+            ->setBasePath('uploads/languages')
+            ->setUploadDir('public/uploads/languages')
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
         yield TextField::new('type');
         yield BooleanField::new('hide');
     }

@@ -1,4 +1,5 @@
 <header id="react-header" {{ stimulus_controller('header',{
     'github': github|raw,
-    'linkedin': linkedin|raw
+    'linkedin': linkedin|raw,
+    'admin':  is_granted('ROLE_ADMIN') ? path('admin') : ''
 }) }}></header>
