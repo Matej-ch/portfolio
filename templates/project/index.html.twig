@@ -129,12 +129,12 @@
             No projects found
         </div>
     {% endif %}
-
+    
     {{ include('fragments/_services.html.twig',{'services': services}) }}
 
     {{ include('fragments/_about.html.twig',{'userInfo': userInfo}) }}
 
-    {{ include('fragments/_mywork.html.twig',{'projects': projects}) }}
+    {{ include('fragments/_mywork.html.twig',{'projects': lastProjects}) }}
 
 {% endblock %}
 

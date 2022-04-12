@@ -8,8 +8,10 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
+//import 'swiper/css/bundle'
+
 //require('@fortawesome/fontawesome-free/css/all.min.css');
-//require('/node_modules/@fortawesome/fontawesome-free/js/brand.js');
+//require('/node_modules/swiper/swiper-bundle.css');
 
 // start the Stimulus application
 import './bootstrap';

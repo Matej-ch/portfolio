@@ -1,27 +1,30 @@
 {% if projects|length > 0 %}
     <section class="my-work py-10 px-8" id="work">
         <h2 class="section__title section__title--services">My work</h2>
-        <div class="portfolio flex-wrap">
+        <div data-controller="carousel" class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for project in projects %}
+                    <div class="swiper-slide">
+                        {% if project.bgImg %}
+                            <a href="{{ path('project_show',{slug:project.slug}) }}"
+                               class="bg-slate-300 relative"
+                               style="width:300px;max-width: 300px;height:300px;max-height: 300px;">
+                                <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt=""
+                                     class="portfolio__img">
+                                <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('project_show',{slug:project.slug}) }}"
+                               class="bg-slate-300 relative"
+                               style="width:500px;max-width: 500px;height:500px;max-height: 500px;">
 
-            {% for project in projects %}
-                {% if project.bgImg %}
-                    <a href="{{ path('project_show',{slug:project.slug}) }}"
-                       class="portfolio__item bg-slate-300 relative"
-                       style="width:300px;max-width: 300px;height:300px;max-height: 300px;">
-                        <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt=""
-                             class="portfolio__img"
-                        >
+                                <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
 
-                    </a>
-                {% else %}
-                    <a href="{{ path('project_show',{slug:project.slug}) }}"
-                       class="portfolio__item bg-slate-300 relative"
-                       style="width:500px;max-width: 500px;height:500px;max-height: 500px;">
-
-                        <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span>
-                    </a>
-                {% endif %}
-            {% endfor %}
         </div>
     </section>
 {% endif %}

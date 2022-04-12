@@ -34,6 +34,7 @@ class ProjectController extends AbstractController
             'projects' => $paginator,
             'services' => $serviceRepository->findAll(),
             'userInfo' => $userInfoRepository->findActive(),
+            'lastProjects' => $repository->findRandom(),
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
         ]);
