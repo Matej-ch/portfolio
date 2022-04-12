@@ -1,7 +1,9 @@
 {% if projects|length > 0 %}
     <section class="my-work py-10 px-8" id="work">
         <h2 class="section__title section__title--services">My work</h2>
-        <div data-controller="carousel" class="swiper-container">
+        <div {{ stimulus_controller('carousel') }}
+                class="swiper-container"
+                data-carousel-options-value='{"direction": "vertical"}'>
             <div class="swiper-wrapper">
                 {% for project in projects %}
                     <div class="swiper-slide">
