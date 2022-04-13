@@ -8,6 +8,8 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
+import 'swiper/css';
+
 //import 'swiper/css/bundle'
 
 //require('@fortawesome/fontawesome-free/css/all.min.css');
