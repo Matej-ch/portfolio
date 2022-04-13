@@ -1,19 +1,20 @@
 {% if projects|length > 0 %}
-    <section class="my-work py-10 px-8" id="work">
+    <section class="my-work py-8 px-8 md:px-32" id="work">
         <h2 class="section__title section__title--services">My work</h2>
+
         <div {{ stimulus_controller('carousel',{
-            'options': '{"direction": "horizontal"}'
+            'options': '{"direction": "horizontal","slidesPerView": 5,"spaceBetween":10,"pagination": {"el": ".swiper-pagination","clickable": true},"navigation": {"nextEl": ".swiper-button-next","prevEl": ".swiper-button-prev"}}'
         }) }}
-                class="swiper-container">
+                class="swiper">
             <div class="swiper-wrapper">
                 {% for project in projects %}
                     <div class="swiper-slide">
                         {% if project.bgImg %}
                             <a href="{{ path('project_show',{slug:project.slug}) }}"
                                class="bg-slate-300 relative"
-                               style="width:300px;max-width: 300px;height:300px;max-height: 300px;display: inline-block">
+                               style="width:300px;max-width: 500px;height:300px;max-height: 500px;display: inline-block">
                                 <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt=""
-                                     class="portfolio__img">
+                                     class="">
                                 {# <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span> #}
                             </a>
                         {% else %}
@@ -27,6 +28,13 @@
                     </div>
                 {% endfor %}
             </div>
+
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
 
         </div>
     </section>
