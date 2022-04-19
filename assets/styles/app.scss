@@ -17,6 +17,7 @@
 body {
   @apply bg-slate-300 w-full m-0 h-full bg-slate-50;
   font-family: 'Spartan', sans-serif;
+  transition: opacity 200ms;
 }
 
 main {
@@ -378,4 +379,8 @@ header, main, footer {
     position: relative;
     z-index: 2;
   }
+}
+
+body.turbo-loading {
+  opacity: 0.8;
 }

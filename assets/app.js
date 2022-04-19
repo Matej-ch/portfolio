@@ -18,3 +18,5 @@ import 'swiper/css';
 // start the Stimulus application
 import './bootstrap';
 
+import './turbo/turbo-helper';
+
