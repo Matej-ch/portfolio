@@ -32,8 +32,7 @@ class SiteController extends AbstractController
     public function about(TagRepository          $tagRepository,
                           LanguageRepository     $languageRepository,
                           EntityManagerInterface $entityManager,
-                          ExternalSiteRepository $externalSiteRepository,
-                          ServiceRepository      $serviceRepository): Response
+                          ExternalSiteRepository $externalSiteRepository): Response
     {
         $cache = new FilesystemAdapter();
 
@@ -59,7 +58,6 @@ class SiteController extends AbstractController
             'tags' => $tags,
             'languages' => $languages,
             'user' => $user,
-            'services' => $serviceRepository->findAll(),
             'personalSites' => $personalSites
         ]);
     }
@@ -81,6 +79,14 @@ class SiteController extends AbstractController
     {
         return $this->render('fragments/_footer.html.twig', [
             'sites' => $externalSiteRepository->findAllForFooter(),
+        ]);
+    }
+
+    #[Route('/_services', name: 'app_user_services')]
+    public function services(ServiceRepository $serviceRepository): Response
+    {
+        return $this->render('fragments/_services.html.twig', [
+            'services' => $serviceRepository->findAll(),
         ]);
     }
 }

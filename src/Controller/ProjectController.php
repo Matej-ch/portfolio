@@ -17,7 +17,7 @@ class ProjectController extends AbstractController
 {
 
     #[Route('/projects', name: 'app_homepage')]
-    public function homepage(Request $request, ProjectRepository $repository, ServiceRepository $serviceRepository, UserInfoRepository $userInfoRepository): Response
+    public function homepage(Request $request, ProjectRepository $repository, UserInfoRepository $userInfoRepository): Response
     {
 
         $offset = max(0, $request->query->getInt('offset', 0));
@@ -32,7 +32,6 @@ class ProjectController extends AbstractController
 
         return $this->render('project/index.html.twig', [
             'projects' => $paginator,
-            'services' => $serviceRepository->findAll(),
             'userInfo' => $userInfoRepository->findActive(),
             'lastProjects' => $repository->findRandom(),
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,

@@ -92,9 +92,8 @@
                                     {% for site in personalSites %}
                                         {% if site.icon|length %}
                                             <a href="{{ site.url }}">
-                                                <img style="max-width: 35px;height: auto"
-                                                     src="{{ asset('uploads/sites/%s' | format(site.icon)) }}"
-                                                     alt="{{ site.name }}">
+                                                <i class="{{ site.icon }} fa-2x text-slate-800"
+                                                   title="{{ site.name }}"></i>
                                             </a>
 
                                         {% else %}
@@ -168,13 +167,14 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </section>
 
-        {{ include('fragments/_services.html.twig',{'services': services}) }}
+        <turbo-frame id="user-services" src="{{ path('app_user_services') }}">
+            Loading...
+        </turbo-frame>
     </main>
 
 {% endblock %}
