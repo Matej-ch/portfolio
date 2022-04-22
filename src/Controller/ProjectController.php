@@ -19,7 +19,6 @@ class ProjectController extends AbstractController
     #[Route('/projects', name: 'app_homepage')]
     public function homepage(Request $request, ProjectRepository $repository, UserInfoRepository $userInfoRepository): Response
     {
-
         $offset = max(0, $request->query->getInt('offset', 0));
 
         $paginator = $repository->getProjectPaginator($request->query->get('q'), $offset);
