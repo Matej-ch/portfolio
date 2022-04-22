@@ -131,10 +131,12 @@
     {% endif %}
 
     <turbo-frame id="user-services" src="{{ path('app_user_services') }}" loading="lazy">
-        Loading...
+        Loading user services...
     </turbo-frame>
 
-    {{ include('fragments/_about.html.twig',{'userInfo': userInfo}) }}
+    <turbo-frame id="user-info" src="{{ path('app_user_info') }}" loading="lazy">
+        Loading user info...
+    </turbo-frame>
 
     {{ include('fragments/_mywork.html.twig',{'projects': lastProjects}) }}
 

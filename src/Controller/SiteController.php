@@ -8,6 +8,7 @@ use App\Repository\ExternalSiteRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\TagRepository;
+use App\Repository\UserInfoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
@@ -87,6 +88,14 @@ class SiteController extends AbstractController
     {
         return $this->render('fragments/_services.html.twig', [
             'services' => $serviceRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/_userInfo', name: 'app_user_info')]
+    public function userInfo(UserInfoRepository $userInfoRepository): Response
+    {
+        return $this->render('fragments/_about.html.twig', [
+            'userInfo' => $userInfoRepository->findActive()
         ]);
     }
 }

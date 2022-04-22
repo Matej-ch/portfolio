@@ -6,8 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Repository\ProjectRepository;
-use App\Repository\ServiceRepository;
-use App\Repository\UserInfoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +15,7 @@ class ProjectController extends AbstractController
 {
 
     #[Route('/projects', name: 'app_homepage')]
-    public function homepage(Request $request, ProjectRepository $repository, UserInfoRepository $userInfoRepository): Response
+    public function homepage(Request $request, ProjectRepository $repository): Response
     {
         $offset = max(0, $request->query->getInt('offset', 0));
 
@@ -31,7 +29,6 @@ class ProjectController extends AbstractController
 
         return $this->render('project/index.html.twig', [
             'projects' => $paginator,
-            'userInfo' => $userInfoRepository->findActive(),
             'lastProjects' => $repository->findRandom(),
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
