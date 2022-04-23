@@ -98,4 +98,11 @@ class SiteController extends AbstractController
             'userInfo' => $userInfoRepository->findActive()
         ]);
     }
+
+    #[Route('/_randomProjects', name: 'app_random_projects')]
+    public function randomProjects()
+    {
+        return $this->render('fragments/_mywork.html.twig', [
+        ]);
+    }
 }

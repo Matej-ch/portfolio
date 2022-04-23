@@ -384,3 +384,11 @@ header, main, footer {
 body.turbo-loading {
   opacity: 0.8;
 }
+
+turbo-frame {
+  display: block;
+}
+
+turbo-frame[busy] {
+  opacity: 0.6;
+}
