@@ -26,7 +26,7 @@ class ProjectController extends AbstractController
                 'projects' => $paginator,
             ]);
         }
-
+        
         return $this->render('project/index.html.twig', [
             'projects' => $paginator,
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,

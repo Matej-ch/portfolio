@@ -102,7 +102,7 @@ class SiteController extends AbstractController
     }
 
     #[Route('/_randomProjects', name: 'app_random_projects')]
-    public function randomProjects(Request $request, ProjectRepository $repository)
+    public function randomProjects(Request $request, ProjectRepository $repository): Response
     {
         return $this->render('fragments/_mywork.html.twig', [
             'projects' => $repository->findRandom($request->query->getInt('max', 15))

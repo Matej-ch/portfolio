@@ -392,3 +392,7 @@ turbo-frame {
 turbo-frame[busy] {
   opacity: 0.6;
 }
+
+.turbo-progress-bar {
+  @apply bg-lime-400;
+}
