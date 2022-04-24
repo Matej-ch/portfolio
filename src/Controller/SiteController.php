@@ -13,6 +13,7 @@ use App\Repository\UserInfoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -101,10 +102,10 @@ class SiteController extends AbstractController
     }
 
     #[Route('/_randomProjects', name: 'app_random_projects')]
-    public function randomProjects(ProjectRepository $repository)
+    public function randomProjects(Request $request, ProjectRepository $repository)
     {
         return $this->render('fragments/_mywork.html.twig', [
-            'projects' => $repository->findRandom()
+            'projects' => $repository->findRandom($request->query->getInt('max', 15))
         ]);
     }
 }
