@@ -64,12 +64,22 @@ class ProjectRepository extends ServiceEntityRepository
             ->setFirstResult($offset)
             ->getQuery());
     }
-
+    
     public function findRandom()
     {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.id', 'DESC')
-            ->setMaxResults(10)
+        $qb = $this->createQueryBuilder('p');
+
+        $projectIDs = $this->addIsActiveQueryBuilder($qb)
+            ->select('p.id')
+            ->getQuery()->getSingleColumnResult();
+
+        shuffle($projectIDs);
+
+        $qb1 = $this->createQueryBuilder('p');
+        return $this->addIsActiveQueryBuilder($qb1)
+            ->andWhere('p.id IN (:ids)')
+            ->setParameter('ids', array_slice($projectIDs, 0, 15))
+            ->setMaxResults(15)
             ->getQuery()
             ->getResult();
     }

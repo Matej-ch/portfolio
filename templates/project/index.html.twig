@@ -140,7 +140,10 @@
         <span class="frame-loading-show fas fa-spinner fa-spin"></span>
     </turbo-frame>
 
-    {{ include('fragments/_mywork.html.twig',{'projects': lastProjects}) }}
+    <turbo-frame id="random-projects" src="{{ path('app_random_projects') }}" loading="lazy" class="w-full">
+        Loading random projects...
+        <span class="frame-loading-show fas fa-spinner fa-spin"></span>
+    </turbo-frame>
 
 {% endblock %}
 

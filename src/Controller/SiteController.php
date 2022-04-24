@@ -6,6 +6,7 @@ use App\Entity\ExternalSite;
 use App\Entity\UserInfo;
 use App\Repository\ExternalSiteRepository;
 use App\Repository\LanguageRepository;
+use App\Repository\ProjectRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\TagRepository;
 use App\Repository\UserInfoRepository;
@@ -100,9 +101,10 @@ class SiteController extends AbstractController
     }
 
     #[Route('/_randomProjects', name: 'app_random_projects')]
-    public function randomProjects()
+    public function randomProjects(ProjectRepository $repository)
     {
         return $this->render('fragments/_mywork.html.twig', [
+            'projects' => $repository->findRandom()
         ]);
     }
 }

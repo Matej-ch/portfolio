@@ -29,7 +29,6 @@ class ProjectController extends AbstractController
 
         return $this->render('project/index.html.twig', [
             'projects' => $paginator,
-            'lastProjects' => $repository->findRandom(),
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
         ]);
@@ -40,7 +39,6 @@ class ProjectController extends AbstractController
     {
         return $this->render('project/show.html.twig', [
             'project' => $project,
-            'lastProjects' => $repository->findRandom()
         ]);
     }
 }
