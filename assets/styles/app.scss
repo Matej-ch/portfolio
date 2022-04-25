@@ -135,6 +135,17 @@ header, main, footer {
   transform: scale(1.01, 1.01);
 }
 
+.btn.fixed {
+  border: 2px solid var(--btn-clr, black);
+  @apply border-blue-900 border-b-0;
+}
+
+
+.btn.fixed:hover {
+  border: 2px solid white;
+  @apply border-b-0;
+}
+
 .project {
 
   @apply bg-white rounded;

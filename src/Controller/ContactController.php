@@ -21,7 +21,7 @@ class ContactController extends AbstractController
     {
         $defaultData = [];
         $form = $this->createFormBuilder($defaultData)
-            ->add('name', TextType::class,[
+            ->add('name', TextType::class, [
                 'required' => true,
                 'label' => 'Your name',
                 'attr' => ['placeholder' => 'Your name'],
@@ -29,33 +29,28 @@ class ContactController extends AbstractController
                     new Length(['min' => 3]),
                     new NotBlank()]
             ])
-            ->add('email', EmailType::class,[
+            ->add('email', EmailType::class, [
                 'required' => true,
                 'label' => 'Email',
-                'attr' => ['placeholder' => 'email'],
+                'attr' => ['placeholder' => 'Email'],
                 'constraints' => [
                     new Email(),
                     new Length(['min' => 3]),
                     new NotBlank()]
             ])
-            ->add('website', UrlType::class,[
+            ->add('website', UrlType::class, [
                 'required' => false,
                 'label' => 'Your website',
-                'attr' => ['placeholder' => 'your website (optional)'],
+                'attr' => ['placeholder' => 'Your website (optional)'],
             ])
-            ->add('phone', TextType::class,[
-                'required' => false,
-                'label' => 'Phone',
-                'attr' => ['placeholder' => 'phone (optional)'],
-            ])
-            ->add('message', TextareaType::class,[
-                    'required' => true,
-                    'trim' => true,
-                    'label' => 'General Message',
-                    'attr' => ['placeholder' => 'write your message here'],
-                    'constraints' => [
-                        new Length(['min' => 3]),
-                        new NotBlank()]
+            ->add('message', TextareaType::class, [
+                'required' => true,
+                'trim' => true,
+                'label' => 'Message body',
+                'attr' => ['placeholder' => 'Write your message here'],
+                'constraints' => [
+                    new Length(['min' => 3]),
+                    new NotBlank()]
             ])
             ->getForm();
 
@@ -64,14 +59,14 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            if($request->get('fetch')) {
-                return new Response(null,204);
+            if ($request->get('fetch')) {
+                return new Response(null, 204);
             }
         }
 
         //422 unprocessable entity
-        return $this->render('contact/show.html.twig',[
+        return $this->render('contact/show.html.twig', [
             'form' => $form->createView(),
-        ], new Response(null,$form->isSubmitted() ? 422 : 200));
+        ], new Response(null, $form->isSubmitted() ? 422 : 200));
     }
 }
