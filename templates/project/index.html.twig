@@ -162,3 +162,22 @@
 
 {% endblock %}
 
+{% block metas %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="{{ absolute_url(app.request.requesturi) }}">
+    <meta name="twitter:title" content="List of personal and work projects">
+    <meta property='og:title' content='List of personal and work projects'/>
+
+    {% if app.request.query.get('q') %}
+        <meta name="twitter:description"
+              content="List of my personal and work projects with tags {{ app.request.query.get('q') }}">
+        <meta property='og:description'
+              content='List of my personal and work projects with tags {{ app.request.query.get('q') }}'/>
+    {% else %}
+        <meta name="twitter:description" content="List of all my personal and work projects">
+        <meta property='og:description' content='List of all my personal and work projects'/>
+    {% endif %}
+
+    <meta property='og:url' content='{{ absolute_url(app.request.requesturi) }}'/>
+{% endblock %}
+

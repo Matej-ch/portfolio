@@ -97,3 +97,19 @@
     </div>
 
 {% endblock %}
+
+{% block metas %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="{{ project.projectUrl }}">
+    <meta name="twitter:title" content="{{ project.name }}">
+    <meta name="twitter:description"
+          content="{{ project.shortDescription }}">
+    <meta name="twitter:image"
+          content="{{ project.bgImg }}">
+
+
+    <meta property='og:title' content='{{ project.name }}'/>
+    <meta property='og:image' content='{{ project.bgImg }}'/>
+    <meta property='og:description' content='{{ project.shortDescription }}'/>
+    <meta property='og:url' content='{{ project.projectUrl }}'/>
+{% endblock %}
