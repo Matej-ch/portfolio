@@ -19,24 +19,25 @@
                 {% for project in projects %}
                     <div class="swiper-slide">
                         {% if project.bgImg %}
-                            <a href="{{ path('project_show',{slug:project.slug}) }}"
-                               class="bg-slate-300 relative"
-                               style="width:300px;max-width: 500px;height:300px;max-height: 500px;display: inline-block">
-                                <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt="">
-                            </a>
-
-                            {# <div class="card">
+                            <div class="card"
+                                 style="--background: url({{ asset('uploads/projects/%s' | format(project.bgImg)) }})">
                                 <div class="content">
                                     <h2 class="title">{{ project.name }}</h2>
                                     <p class="copy">{{ project.shortDescription }}</p>
-                                    <a class="btn">View</a>
+                                    <a class="btn btn-blue"
+                                       href="{{ path('project_show',{slug:project.slug}) }}">View</a>
                                 </div>
-                            </div> #}
+                            </div>
                         {% else %}
-                            <a href="{{ path('project_show',{slug:project.slug}) }}"
-                               class="bg-slate-300 relative"
-                               style="width:500px;max-width: 500px;height:500px;max-height: 500px;">
-                            </a>
+                            <div class="card"
+                                 style="--background: url({{ asset('uploads/projects/default.jpg') }})">
+                                <div class="content">
+                                    <h2 class="title">{{ project.name }}</h2>
+                                    <p class="copy">{{ project.shortDescription }}</p>
+                                    <a class="btn btn-blue"
+                                       href="{{ path('project_show',{slug:project.slug}) }}">View</a>
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
                 {% endfor %}
