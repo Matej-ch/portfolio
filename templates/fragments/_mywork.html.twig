@@ -3,7 +3,16 @@
         <h2 class="section__title section__title--services">My work</h2>
 
         <div {{ stimulus_controller('carousel',{
-            'options': '{"direction": "horizontal","slidesPerView": 5,"spaceBetween":10,"pagination": {"el": ".swiper-pagination","clickable": true},"navigation": {"nextEl": ".swiper-button-next","prevEl": ".swiper-button-prev"}}'
+            'options': '{
+            "direction": "horizontal",
+            "slidesPerView": 1,
+            "spaceBetween":10,
+            "pagination": {"el": ".swiper-pagination","clickable": true},
+            "navigation": {"nextEl": ".swiper-button-next","prevEl": ".swiper-button-prev"},
+            "breakpoints": {
+              "640": {"slidesPerView": 2,"spaceBetween": 10},
+              "768": {"slidesPerView": 4,"spaceBetween": 10},
+              "1024": {"slidesPerView": 5,"spaceBetween": 10}}}'
         }) }}
                 class="swiper">
             <div class="swiper-wrapper">
@@ -13,16 +22,20 @@
                             <a href="{{ path('project_show',{slug:project.slug}) }}"
                                class="bg-slate-300 relative"
                                style="width:300px;max-width: 500px;height:300px;max-height: 500px;display: inline-block">
-                                <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt=""
-                                     class="">
-                                {# <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span> #}
+                                <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}" alt="">
                             </a>
+
+                            {# <div class="card">
+                                <div class="content">
+                                    <h2 class="title">{{ project.name }}</h2>
+                                    <p class="copy">{{ project.shortDescription }}</p>
+                                    <a class="btn">View</a>
+                                </div>
+                            </div> #}
                         {% else %}
                             <a href="{{ path('project_show',{slug:project.slug}) }}"
                                class="bg-slate-300 relative"
                                style="width:500px;max-width: 500px;height:500px;max-height: 500px;">
-
-                                {# <span class="absolute top-2 left-0 font-bold text-xs text-slate-700 opacity-60 text-left px-4">{{ project.name }}</span> #}
                             </a>
                         {% endif %}
                     </div>
@@ -38,6 +51,4 @@
 
         </div>
     </section>
-
 </turbo-frame>
-

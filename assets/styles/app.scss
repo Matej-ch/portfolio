@@ -275,7 +275,7 @@ header, main, footer {
 //footer
 
 .footer {
-  background: #111;
+  background-color: #111;
   @apply text-3xl text-blue-500 text-center;
   padding: 1em 0;
 
@@ -318,34 +318,13 @@ header, main, footer {
 // work images only
 
 .my-work {
-  background-color: #303030;
+  background-color: #111;
   @apply text-center text-white;
 }
 
 .portfolio {
   @apply flex flex-row justify-center;
 }
-
-.portfolio__item {
-  @apply text-blue-500 overflow-hidden;
-}
-
-.portfolio__img {
-  transition: transform 750ms cubic-bezier(.5, 0, .5, 1),
-  opacity 250ms linear;
-}
-
-.portfolio__item:focus {
-  position: relative;
-  z-index: 2;
-}
-
-.portfolio__img:hover,
-.portfolio__item:focus .portfolio__img {
-  transform: scale(1.2);
-  opacity: .5;
-}
-
 
 // about me fragment
 
