@@ -148,7 +148,7 @@ header, main, footer {
 
 .project {
 
-  @apply bg-white rounded;
+  @apply bg-white rounded flex flex-col;
   box-shadow: hsla(0, 0, 0, .2) 0 4px 2px -2px;
   max-width: 600px;
 
@@ -166,11 +166,11 @@ header, main, footer {
   }
 
   &__body {
-    @apply my-0 mx-auto;
+    @apply my-0;
   }
 
   &__footer {
-    @apply my-0 mx-auto p-2 text-slate-600;
+    @apply mb-0 mt-auto p-2 text-slate-600;
     border-top: 1px solid lighten(#333, 70%);
 
     ul {

@@ -38,11 +38,11 @@
         <div class="grid justify-center grid-flow-row md:grid-cols-4 gap-2 lg:gap-6 px-4 lg:px-10 pt-6 pb-4 md:pb-8">
             {% for project in projects %}
                 <div class="project relative">
-                    <div class="w-full flex flex-wrap gap-1 absolute top-1 left-1 hidden">
+                    <span class="w-full flex-wrap gap-1 absolute top-1 left-1 hidden small-tags">
                         {% for tag in project.tags %}
                             <a class="sm-tag" href="{{ path('app_homepage', { q: tag.name }) }}">{{ tag.name }}</a>
                         {% endfor %}
-                    </div>
+                    </span>
 
                     <a class="project__header" href="{{ path('project_show',{slug:project.slug}) }}">
                         {% if project.bgImg %}
