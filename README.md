@@ -1,16 +1,25 @@
 download project git clone https://github.com/Matej-ch/portfolio.git
 
-migrate
+### Features
 
-php bin/console doctrine:database:create
+### Requirements
 
-php bin/console make:entity
+### Commands
 
-php bin/console make:migration
+- First create database
+  ``php bin/console doctrine:database:create``
 
-symfony console doctrine:migrations:migrate
+- Make entities you require
+  ``php bin/console make:entity``
 
-load fixtures for default data
+- After entity is set up create migration file
+  ``php bin/console make:migration``
+
+- Run migration files and create or update tables
+  ``symfony console doctrine:migrations:migrate``
+
+- Load fixtures with default data
+  ``symfony console doctrine:fixtures:load``
 
 generate password for user symfony console security:hash-password
 
