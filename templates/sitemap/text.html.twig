@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Sitemap
+{% endblock %}
+
+{% block body %}
+    <div class="grid grid-cols-3 gap-2 px-4 py-6">
+        {% for url in urls %}
+            <div class="py-2">{# check if hostname is not alreay in url #}
+
+                <a href="{{ url.loc }}" class="text-blue-800 font-bold">
+                    {{ url.label }}
+                </a>
+
+                {% if url.lastmod is defined %}
+                    <span>{{ url.lastmod }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://portfolio.test:8000/sitemap/sitemap.xml
+Sitemap: http://portfolio.test:8000/sitemap/sitemap?type=xml
