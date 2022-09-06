@@ -63,7 +63,8 @@
     "twig/intl-extra": "^3.3",
     "twig/string-extra": "^3.3",
     "twig/twig": "^2.12|^3.0",
-    "doctrine/doctrine-fixtures-bundle": "^3.4"
+    "doctrine/doctrine-fixtures-bundle": "^3.4",
+    "zenstruck/foundry": "^1.10"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5",
@@ -71,7 +72,6 @@
     "symfony/css-selector": "^6.0",
     "symfony/maker-bundle": "^1.0",
     "symfony/phpunit-bridge": "^6.0",
-    "zenstruck/foundry": "^1.10",
     "symfony/var-dumper": "^6.0"
   },
   "config": {
