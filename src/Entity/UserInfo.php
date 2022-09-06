@@ -36,6 +36,9 @@ class UserInfo
     #[ORM\Column(type: 'string', length: 2048, nullable: true)]
     private $whoAmI;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $aboutMeTitle;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -206,6 +209,18 @@ class UserInfo
     public function setWhoAmI(?string $whoAmI): self
     {
         $this->whoAmI = $whoAmI;
+
+        return $this;
+    }
+
+    public function getAboutMeTitle(): ?string
+    {
+        return $this->aboutMeTitle;
+    }
+
+    public function setAboutMeTitle(string $aboutMeTitle): self
+    {
+        $this->aboutMeTitle = $aboutMeTitle;
 
         return $this;
     }

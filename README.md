@@ -25,6 +25,6 @@ generate password for user symfony console security:hash-password
 
 create default records in database (by default data will be purged)
 
-default user will be admin with password admin12345
+default user will be admin with password tada
 
 symfony console doctrine:fixtures:load --group=live

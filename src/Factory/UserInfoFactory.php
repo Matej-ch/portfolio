@@ -44,6 +44,7 @@ class UserInfoFactory extends ModelFactory
             'avatar' => self::faker()->filePath(),
             'avatar_big' => self::faker()->filePath(),
             'who_am_i' => self::faker()->text(1024),
+            'about_me_title' => 'Frontend & backend developer based out of Europe'
         ];
     }
 
