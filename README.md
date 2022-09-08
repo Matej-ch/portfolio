@@ -1,8 +1,39 @@
-download project git clone https://github.com/Matej-ch/portfolio.git
+### Requirements
+
+* at least PHP 8.1
+    * Apcu enabled, opcache
+* Mysql 8 and higher (older version would probably still work)
+* composer
+* Nodejs (npm)
+* server (tested on apache)
+    * Redis cache
+
+### Install on server
+
+* Download project `git clone https://github.com/Matej-ch/portfolio.git`
+* Run `composer install`
+* Run `npm install`
+* Run `npm run build`
+* Create database if it doesn't exist `php bin/console doctrine:database:create`
+* Run migrations `php bin/console doctrine:migrations:migrate`
+* (_Optional_) Load fixtures with custom data `php bin/console doctrine:fixtures:load`
+    * this will generate default admin user with username `admin` password `tada` email `admin@admil.com`
+* Generate custom password_hash `php bin/console security:hash-password`
 
 ### Features
 
-### Requirements
+* List of projects with search
+* Detail for project including links to source code and project
+* About me page
+* Admin functionality
+* 'Contact me' email sending (WIP)
+
+#### TODO
+
+1. [ ] hire me page
+2. [ ] custom metadata for main page
+3. [ ] landing page
+4. [ ] Connection to GitHub api for readme and other data
 
 ### Commands
 
