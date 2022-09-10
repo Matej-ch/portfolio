@@ -5,7 +5,12 @@ namespace App\Entity;
 use App\Repository\UserInfoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PostLoad;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
 
 #[ORM\Entity(repositoryClass: UserInfoRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -85,17 +90,25 @@ class UserInfo
         return $this;
     }
 
-    #[ORM\PostLoad]
+    #[PostLoad]
     public function setDecodedData(): void
     {
         $this->decodedData = json_decode($this->getData(), true, 512, JSON_THROW_ON_ERROR);
     }
 
-    #[ORM\PrePersist]
+    /*#[PrePersist]
     public function getDecodedData(): void
     {
+        dd('PRE PrePersist');
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
     }
+
+    #[PreUpdate]
+    public function updateDecodedData(PreUpdateEventArgs $eventArgs)
+    {
+        dd('PRE UPDATE');
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+    }*/
 
     public function getUserData()
     {
@@ -131,12 +144,16 @@ class UserInfo
     {
         $this->decodedData['name'] = $name;
 
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
         return $this;
     }
 
     public function setLocation(?string $location): self
     {
         $this->decodedData['location'] = $location;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 
         return $this;
     }
@@ -145,6 +162,8 @@ class UserInfo
     {
         $this->decodedData['education'] = $education;
 
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
         return $this;
     }
 
@@ -152,12 +171,16 @@ class UserInfo
     {
         $this->decodedData['work'] = $work;
 
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
         return $this;
     }
 
     public function setDescription(?string $desc): self
     {
         $this->decodedData['description'] = $desc;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 
         return $this;
     }
