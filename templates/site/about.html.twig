@@ -156,17 +156,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mt-4 py-5 border-t border-slate-300 text-center">
-                            <div class="flex flex-wrap justify-center">
-                                <div class="w-full px-4 flex flex-wrap space-x-2 justify-center">
-                                    {% for tag in tags %}
-                                        <a class="tag"
-                                           href="{{ path('app_homepage', { q: tag.name }) }}">{{ tag.name }}</a>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
