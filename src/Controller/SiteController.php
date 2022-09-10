@@ -45,12 +45,6 @@ class SiteController extends AbstractController
             return $tagRepository->findAllActive();
         });
 
-        $languages = $cache->get('langs_cached', function (ItemInterface $item) use ($languageRepository) {
-            $item->expiresAfter(1800);
-
-            return $languageRepository->findAllActive();
-        });
-
         $repository = $entityManager->getRepository(UserInfo::class);
         $user = $repository->findActive();
 
@@ -59,7 +53,7 @@ class SiteController extends AbstractController
         return $this->render('site/about.html.twig', [
             'controller_name' => 'SiteController',
             'tags' => $tags,
-            'languages' => $languages,
+            'languages' => $languageRepository->findAllActive(),
             'user' => $user,
             'personalSites' => $personalSites
         ]);
