@@ -6,18 +6,18 @@ const Navbar = ({fixed, admin}) => {
     return (
         <>
             <nav
-                className={"flex flex-wrap items-center justify-between px-2 pb-3 bg-blue-500" + (fixed ? ' fixed z-10 w-full' : ' relative')}>
+                className={"flex flex-wrap items-center justify-between px-2 bg-blue-500" + (fixed ? ' fixed z-10 w-full' : ' relative')}>
 
-                <div className="container px-4 mx-auto flex flex-wrap items-end justify-between"
-                     style={{alignItems: "end"}}>
+                <div className="container px-4 mx-auto flex flex-wrap items-end justify-between pt-1">
 
-                    <a className="text-4xl leading-none font-bold mr-4 whitespace-nowrap uppercase text-white logo"
-                       href="/">
-                        MC
-                    </a>
+                    <div
+                        className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+                        <a className="text-4xl leading-none font-bold mr-4 whitespace-nowrap uppercase text-white logo"
+                           href="/">
+                            MC
+                        </a>
 
-                    <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-                        <a className="text-sm font-bold inline-block mr-4 whitespace-nowrap uppercase text-white"
+                        <a className="text-sm leading-7 lg:leading-tight font-bold inline-block mr-4 py-2 whitespace-nowrap uppercase text-white hover:opacity-75"
                            href="/projects">
                             Projects
                         </a>
@@ -41,15 +41,15 @@ const Navbar = ({fixed, admin}) => {
 
                             <li>
                                 <a
-                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="pr-3 lg:pr-0 lg:px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
                                     href="/about">
-                                    <span className="ml-2">Hire me</span>
+                                    <span className="lg:ml-2">Hire me</span>
                                 </a>
                             </li>
 
                             <li>
                                 <a
-                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
                                     href="/about">
                                     <span className="ml-2">Contact</span>
                                 </a>
@@ -57,7 +57,7 @@ const Navbar = ({fixed, admin}) => {
 
                             <li>
                                 <a
-                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
                                     href="/about">
                                     <span className="ml-2">About</span>
                                 </a>
@@ -65,7 +65,7 @@ const Navbar = ({fixed, admin}) => {
 
                             {admin ? <li>
                                 <a
-                                    className="px-3 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="px-3 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
                                     href={admin}>
                                     ADMIN
                                 </a>

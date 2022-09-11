@@ -26,7 +26,7 @@ class ProjectController extends AbstractController
                 'projects' => $paginator,
             ]);
         }
-        
+
         return $this->render('project/index.html.twig', [
             'projects' => $paginator,
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
@@ -35,7 +35,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/projects/{slug}', name: 'project_show')]
-    public function show(Project $project, ProjectRepository $repository): Response
+    public function show(Project $project): Response
     {
         return $this->render('project/show.html.twig', [
             'project' => $project,
