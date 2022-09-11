@@ -91,13 +91,14 @@
                                 <div class="flex justify-center py-4 lg:pt-4 pt-8 space-x-2">
                                     {% for site in personalSites %}
                                         {% if site.icon|length %}
-                                            <a href="{{ site.url }}">
+                                            <a href="{{ site.url }}" target="_blank" rel="noreferrer noopener">
                                                 <i class="{{ site.icon }} fa-2x text-slate-800"
                                                    title="{{ site.name }}"></i>
                                             </a>
 
                                         {% else %}
                                             <a href="{{ site.url }}" aria-placeholder="{{ site.name }}"
+                                               rel="noreferrer noopener"
                                                title="{{ site.name }}" class="relative">
                                                 <i class="fas fa-globe-europe fa-2x text-slate-400"></i>
                                                 <span class="font-bold absolute z-10 text-slate-700 text-xl flex justify-center items-center top-0 bottom-0 left-0 right-0">{{ site.name|first|capitalize }}</span>

@@ -13,8 +13,6 @@ export default class extends Controller {
     }
 
     connect() {
-        ReactDOM.render(<Navbar github={this.githubValue}
-                                linkedin={this.linkedinValue}
-                                admin={this.adminValue}/>, this.element);
+        ReactDOM.render(<Navbar admin={this.adminValue}/>, this.element);
     }
 }

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const Navbar = ({fixed, github, linkedin, admin}) => {
+const Navbar = ({fixed, admin}) => {
     const [navbarOpen, setNavbarOpen] = useState(false);
 
     return (
@@ -12,18 +12,6 @@ const Navbar = ({fixed, github, linkedin, admin}) => {
                         <a className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
                            href="/projects">
                             Projects
-                        </a>
-
-                        <a className="text-sm font-bold leading-relaxed hidden mr-4 py-2 whitespace-nowrap uppercase text-white md:inline-block"
-                           href="/projects?q=game">
-                            <i className="fas fa-gamepad text-lg leading-lg text-white opacity-75"/>
-                            <span className="ml-2">Games</span>
-                        </a>
-
-                        <a className="text-sm font-bold leading-relaxed hidden mr-4 py-2 whitespace-nowrap uppercase text-white md:inline-block"
-                           href="/projects?q=package">
-                            <i className="fas fa-cubes text-lg leading-lg text-white opacity-75"/>
-                            <span className="ml-2">Packages</span>
                         </a>
 
                         <button
@@ -38,36 +26,21 @@ const Navbar = ({fixed, github, linkedin, admin}) => {
                         id="example-navbar-danger">
                         <ul className="flex flex-row md:flex-row items-baseline list-none lg:ml-auto">
 
+                            <li>
+                                <a
+                                    className="px-3 py-2 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    href="/about">
+                                    <span className="ml-2">About me</span>
+                                </a>
+                            </li>
+
                             {admin ? <li>
                                 <a
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                                     href={admin}>
                                     ADMIN
                                 </a>
                             </li> : ''}
-
-                            <li>
-                                <a
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    href={linkedin}>
-                                    <i className="fab fa-linkedin text-lg leading-lg text-white opacity-75"/>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    href={github}>
-                                    <i className="fab fa-github text-lg leading-lg text-white opacity-75"/>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    className="px-3 py-2 flex items-baseline text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    href="/about">
-                                    <i className="fas fa-user text-lg leading-lg text-white opacity-75"/><span
-                                    className="ml-2">About me</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
