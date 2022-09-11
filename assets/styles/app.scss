@@ -101,7 +101,7 @@ header, main, footer {
 }
 
 .btn-gold {
-  --btn-clr: rgba(245, 158, 11, 1);
+  --btn-clr: #F6AF3B;
   --transform-origin: center;
 }
 
@@ -118,6 +118,11 @@ header, main, footer {
 
 .btn:hover, .btn-sm:hover {
   color: white;
+}
+
+.btn-gold:hover {
+  color: #3B82F6;
+  font-weight: bold;
 }
 
 .btn::after, .btn-sm::after {
@@ -526,4 +531,13 @@ turbo-frame[busy] {
       transition-duration: 0s;
     }
   }
+}
+
+.logo {
+  font-family: 'Paytone One', sans-serif;
+  background: linear-gradient(90deg, rgba(255, 131, 0, 1) 0%, rgba(255, 188, 0, 1) 100%);;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+
 }

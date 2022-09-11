@@ -6,10 +6,18 @@ const Navbar = ({fixed, admin}) => {
     return (
         <>
             <nav
-                className={"flex flex-wrap items-center justify-between px-2 py-3 bg-blue-500" + (fixed ? ' fixed z-10 w-full' : ' relative')}>
-                <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                className={"flex flex-wrap items-center justify-between px-2 pb-3 bg-blue-500" + (fixed ? ' fixed z-10 w-full' : ' relative')}>
+
+                <div className="container px-4 mx-auto flex flex-wrap items-end justify-between"
+                     style={{alignItems: "end"}}>
+
+                    <a className="text-4xl leading-none font-bold mr-4 whitespace-nowrap uppercase text-white logo"
+                       href="/">
+                        MC
+                    </a>
+
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-                        <a className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                        <a className="text-sm font-bold inline-block mr-4 whitespace-nowrap uppercase text-white"
                            href="/projects">
                             Projects
                         </a>
@@ -21,6 +29,11 @@ const Navbar = ({fixed, admin}) => {
                             <i className="fas fa-bars"/>
                         </button>
                     </div>
+
+                    <div>
+
+                    </div>
+
                     <div
                         className={"lg:flex flex-grow items-center" + (navbarOpen ? " flex" : " hidden")}
                         id="example-navbar-danger">
@@ -28,15 +41,31 @@ const Navbar = ({fixed, admin}) => {
 
                             <li>
                                 <a
-                                    className="px-3 py-2 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                                     href="/about">
-                                    <span className="ml-2">About me</span>
+                                    <span className="ml-2">Hire me</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a
+                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    href="/about">
+                                    <span className="ml-2">Contact</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a
+                                    className="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    href="/about">
+                                    <span className="ml-2">About</span>
                                 </a>
                             </li>
 
                             {admin ? <li>
                                 <a
-                                    className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
+                                    className="px-3 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75"
                                     href={admin}>
                                     ADMIN
                                 </a>

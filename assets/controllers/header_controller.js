@@ -7,8 +7,6 @@ import Navbar from "../js/components/navbar";
 export default class extends Controller {
 
     static values = {
-        github: String,
-        linkedin: String,
         admin: String,
     }
 
