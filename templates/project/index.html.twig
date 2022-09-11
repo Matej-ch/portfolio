@@ -7,33 +7,6 @@
 
 {% block body %}
 
-    <form action="{{ path('app_homepage') }}"
-          class="grid grid-rows-1 mt-2 lg:mt-4 relative px-4 lg:px-10" {{ stimulus_controller('search-preview',{
-        url: path('app_homepage')
-    }) }}>
-
-        <div class="relative mt-1 lg:mt-4 mx-auto w-full">
-            <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-                <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
-                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round"/>
-                </svg>
-            </span>
-
-            <input type="search"
-                   name="q"
-                   aria-label="Search"
-                   autocomplete="off"
-                   data-action="search-preview#onSearchInput"
-                   value="{{ app.request.query.get('q') }}"
-                   class="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
-                   placeholder="Search in portfolio...">
-        </div>
-
-        <div class="search-preview relative" data-search-preview-target="result"></div>
-    </form>
-
     {% if projects|length > 0 %}
         <div class="grid justify-center grid-flow-row md:grid-cols-4 gap-2 lg:gap-6 px-4 lg:px-10 pt-6 pb-4 md:pb-8">
             {% for project in projects %}

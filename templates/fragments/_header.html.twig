@@ -1,8 +1,8 @@
 <header id="react-header" {{ stimulus_controller('header') }}>
 
-    <nav class="flex flex-wrap items-center justify-between px-2 bg-blue-500 relative">
+    <nav class="flex flex-wrap items-center justify-between bg-blue-500 relative">
 
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between pt-1">
+        <div class="container px-2 lg:px-4 mx-auto items-center grid grid-rows-2 lg:grid-rows-none lg:grid-cols-3 py-1">
 
             <div
                     class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
@@ -19,41 +19,60 @@
                 </button>
             </div>
 
+            <form action="{{ path('app_homepage') }}"
+                  class="grid grid-rows-1 relative" {{ stimulus_controller('search-preview',{
+                url: path('app_homepage')
+            }) }}>
+
+                <div class="relative mx-auto w-full">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                        <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+
+                    <input type="search"
+                           name="q"
+                           aria-label="Search"
+                           autocomplete="off"
+                           data-action="search-preview#onSearchInput"
+                           value="{{ app.request.query.get('q') }}"
+                           class="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
+                           placeholder="Search in portfolio...">
+                </div>
+
+                <div class="search-preview relative" data-search-preview-target="result"></div>
+            </form>
+
             <div class="lg:flex flex-grow items-center hidden"
                  data-header-target="navbar">
                 <ul class="flex flex-row md:flex-row items-baseline list-none lg:ml-auto">
-
                     <li>
-                        <a class="pr-3 lg:pr-0 lg:px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
+                        <a class="pr-3 lg:px-3 flex text-sm uppercase font-bold text-white hover:opacity-75 py-2"
                            href={{ path('app_homepage') }}>
-                            <span class="lg:ml-2">Portfolio</span>
+                            Portfolio
                         </a>
                     </li>
 
                     <li>
-                        <a class="pr-3 lg:pr-0 lg:px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
+                        <a class="px-3 flex text-sm uppercase font-bold text-white hover:opacity-75 py-2"
                            href={{ path('app_about') }}>
-                            <span class="lg:ml-2">Hire me</span>
+                            Contact
                         </a>
                     </li>
 
                     <li>
-                        <a class="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
+                        <a class="px-3 flex text-sm uppercase font-bold text-white hover:opacity-75 py-2"
                            href={{ path('app_about') }}>
-                            <span class="ml-2">Contact</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="px-3 flex items-baseline text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
-                           href={{ path('app_about') }}>
-                            <span class="ml-2">About</span>
+                            About
                         </a>
                     </li>
 
                     {% if is_granted('ROLE_ADMIN') %}
                         <li>
-                            <a class="px-3 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75 py-2"
+                            <a class="px-3 flex items-center text-sm uppercase font-bold text-white hover:opacity-75 py-2"
                                href={{ path('admin') }}>
                                 ADMIN
                             </a>
