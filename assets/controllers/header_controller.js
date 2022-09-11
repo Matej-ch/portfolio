@@ -1,16 +1,20 @@
 import {Controller} from 'stimulus';
-import ReactDOM from "react-dom";
-import React from "react";
-import Navbar from "../js/components/navbar";
-
 
 export default class extends Controller {
 
-    static values = {
-        admin: String,
-    }
+    static targets = ['navbar']
 
     connect() {
-        ReactDOM.render(<Navbar admin={this.adminValue}/>, this.element);
+
+    }
+
+    showNavbar(e) {
+        if (this.navbarTarget.classList.contains('flex')) {
+            this.navbarTarget.classList.add('hidden');
+            this.navbarTarget.classList.remove('flex');
+        } else {
+            this.navbarTarget.classList.add('flex');
+            this.navbarTarget.classList.remove('hidden');
+        }
     }
 }
