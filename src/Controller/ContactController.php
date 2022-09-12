@@ -16,8 +16,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
-    public function contact(Request $request): Response
+    #[Route('/contact-modal', name: 'app_contact_modal')]
+    public function contactModal(Request $request): Response
     {
         $defaultData = [];
         $form = $this->createFormBuilder($defaultData)
@@ -65,8 +65,14 @@ class ContactController extends AbstractController
         }
 
         //422 unprocessable entity
-        return $this->render('contact/show.html.twig', [
+        return $this->render('contact/modal.html.twig', [
             'form' => $form->createView(),
         ], new Response(null, $form->isSubmitted() ? 422 : 200));
+    }
+
+    #[Route('/contact', name: 'app_contact')]
+    public function show(Request $request): Response
+    {
+        return $this->render('contact/show.html.twig', []);
     }
 }

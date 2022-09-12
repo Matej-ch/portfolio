@@ -2,21 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\ExternalSite;
+
 use App\Entity\UserInfo;
 use App\Repository\ExternalSiteRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\ServiceRepository;
-use App\Repository\TagRepository;
 use App\Repository\UserInfoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Cache\ItemInterface;
 
 class SiteController extends AbstractController
 {
@@ -32,8 +29,7 @@ class SiteController extends AbstractController
 
     //#[Route('/{_locale<%app.supported_locales%>}/about', name: 'app_about')]
     #[Route('/about', name: 'app_about')]
-    public function about(TagRepository          $tagRepository,
-                          LanguageRepository     $languageRepository,
+    public function about(LanguageRepository     $languageRepository,
                           EntityManagerInterface $entityManager,
                           ExternalSiteRepository $externalSiteRepository): Response
     {
@@ -54,14 +50,15 @@ class SiteController extends AbstractController
     #[Route('/navbar', name: 'app_navbar')]
     public function navbarItems(): Response
     {
-        return $this->render('fragments/_header.html.twig', []);
+        return $this->render('fragments/_header.html.twig');
     }
 
     #[Route('/footer', name: 'app_footer')]
-    public function footerItems(ExternalSiteRepository $externalSiteRepository): Response
+    public function footerItems(ExternalSiteRepository $externalSiteRepository, UserInfoRepository $userInfoRepository): Response
     {
         return $this->render('fragments/_footer.html.twig', [
             'sites' => $externalSiteRepository->findAllForFooter(),
+            'userInfo' => $userInfoRepository->findActive()
         ]);
     }
 

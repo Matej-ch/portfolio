@@ -96,20 +96,6 @@ class UserInfo
         $this->decodedData = json_decode($this->getData(), true, 512, JSON_THROW_ON_ERROR);
     }
 
-    /*#[PrePersist]
-    public function getDecodedData(): void
-    {
-        dd('PRE PrePersist');
-        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
-    }
-
-    #[PreUpdate]
-    public function updateDecodedData(PreUpdateEventArgs $eventArgs)
-    {
-        dd('PRE UPDATE');
-        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
-    }*/
-
     public function getUserData()
     {
         return $this->decodedData;
@@ -118,6 +104,11 @@ class UserInfo
     public function getName()
     {
         return $this->decodedData['name'] ?? '';
+    }
+
+    public function getWorkEmail()
+    {
+        return $this->decodedData['work_email'] ?? '';
     }
 
     public function getLocation()
@@ -143,6 +134,15 @@ class UserInfo
     public function setName(?string $name): self
     {
         $this->decodedData['name'] = $name;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setWorkEmail(?string $email): self
+    {
+        $this->decodedData['work_email'] = $email;
 
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 
