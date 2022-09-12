@@ -7,10 +7,11 @@ import Footer from "../js/components/footer";
 export default class extends Controller {
 
     static values = {
-        sites: Array
+        sites: Array,
+        email: String
     }
 
     connect() {
-        ReactDOM.render(<Footer sites={this.sitesValue}/>, this.element);
+        ReactDOM.render(<Footer sites={this.sitesValue} email={this.emailValue}/>, this.element);
     }
 }

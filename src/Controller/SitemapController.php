@@ -11,11 +11,43 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SitemapController extends AbstractController
 {
-    #[Route('/sitemap/sitemap', name: 'sitemap')]
-    public function showAction(Request $request, ProjectRepository $repository, Packages $assetPackage): Response
+    #[Route('/sitemap/sitemap.xml', name: 'app_sitemap_xml', defaults: ['xml'])]
+    public function showAsXml(Request $request, ProjectRepository $repository, Packages $assetPackage): Response
+    {
+        $urls = $this->parseUrls($repository, $assetPackage);
+
+        $response = new Response(
+            $this->renderView('sitemap/xml.html.twig', [
+                'urls' => $urls,
+                'hostname' => $request->getSchemeAndHttpHost()]),
+            200
+        );
+        $response->headers->set('Content-Type', 'text/xml');
+
+        return $response;
+    }
+
+    #[Route('/sitemap', name: 'app_sitemap_html', defaults: ['html'])]
+    public function showAsHtml(Request $request, ProjectRepository $repository, Packages $assetPackage): Response
+    {
+        $urls = $this->parseUrls($repository, $assetPackage);
+
+        return new Response(
+            $this->renderView('sitemap/text.html.twig', [
+                'urls' => $urls,
+                'hostname' => $request->getSchemeAndHttpHost()]),
+            200
+        );
+    }
+
+    /**
+     * @param ProjectRepository $repository
+     * @param Packages $assetPackage
+     * @return array
+     */
+    private function parseUrls(ProjectRepository $repository, Packages $assetPackage): array
     {
         $urls = [];
-        $hostname = $request->getSchemeAndHttpHost();
 
         $urls[] = ['loc' => $this->generateUrl('app_homepage'), 'label' => 'Projects homepage'];
         $urls[] = ['loc' => $this->generateUrl('app_about'), 'label' => 'About me'];
@@ -31,28 +63,6 @@ class SitemapController extends AbstractController
             ];
         }
 
-
-        $type = $request->get('type');
-        if (empty($type)) {
-            $type = 'xml';
-        }
-
-        $response = new Response();
-        $response->setStatusCode(200);
-
-        if ($type === 'xml') {
-            $response->setContent($this->renderView('sitemap/xml.html.twig', [
-                'urls' => $urls,
-                'hostname' => $hostname]));
-
-            $response->headers->set('Content-Type', 'text/xml');
-
-        } else {
-            $response->setContent($this->renderView('sitemap/text.html.twig', [
-                'urls' => $urls,
-                'hostname' => $hostname]));
-        }
-        
-        return $response;
+        return $urls;
     }
 }

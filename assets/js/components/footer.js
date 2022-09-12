@@ -1,10 +1,10 @@
 import React from "react";
 
-const Footer = ({sites}) => {
+const Footer = ({sites, email}) => {
 
     return (
         <>
-            <a href="mailto:me@test.dev" className="footer__link font-semibold">me@test.dev</a>
+            <a href={"mailto:" + email} className="footer__link font-semibold">{email}</a>
             <ul className="social-list">
 
                 {sites.map(function (site) {
@@ -17,15 +17,18 @@ const Footer = ({sites}) => {
             </ul>
 
             <hr className="my-6 border-slate-300"/>
+
             <div className="flex flex-wrap items-center md:justify-between justify-center">
-                <div className="w-full md:w-4/12 px-4 mx-auto text-center">
+                <div className="container flex justify-between px-4 mx-auto text-center">
                     <div className="text-sm text-slate-300 font-semibold py-1">
-                        Created with Symfony
+                        <a href="/sitemap">Sitemap</a>
+                    </div>
+                    <div className="text-sm text-slate-300 font-semibold py-1">
+                        <a href="https://symfony.com">Created with Symfony</a>
                     </div>
                 </div>
             </div>
         </>
-
     );
 }
 
