@@ -24,7 +24,7 @@
 <body>
 <div class="flex flex-col items-stretch min-h-full">
     {% block header %}
-        {{ render(url('app_navbar',{origin: app.request.get('_route')})) }}
+        {{ render(controller('App\\Controller\\SiteController::navbarItems',{origin: app.request.get('_route')})) }}
     {% endblock %}
 
     <main>
