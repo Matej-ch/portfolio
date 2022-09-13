@@ -1,5 +1,6 @@
 <?php
 
-return array (
-  'SENTRY_DSN' => NULL,
+return array(
+    'APP_SECRET' => null,
+    'SENTRY_DSN' => null,
 );
