@@ -1,4 +1,4 @@
-import {Controller} from 'stimulus';
+import {Controller} from '@hotwired/stimulus';
 import ReactDOM from "react-dom";
 import React from "react";
 import Footer from "../js/components/footer";

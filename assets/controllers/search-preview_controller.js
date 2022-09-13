@@ -1,10 +1,10 @@
-import { Controller } from 'stimulus';
-import { useClickOutside,useDebounce,useTransition } from 'stimulus-use'
+import {Controller} from '@hotwired/stimulus';
+import {useClickOutside, useDebounce, useTransition} from 'stimulus-use'
 
 export default class extends Controller {
 
     static values = {
-        url:String
+        url: String
     }
 
     static targets = ['result']
@@ -14,7 +14,7 @@ export default class extends Controller {
     connect() {
         useClickOutside(this);
         useDebounce(this);
-        useTransition(this,{
+        useTransition(this, {
             element: this.resultTarget,
             enterActive: 'fade-enter-active',
             enterFrom: 'fade-enter-from',
@@ -30,8 +30,7 @@ export default class extends Controller {
         this.leave();
     }
 
-    async onSearchInput(e)
-    {
+    async onSearchInput(e) {
         this.search(e.currentTarget.value);
     }
 

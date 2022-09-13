@@ -1,8 +1,6 @@
 index:
   path: /
-  controller: App\Controller\ProjectController
-  defaults:
-    route: 'app_homepage'
+  controller: App\Controller\ProjectController::homepage
 controllers:
   resource: ../src/Controller/
   type: attribute

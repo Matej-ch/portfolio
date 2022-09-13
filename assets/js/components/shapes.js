@@ -1,4 +1,4 @@
-import SBackgroundCreator from "bg_shapes/src/js/SBackgroundCreator";
+import SBackgroundCreator from "@mtjch/bg_shapes/src/js/SBackgroundCreator";
 
 window.onload = function () {
     const canvasEl = document.getElementById('canvas');
@@ -8,13 +8,13 @@ window.onload = function () {
     canvasEl.width = parentEl.offsetWidth;
     canvasEl.height = parentEl.offsetHeight;
 
-    const bg = new SBackgroundCreator(canvasEl,{
+    const bg = new SBackgroundCreator(canvasEl, {
         fillShape: true,
         numShapes: 8,
-        bgColor:'rgba(243, 244, 246, 1)'
+        bgColor: 'rgba(243, 244, 246, 1)'
     });
 
-    bg.deactivateShapes(['Heart','Triangle','Line','Wave']);
+    bg.deactivateShapes(['Heart', 'Triangle', 'Line', 'Wave']);
 
     bg.init();
 
