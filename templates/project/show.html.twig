@@ -61,8 +61,19 @@
 
         <div class="mt-4 py-4 text-center">
             <div class="w-full flex flex-wrap gap-1">
+
                 {% for language in project.language %}
-                    <a class="tag" href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                    {% if language.icon|length %}
+                        <a href="{{ path('app_homepage', { q: language.name }) }}">
+                            <img style="max-width: 30px;height: auto"
+                                 src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
+                                 alt="{{ language.name }}">
+                        </a>
+
+                    {% else %}
+                        <a class="btn-sm btn-gold"
+                           href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
