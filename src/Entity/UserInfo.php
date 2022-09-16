@@ -5,12 +5,8 @@ namespace App\Entity;
 use App\Repository\UserInfoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PostLoad;
-use Doctrine\ORM\Mapping\PrePersist;
-use Doctrine\ORM\Mapping\PreUpdate;
 
 #[ORM\Entity(repositoryClass: UserInfoRepository::class)]
 #[ORM\HasLifecycleCallbacks]
