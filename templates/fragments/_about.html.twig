@@ -3,7 +3,7 @@
         <h2 class="section__title section__title--about text-4xl font-bold text-slate-700 flex items-end">Who I am</h2>
         <p class="section__subtitle section__subtitle--about text-3xl flex items-center">{{ userInfo.aboutMeTitle }}</p>
 
-        <div class="about-me__body">
+        <div class="about-me__body" data-turbo="false">
             {{ userInfo.whoAmI|raw }}
         </div>
 

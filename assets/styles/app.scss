@@ -327,7 +327,7 @@ header, main, footer {
 // about me fragment
 
 .about-me {
-  max-width: 1000px;
+  @apply max-w-7xl;
   margin: 0 auto;
 }
 
@@ -335,6 +335,13 @@ header, main, footer {
   @apply bg-blue-500 text-white font-bold;
   padding: .25em 1em;
   margin-bottom: 1em;
+}
+
+.about-me__body {
+  a {
+    color: #3B82F6;
+    font-weight: bold;
+  }
 }
 
 @media (min-width: 600px) {
