@@ -19,8 +19,8 @@
 
                     <a class="project__header" href="{{ path('project_show',{slug:project.slug}) }}">
                         {% if project.bgImg %}
-                            <div class="cover h-32 lg:h-48"
-                                 style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'></div>
+                            <div class="h-32 lg:h-48"
+                                 style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}") no-repeat;background-size: cover'></div>
                         {% else %}
                             <div class="no-cover"></div>
                         {% endif %}

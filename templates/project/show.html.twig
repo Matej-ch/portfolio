@@ -48,8 +48,8 @@
         </header>
 
         {% if project.bgImg %}
-            <div class="cover h-64"
-                 style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}");'>
+            <div class="h-64"
+                 style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}") no-repeat;background-size: cover'>
             </div>
         {% endif %}
 

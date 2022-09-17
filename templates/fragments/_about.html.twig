@@ -4,13 +4,15 @@
         <p class="section__subtitle section__subtitle--about">{{ userInfo.aboutMeTitle }}</p>
 
         <div class="about-me__body">
-            <p>
-                {{ userInfo.whoAmI|raw }}
-            </p>
+            {{ userInfo.whoAmI|raw }}
         </div>
 
         {% if userInfo.avatarBig %}
             <img src="{{ asset('uploads/projects/%s' | format(userInfo.avatarBig)) }}"
+                 alt="Image of me"
+                 class="about-me__img">
+        {% else %}
+            <img src="https://via.placeholder.com/300X600"
                  alt="Image of me"
                  class="about-me__img">
         {% endif %}
