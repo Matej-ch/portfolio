@@ -8,7 +8,7 @@
             {% for service in services %}
                 <div class="service pb-4">
                     <h3 class="text-base md:text-xl pb-1 font-bold">{{ service.title }}</h3>
-                    <p class="text-sm md:text-base">{{ service.description }}</p>
+                    <div class="text-sm md:text-base text-left">{{ service.description|raw }}</div>
                 </div>
             {% endfor %}
         </div>
