@@ -16,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProjectRepository extends ServiceEntityRepository
 {
-    public const PAGINATOR_PER_PAGE = 10;
+    public const PAGINATOR_PER_PAGE = 12;
 
     public function __construct(ManagerRegistry $registry)
     {
