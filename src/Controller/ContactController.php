@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\MetaTagParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -71,8 +72,10 @@ class ContactController extends AbstractController
     }
 
     #[Route('/contact', name: 'app_contact')]
-    public function show(Request $request): Response
+    public function show(Request $request, MetaTagParser $metaTagParser): Response
     {
-        return $this->render('contact/show.html.twig', []);
+        return $this->render('contact/show.html.twig', [
+            'metaTags' => $metaTagParser->parse('app_contact')
+        ]);
     }
 }

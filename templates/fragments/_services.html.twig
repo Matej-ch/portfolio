@@ -2,15 +2,17 @@
 
 <turbo-frame id="user-services">
     <section class="my-services py-10 px-8" id="services">
-        <h2 class="section__title section__title--services">What I do</h2>
-        <div class="services">
+        {% if services %}
+            <h2 class="section__title section__title--services">What I do</h2>
+            <div class="services">
 
-            {% for service in services %}
-                <div class="service pb-4">
-                    <h3 class="text-base md:text-xl pb-1 font-bold">{{ service.title }}</h3>
-                    <div class="text-sm md:text-base text-left">{{ service.description|raw }}</div>
-                </div>
-            {% endfor %}
-        </div>
+                {% for service in services %}
+                    <div class="service pb-4">
+                        <h3 class="text-base md:text-xl pb-1 font-bold">{{ service.title }}</h3>
+                        <div class="text-sm md:text-base text-left">{{ service.description|raw }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </section>
 </turbo-frame>

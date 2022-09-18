@@ -28,8 +28,8 @@ class UserInfo
 
     public $decodedData;
 
-    #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'userInfo')]
-    private $services;
+    #[ORM\ManyToMany(targetEntity: Service::class, inversedBy: 'userInfos')]
+    private $service;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $avatarBig;
@@ -42,7 +42,7 @@ class UserInfo
 
     public function __construct()
     {
-        $this->services = new ArrayCollection();
+        $this->service = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,16 +184,15 @@ class UserInfo
     /**
      * @return Collection|Service[]
      */
-    public function getServices(): Collection
+    public function getService(): Collection
     {
-        return $this->services;
+        return $this->service;
     }
 
     public function addService(Service $service): self
     {
-        if (!$this->services->contains($service)) {
-            $this->services[] = $service;
-            $service->addUserInfo($this);
+        if (!$this->service->contains($service)) {
+            $this->service[] = $service;
         }
 
         return $this;
@@ -201,9 +200,7 @@ class UserInfo
 
     public function removeService(Service $service): self
     {
-        if ($this->services->removeElement($service)) {
-            $service->removeUserInfo($this);
-        }
+        $this->service->removeElement($service);
 
         return $this;
     }

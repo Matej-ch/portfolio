@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Admin;
 use App\Entity\ExternalSite;
 use App\Entity\Language;
+use App\Entity\MetaTag;
 use App\Entity\Project;
 use App\Entity\ProjectState;
 use App\Entity\Service;
@@ -60,8 +61,9 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Site');
         yield MenuItem::linkToCrud('External sites', 'fas fa-globe', ExternalSite::class);
-        yield MenuItem::linkToCrud('Tags', 'fas fa-tags', Tag::class);
+        yield MenuItem::linkToCrud('Tags', 'fas fa-hashtag', Tag::class);
         yield MenuItem::linkToCrud('Services', 'fas fa-user-tie', Service::class);
+        yield MenuItem::linkToCrud('Meta tags', 'fas fa-tags', MetaTag::class);
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu

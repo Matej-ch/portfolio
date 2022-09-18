@@ -13,23 +13,23 @@ class MetaTag
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $pageName = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 1024, nullable: true)]
-    private ?string $content = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $charset = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $pageName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $httpEquiv = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $itemprop = null;
+
+    #[ORM\Column(length: 1024, nullable: true)]
+    private ?string $content = null;
 
     public function getId(): ?int
     {

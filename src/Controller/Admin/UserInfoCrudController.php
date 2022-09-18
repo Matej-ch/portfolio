@@ -44,6 +44,6 @@ class UserInfoCrudController extends AbstractCrudController
             ->setHelp('Write something about yourself. Text in `Who am i` section on projects page');
         yield BooleanField::new('is_active')->renderAsSwitch(false);
 
-        yield AssociationField::new('services');
+        yield AssociationField::new('service')->hideOnIndex();
     }
 }

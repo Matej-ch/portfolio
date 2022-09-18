@@ -58,7 +58,7 @@ class ProjectCrudController extends AbstractCrudController
     {
         $viewAction = Action::new('view');
         $viewAction->linkToUrl(function (Project $project) {
-            return $this->generateUrl('project_show', ['slug' => $project->getSlug()]);
+            return $this->generateUrl('app_project_show', ['slug' => $project->getSlug()]);
         })->setIcon('fa fa-eye')
             ->setLabel('View on site')
             ->addCssClass('btn btn-success');

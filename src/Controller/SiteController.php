@@ -7,8 +7,8 @@ use App\Entity\UserInfo;
 use App\Repository\ExternalSiteRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\ProjectRepository;
-use App\Repository\ServiceRepository;
 use App\Repository\UserInfoRepository;
+use App\Service\MetaTagParser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,20 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class SiteController extends AbstractController
 {
 
-    /*#[Route('/')]
-    public function indexNoLocale(): Response
-    {
-        return $this->redirectToRoute('app_homepage', ['_locale' => 'en']);
-    }*/
-
-    /*#[Route('/{_locale<%app.supported_locales%>}/', name: 'app_homepage')]
-    public function index(): Response{}*/
-
-    //#[Route('/{_locale<%app.supported_locales%>}/about', name: 'app_about')]
     #[Route('/about', name: 'app_about')]
     public function about(LanguageRepository     $languageRepository,
                           EntityManagerInterface $entityManager,
-                          ExternalSiteRepository $externalSiteRepository): Response
+                          ExternalSiteRepository $externalSiteRepository,
+                          MetaTagParser          $metaTagParser): Response
     {
 
         $repository = $entityManager->getRepository(UserInfo::class);
@@ -43,7 +34,8 @@ class SiteController extends AbstractController
             'controller_name' => 'SiteController',
             'languages' => $languageRepository->findAllActive(),
             'user' => $user,
-            'personalSites' => $personalSites
+            'personalSites' => $personalSites,
+            'metaTags' => $metaTagParser->parse('app_about')
         ]);
     }
 
@@ -63,10 +55,10 @@ class SiteController extends AbstractController
     }
 
     #[Route('/_services', name: 'app_user_services')]
-    public function services(ServiceRepository $serviceRepository): Response
+    public function services(UserInfoRepository $userInfoRepository): Response
     {
         return $this->render('fragments/_services.html.twig', [
-            'services' => $serviceRepository->findAll(),
+            'services' => $userInfoRepository->findActive()?->getService(),
         ]);
     }
 
