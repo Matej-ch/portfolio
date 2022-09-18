@@ -76,7 +76,7 @@ class ProjectCrudController extends AbstractCrudController
         yield ImageField::new('bg_img')
             ->setBasePath('uploads/projects')
             ->setUploadDir('public/uploads/projects')
-            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')->hideOnIndex();
+            ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')->hideOnIndex();
         yield AssociationField::new('language')->autocomplete()->hideOnIndex();
         yield AssociationField::new('tags')->autocomplete()->hideOnIndex();
         yield TextField::new('short_description')->onlyOnForms();
