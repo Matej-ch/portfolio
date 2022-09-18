@@ -26,7 +26,6 @@ class ProjectController extends AbstractController
         if ($request->query->get('preview')) {
             return $this->render('project/_searchPreview.html.twig', [
                 'projects' => $paginator,
-                'metaTags' => $metaTagParser->parse('app_homepage')
             ]);
         }
 
@@ -34,6 +33,7 @@ class ProjectController extends AbstractController
             'projects' => $paginator,
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
+            'metaTags' => $metaTagParser->parse('app_homepage')
         ]);
     }
 
