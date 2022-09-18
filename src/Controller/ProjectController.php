@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Repository\ProjectRepository;
+use App\Repository\UserInfoRepository;
 use App\Service\MetaTagParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,11 +38,15 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/projects/{slug}', name: 'app_project_show')]
-    public function show(Project $project, MetaTagParser $metaTagParser): Response
+    public function show(Project $project, MetaTagParser $metaTagParser, UserInfoRepository $userInfoRepository): Response
     {
+        $userInfo = $userInfoRepository->findActive();
+        $githubName = $userInfo->getUserData()['github_name'] ?? null;
+
         return $this->render('project/show.html.twig', [
             'project' => $project,
-            'metaTags' => $metaTagParser->parse('app_project_show')
+            'metaTags' => $metaTagParser->parse('app_project_show'),
+            'githubName' => $githubName,
         ]);
     }
 }

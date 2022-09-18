@@ -44,7 +44,6 @@
                 </div>
             {% endif %}
 
-
         </header>
 
         {% if project.bgImg %}
@@ -56,6 +55,21 @@
         <div class="py-6">
             {{ project.description|raw }}
         </div>
+
+        {% if githubName is not empty and project.readmeIsEnabled %}
+
+            {% set githubProjectName = project.sourceUrl|split('/')|last %}
+
+            <div class="">
+                <div class="" {{ stimulus_controller('github-readme',{
+                    githubName: githubName,
+                    projectName: githubProjectName
+                }) }}>
+                    <div class="gh-readme-markdown" data-github-readme-target="readme"></div>
+                </div>
+            </div>
+        {% endif %}
+
 
         <h2 class="text-xl leading-10 text-slate-700 font-bold border-b-2 mb-2">Technical Sheet</h2>
 

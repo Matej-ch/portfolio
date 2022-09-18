@@ -72,6 +72,9 @@ class Project
     #[ORM\ManyToOne(targetEntity: ProjectState::class, inversedBy: 'projects')]
     private $projectState;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $readmeIsEnabled = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -287,6 +290,18 @@ class Project
     public function setProjectState(?ProjectState $projectState): self
     {
         $this->projectState = $projectState;
+
+        return $this;
+    }
+
+    public function isReadmeIsEnabled(): ?bool
+    {
+        return $this->readmeIsEnabled;
+    }
+
+    public function setReadmeIsEnabled(?bool $readmeIsEnabled): self
+    {
+        $this->readmeIsEnabled = $readmeIsEnabled;
 
         return $this;
     }

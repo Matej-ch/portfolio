@@ -24,6 +24,7 @@ class UserInfoCrudController extends AbstractCrudController
         yield TextField::new('education')->setHelp('Highest achieved education');
         yield TextField::new('work');
         yield TextField::new('work_email');
+        yield TextField::new('github_name');
         yield TextField::new('aboutMeTitle');
         yield ImageField::new('avatar')
             ->setBasePath('uploads/users')

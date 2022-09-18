@@ -86,6 +86,7 @@ class ProjectCrudController extends AbstractCrudController
             ->setFormTypeOption('disabled', $pageName !== Crud::PAGE_NEW)
             ->hideOnIndex();
         yield BooleanField::new('is_active')->renderAsSwitch(false);
+        yield BooleanField::new('readme_is_enabled')->renderAsSwitch(false);
         yield AssociationField::new('projectState');
     }
 }
