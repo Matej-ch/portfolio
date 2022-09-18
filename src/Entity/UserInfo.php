@@ -127,6 +127,11 @@ class UserInfo
         return $this->decodedData['description'] ?? '';
     }
 
+    public function getGithubName()
+    {
+        return $this->decodedData['github_name'] ?? '';
+    }
+
     public function setName(?string $name): self
     {
         $this->decodedData['name'] = $name;
@@ -175,6 +180,15 @@ class UserInfo
     public function setDescription(?string $desc): self
     {
         $this->decodedData['description'] = $desc;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setGithubName(?string $githubName): self
+    {
+        $this->decodedData['github_name'] = $githubName;
 
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 
