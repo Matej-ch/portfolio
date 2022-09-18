@@ -7,9 +7,9 @@ use Imagine\Image\Box;
 
 class ImageOptimizer
 {
-    private const MAX_WIDTH = 400;
+    private const MAX_WIDTH = 1000;
 
-    private const MAX_HEIGHT = 300;
+    private const MAX_HEIGHT = 333;
 
     private Imagine $imagine;
 
@@ -26,14 +26,14 @@ class ImageOptimizer
         $width = self::MAX_WIDTH;
         $height = self::MAX_HEIGHT;
 
-        if($width / $height > $ratio) {
+        if ($width / $height > $ratio) {
             $width = $height * $ratio;
         } else {
             $height = $width / $ratio;
         }
 
         $photo = $this->imagine->open($filename);
-        $photo->resize(new Box($width,$height))->save($filename);
+        $photo->resize(new Box($width, $height))->save($filename);
     }
 
 
