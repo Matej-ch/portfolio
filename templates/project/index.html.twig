@@ -17,7 +17,7 @@
                         {% endfor %}
                     </span>
 
-                    <a class="project__header" href="{{ path('project_show',{slug:project.slug}) }}">
+                    <a class="project__header" href="{{ path('app_project_show',{slug:project.slug}) }}">
                         {% if project.bgImg %}
                             <div class="h-32 lg:h-48"
                                  style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}") no-repeat;background-size: cover'></div>
@@ -29,7 +29,7 @@
                     <div class="project__body px-2">
                         <div class="py-2">
                             <a class="text-slate-700 hover:text-blue-900 font-bold text-xl"
-                               href="{{ path('project_show',{slug:project.slug}) }}">{{ project.name }}</a>
+                               href="{{ path('app_project_show',{slug:project.slug}) }}">{{ project.name }}</a>
                         </div>
 
                         <div class="text-slate-600 py-2">{{ project.shortDescription }}</div>
@@ -152,5 +152,22 @@
     {% endif %}
 
     <meta property='og:url' content='{{ absolute_url(app.request.requesturi) }}'/>
+
+    {% if metaTags is not empty %}
+        {% for tag in metaTags %}
+            {% if tag.type is same as('name') %}
+                <meta name="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('http-equiv') %}
+                <meta http-equiv="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('charset') %}
+                <meta charset="{{ tag.typeContent }}">
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
 {% endblock %}
 

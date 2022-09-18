@@ -54,7 +54,7 @@ class SitemapController extends AbstractController
 
         foreach ($repository->findAll() as $project) {
             $urls[] = [
-                'loc' => $this->generateUrl('project_show', ['slug' => $project->getSlug()]),
+                'loc' => $this->generateUrl('app_project_show', ['slug' => $project->getSlug()]),
                 'label' => $project->getName(),
                 'image' => [
                     'loc' => $assetPackage->getUrl("uploads/projects/" . $project->getBgImg()),

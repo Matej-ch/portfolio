@@ -22,12 +22,12 @@ class Service
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private $description;
 
-    #[ORM\ManyToMany(targetEntity: UserInfo::class, inversedBy: 'services')]
-    private $userInfo;
+    #[ORM\ManyToMany(targetEntity: UserInfo::class, mappedBy: 'service')]
+    private $userInfos;
 
     public function __construct()
     {
-        $this->userInfo = new ArrayCollection();
+        $this->userInfos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -62,15 +62,15 @@ class Service
     /**
      * @return Collection|UserInfo[]
      */
-    public function getUserInfo(): Collection
+    public function getUserInfos(): Collection
     {
-        return $this->userInfo;
+        return $this->userInfos;
     }
 
     public function addUserInfo(UserInfo $userInfo): self
     {
-        if (!$this->userInfo->contains($userInfo)) {
-            $this->userInfo[] = $userInfo;
+        if (!$this->userInfos->contains($userInfo)) {
+            $this->userInfos[] = $userInfo;
         }
 
         return $this;
@@ -78,7 +78,9 @@ class Service
 
     public function removeUserInfo(UserInfo $userInfo): self
     {
-        $this->userInfo->removeElement($userInfo);
+        if ($this->userInfos->removeElement($userInfo)) {
+            $userInfo->removeService($this);
+        }
 
         return $this;
     }

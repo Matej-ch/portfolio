@@ -186,3 +186,22 @@
 {% endblock %}
 
 {% block footer %}{% endblock %}
+
+{% block metas %}
+    {% if metaTags is not empty %}
+        {% for tag in metaTags %}
+            {% if tag.type is same as('name') %}
+                <meta name="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('http-equiv') %}
+                <meta http-equiv="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('charset') %}
+                <meta charset="{{ tag.typeContent }}">
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}
