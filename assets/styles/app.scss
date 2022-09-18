@@ -544,3 +544,11 @@ turbo-frame[busy] {
 .is-active {
   color: #f6af3b;
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

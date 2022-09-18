@@ -7,6 +7,7 @@ use App\Entity\UserInfo;
 use App\Repository\ExternalSiteRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\ProjectRepository;
+use App\Repository\TagRepository;
 use App\Repository\UserInfoRepository;
 use App\Service\MetaTagParser;
 use Doctrine\ORM\EntityManagerInterface;
@@ -59,6 +60,16 @@ class SiteController extends AbstractController
     {
         return $this->render('fragments/_services.html.twig', [
             'services' => $userInfoRepository->findActive()?->getService(),
+        ]);
+    }
+
+
+    #[Route('/_searchTags', name: 'app_search_tags')]
+    public function searchTags(TagRepository $tagRepository, LanguageRepository $languageRepository): Response
+    {
+        return $this->render('fragments/_searchTags.html.twig', [
+            'tags' => $tagRepository->findAllActive(),
+            'languages' => $languageRepository->findAllActive()
         ]);
     }
 

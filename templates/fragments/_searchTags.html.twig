@@ -1,0 +1,11 @@
+<turbo-frame id="search-tags">
+    <section id="tags" class="flex flex-row overflow-x-scroll gap-1 no-scrollbar">
+        {% for tag in tags %}
+            <a class="tag" href="{{ path('app_homepage', { q: tag.name }) }}" data-turbo-frame="_top">{{ tag.name }}</a>
+        {% endfor %}
+        {% for language in languages %}
+            <a class="tag" href="{{ path('app_homepage', { q: language.name }) }}"
+               data-turbo-frame="_top">{{ language.name }}</a>
+        {% endfor %}
+    </section>
+</turbo-frame>
