@@ -40,7 +40,7 @@ header, main, footer {
   height: 26px;
   line-height: 27px;
   padding: 0 20px 0 23px;
-  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
 }
 
 .tag::before, .sm-tag::before {
