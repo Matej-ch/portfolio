@@ -6,9 +6,9 @@
 
     <div class="w-full max-w-5xl mx-auto my-0 pt-6 lg:px-0 px-4 flex-1">
         <header class="pb-4 mb-4">
-            <div class="flex flex-row justify-between">
+            <div class="flex flex-row justify-between items-start">
                 <h1 class="text-slate-700 text-3xl leading-10 font-bold">{{ project.name }}</h1>
-                <p>{{ project.state.name|default('WIP') }}</p>
+                <p class="project-state">{{ project.state.name|default('WIP') }}</p>
             </div>
 
             {% if project.createdAt %}

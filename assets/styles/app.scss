@@ -706,3 +706,11 @@ turbo-frame[busy] {
     border-radius: 6px;
   }
 }
+
+.project-state {
+  @apply text-slate-700 text-base font-bold bg-amber-300 text-amber-900;
+  text-decoration: none;
+  padding: 5px 15px 5px 15px;
+  border-radius: 30px;
+  box-shadow: 0 2px #F1F1F1;
+}
