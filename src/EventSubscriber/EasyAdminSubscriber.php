@@ -18,7 +18,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function updateImageSize(AfterEntityPersistedEvent $event): void
+    public function updateImageSize(AfterEntityPersistedEvent|AfterEntityUpdatedEvent $event): void
     {
         $entity = $event->getEntityInstance();
 
