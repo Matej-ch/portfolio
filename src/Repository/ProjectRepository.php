@@ -47,7 +47,7 @@ class ProjectRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this
             ->createQueryBuilder('project')
-            ->orderBy('project.createdAt', 'DESC')
+            ->orderBy('project.ordering', 'ASC')
             ->leftJoin('project.tags', 'tag')
             ->addSelect('tag')
             ->leftJoin('project.language', 'language')
