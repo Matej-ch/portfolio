@@ -552,3 +552,157 @@ turbo-frame[busy] {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.placeholder {
+  @apply bg-slate-500 cursor-wait w-full;
+  animation: placeholder-glow 2s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes placeholder-glow {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.gh-readme-markdown {
+
+  img {
+    display: inline-block;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+  }
+
+  h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  h4, h5, h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+
+  h6 {
+    font-size: 12px;
+  }
+
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+  }
+
+  p {
+    margin: 0 0 10px;
+  }
+
+  b, strong {
+    font-weight: bold;
+  }
+
+  blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #eee;
+  }
+
+  blockquote::before, blockquote::after {
+    content: "";
+  }
+
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+  }
+
+  ul ul, ol ul, ul ol, ol ol {
+    margin-bottom: 0;
+  }
+
+  pre {
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  pre code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  .hljs {
+    padding: 9.5px;
+  }
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    color: #333;
+    background: #f8f8f8;
+  }
+
+  .hljs code {
+    white-space: pre;
+  }
+
+  a {
+    color: #428bca;
+    text-decoration: none;
+    background: transparent;
+  }
+
+  .warning {
+    background-color: #ff8;
+    padding: 20px;
+    border-radius: 6px;
+  }
+}

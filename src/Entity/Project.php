@@ -75,6 +75,9 @@ class Project
     #[ORM\Column(nullable: true)]
     private ?bool $readmeIsEnabled = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $ordering = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -302,6 +305,18 @@ class Project
     public function setReadmeIsEnabled(?bool $readmeIsEnabled): self
     {
         $this->readmeIsEnabled = $readmeIsEnabled;
+
+        return $this;
+    }
+
+    public function getOrdering(): ?int
+    {
+        return $this->ordering;
+    }
+
+    public function setOrdering(?int $ordering): self
+    {
+        $this->ordering = $ordering;
 
         return $this;
     }

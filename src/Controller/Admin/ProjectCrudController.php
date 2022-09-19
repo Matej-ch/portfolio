@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -85,8 +86,9 @@ class ProjectCrudController extends AbstractCrudController
             ->setTargetFieldName('name')
             ->setFormTypeOption('disabled', $pageName !== Crud::PAGE_NEW)
             ->hideOnIndex();
-        yield BooleanField::new('is_active')->renderAsSwitch(false);
-        yield BooleanField::new('readme_is_enabled')->renderAsSwitch(false);
+        yield BooleanField::new('is_active');
+        yield BooleanField::new('readme_is_enabled');
+        yield IntegerField::new('ordering');
         yield AssociationField::new('projectState');
     }
 }
