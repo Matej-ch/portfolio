@@ -552,3 +552,15 @@ turbo-frame[busy] {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.placeholder {
+  @apply bg-slate-500 cursor-wait w-full;
+  animation: placeholder-glow 2s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes placeholder-glow {
+  50% {
+    opacity: 0.2;
+  }
+}
