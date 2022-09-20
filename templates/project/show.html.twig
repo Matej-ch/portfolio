@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="w-full max-w-5xl mx-auto my-0 pt-6 lg:px-0 px-4 flex-1">
-        <header class="pb-4 mb-4">
+        <header class="pb-4">
             <div class="flex flex-row justify-between items-start">
                 <h1 class="text-slate-700 text-3xl leading-10 font-bold">{{ project.name }}</h1>
                 <p class="project-state"
@@ -13,9 +13,9 @@
             </div>
 
             {% if project.createdAt %}
-                <p class="text-sm mb-2">Created {{ project.createdAt|ago }}</p>
+                <p class="text-xs mb-2 opacity-50">Created {{ project.createdAt|ago }}</p>
             {% else %}
-                <p class="text-sm mb-2">(not published)</p>
+                <p class="text-xs mb-2 opacity-50">(not published)</p>
             {% endif %}
 
             {% if project.shortDescription %}
@@ -48,9 +48,8 @@
         </header>
 
         {% if project.bgImg %}
-            <div class="h-64"
-                 style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}") no-repeat;background-size: cover'>
-            </div>
+            <img class="w-full" src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}"
+                 alt="{{ project.name }} image">
         {% endif %}
 
         <div class="py-6">
