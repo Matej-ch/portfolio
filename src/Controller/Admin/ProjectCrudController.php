@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
@@ -71,24 +72,35 @@ class ProjectCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield FormField::addTab('Main');
         yield TextField::new('name');
-        yield TextField::new('source_url');
-        yield TextField::new('project_url');
         yield ImageField::new('bg_img')
             ->setBasePath('uploads/projects')
             ->setUploadDir('public/uploads/projects')
             ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')->hideOnIndex();
-        yield AssociationField::new('language')->autocomplete()->hideOnIndex();
-        yield AssociationField::new('tags')->autocomplete()->hideOnIndex();
-        yield TextField::new('short_description')->onlyOnForms();
-        yield TextEditorField::new('description')->setNumOfRows(20)->hideOnIndex();
+        yield BooleanField::new('is_active')->setHelp('Only active project will show on project page');
+        yield IntegerField::new('ordering');
         yield SlugField::new('slug')
+            ->setHelp('Is generated automatically')
             ->setTargetFieldName('name')
             ->setFormTypeOption('disabled', $pageName !== Crud::PAGE_NEW)
             ->hideOnIndex();
-        yield BooleanField::new('is_active');
-        yield BooleanField::new('readme_is_enabled');
-        yield IntegerField::new('ordering');
+
+        yield FormField::addTab('Links');
+        yield TextField::new('source_url');
+        yield TextField::new('project_url');
+
+        yield FormField::addTab('Description');
+        yield TextField::new('short_description')->onlyOnForms();
+        yield TextEditorField::new('description')->setNumOfRows(20)->hideOnIndex();
+
+        yield FormField::addTab('Tags / State');
+        yield AssociationField::new('language')->autocomplete()->hideOnIndex();
+        yield AssociationField::new('tags')->autocomplete()->hideOnIndex();
         yield AssociationField::new('projectState');
+
+        yield FormField::addTab('Github');
+        yield BooleanField::new('readme_is_enabled')->setHelp('Whether to load readme from github');
+
     }
 }
