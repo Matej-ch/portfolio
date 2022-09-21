@@ -39,6 +39,7 @@
 2. [ ] Landing page
 3. [ ] Contact me page finish
 4. [ ] Email sending
+5. [ ] Project collections
 
 ### Commands
 
