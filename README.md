@@ -22,6 +22,7 @@
 * generate APP_SECRET ```APP_RUNTIME_ENV=prod php bin/console secrets:set APP_SECRET``` and
   add ```APP_SECRET='%env(APP_SECRET)%'``` to ```.env.prod``` file on
   server
+* Run ```composer dump-env``` and make sure APP_SECRET is set and not empty
 
 ### Features
 
@@ -29,14 +30,15 @@
 * Detail for project including links to source code and project
 * About me page
 * Admin functionality
-* 'Contact me' email sending (WIP)
+* Connection to GitHub api for readme and other data
+* Custom metadata for main page
 
 #### TODO
 
-1. [ ] hire me page
-2. [ ] custom metadata for main page
-3. [ ] landing page
-4. [ ] Connection to GitHub api for readme and other data
+1. [ ] Hire me page
+2. [ ] Landing page
+3. [ ] Contact me page finish
+4. [ ] Email sending
 
 ### Commands
 
