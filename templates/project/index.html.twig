@@ -88,13 +88,13 @@
 
         <div class="flex flex-row px-4 lg:px-10 pb-6">
             {% if previous >= 0 %}
-                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-500 border-r-0 ml-0 rounded-l hover:bg-slate-200"
+                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-500 border ml-0 rounded hover:bg-slate-200"
                    href="{{ path('app_homepage', { offset: previous }) }}">
                     Previous
                 </a>
             {% endif %}
             {% if next < projects|length %}
-                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-500 rounded-r hover:bg-slate-200"
+                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-500 rounded hover:bg-slate-200 ml-auto"
                    href="{{ path('app_homepage', { offset: next }) }}">
                     Next
                 </a>
