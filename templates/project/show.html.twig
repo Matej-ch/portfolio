@@ -78,7 +78,7 @@
             {% for language in project.language %}
                 {% if language.icon|length %}
                     <a href="{{ path('app_homepage', { q: language.name }) }}">
-                        <img style="max-width: 50px;height: auto"
+                        <img width="50" height="50" style="max-width: 50px;height: auto"
                              src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
                              alt="{{ language.name }}">
                     </a>

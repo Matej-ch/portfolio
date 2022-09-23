@@ -45,7 +45,7 @@
                                     {% for language in project.language %}
                                         {% if language.icon|length %}
                                             <a href="{{ path('app_homepage', { q: language.name }) }}">
-                                                <img style="max-width: 30px;height: auto"
+                                                <img width="30" height="30" style="max-width: 30px;height: auto"
                                                      src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
                                                      alt="{{ language.name }}">
                                             </a>
@@ -60,7 +60,6 @@
                                 </div>
                             </div>
                         {% endif %}
-
 
                     </div>
 
