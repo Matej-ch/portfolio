@@ -7,9 +7,9 @@ use Imagine\Image\Box;
 
 class ImageOptimizer
 {
-    private const MAX_WIDTH = 1000;
+    private const MAX_WIDTH = 1200;
 
-    private const MAX_HEIGHT = 333;
+    private const MAX_HEIGHT = 400;
 
     private Imagine $imagine;
 
