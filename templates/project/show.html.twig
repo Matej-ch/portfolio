@@ -9,7 +9,7 @@
             <div class="flex flex-row justify-between items-start">
                 <h1 class="text-slate-700 text-3xl leading-10 font-bold">{{ project.name }}</h1>
                 <p class="project-state"
-                   title="{{ project.state.description|default('Work in progress') }}">{{ project.state.name|default('WIP') }}</p>
+                   title="{{ project.projectState.description|default('Work in progress') }}">{{ project.projectState.name|default('WIP') }}</p>
             </div>
 
             {% if project.createdAt %}
