@@ -19,13 +19,16 @@
                 <canvas id="canvas" data-particle-target="canvas" class="w-full"></canvas>
 
                 <div class="js-controls absolute right-1 bottom-1">
-                    <a href="#" data-particle-target="settingBtn" data-action="particle#showMenu"><i
-                                class="fas fa-cogs text-slate-500 text-xl"></i></a>
+                    <a href="#" data-particle-target="settingBtn" data-action="particle#showMenu"
+                       aria-label="Particles options menu">
+                        <i class="fas fa-cogs text-slate-500 text-xl"></i>
+                    </a>
 
                     <div class="hidden bg-white p-4 space-y-2 rounded-sm relative" data-particle-target="settingMenu">
                         <a href="#"
                            class="absolute right-1 top-1 rounded-sm bg-slate-100 border border-red-500 flex justify-center items-center"
                            data-action="particle#hideMenu"
+                           aria-label="Particles options menu"
                            style="height:20px;width:20px;">
                             <i class="fas fa-times text-red-900"></i>
                         </a>
@@ -77,8 +80,9 @@
                                 <div class="py-6 px-3 mt-32 sm:mt-0" {{ stimulus_controller('modal-form',{
                                     formUrl: path('app_contact_modal')
                                 }) }}>
-                                    <button class="btn btn-blue" data-action="modal-form#openModal"><i
-                                                class="fas fa-envelope"></i> Contact me
+                                    <button class="btn btn-blue" data-action="modal-form#openModal"
+                                            aria-label="Open Contact me modal">
+                                        <i class="fas fa-envelope"></i> Contact me
                                     </button>
                                     {{ include('fragments/_modal.html.twig',{
                                         modalTitle: 'Get in Touch',
@@ -94,6 +98,7 @@
 
                                             {% if 'fiverr' in site.icon %}
                                                 <a href="{{ site.url }}" target="_blank" rel="noreferrer noopener"
+                                                   aria-label="{{ site.name }}"
                                                    title="{{ site.name }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -107,6 +112,7 @@
                                                 </a>
                                             {% else %}
                                                 <a href="{{ site.url }}" target="_blank" rel="noreferrer noopener"
+                                                   aria-label="{{ site.name }}"
                                                    title="{{ site.name }}">
                                                     <i class="{{ site.icon }} fa-2x text-slate-800"
                                                        title="{{ site.name }}"></i>
@@ -115,6 +121,7 @@
 
                                         {% else %}
                                             <a href="{{ site.url }}" aria-placeholder="{{ site.name }}"
+                                               aria-label="{{ site.name }}"
                                                rel="noreferrer noopener"
                                                title="{{ site.name }}" class="relative">
                                                 <i class="fas fa-globe-europe fa-2x text-slate-400"></i>
@@ -159,14 +166,14 @@
                                     {% for language in languages %}
                                         {% if language.icon|length %}
                                             <a href="{{ path('app_homepage', { q: language.name }) }}"
-                                               title="{{ language.name }}">
-                                                <img style="max-width: 50px;height: auto"
+                                               title="{{ language.name }}" aria-label="Search by {{ language.name }}">
+                                                <img width="50" height="50" style="max-width: 50px;height: auto"
                                                      src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
                                                      alt="{{ language.name }}">
                                             </a>
 
                                         {% else %}
-                                            <a class="btn-sm btn-gold"
+                                            <a class="btn-sm btn-gold" aria-label="Search by {{ language.name }}"
                                                href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
                                         {% endif %}
                                     {% endfor %}

@@ -35,7 +35,7 @@ header, main, footer {
 }
 
 .tag {
-  @apply bg-slate-200 text-slate-500 inline-block relative no-underline;
+  @apply bg-slate-200 text-slate-700 inline-block relative no-underline;
   border-radius: 3px;
   height: 26px;
   line-height: 27px;
@@ -225,7 +225,7 @@ header, main, footer {
 
 .my-services {
   background-color: #303030;
-  background-image: url(../images/services-bc.jpg);
+  background-image: url(../images/services-bc.webp);
   background-size: cover;
   background-blend-mode: darken, multiply;
   @apply text-center text-white;
