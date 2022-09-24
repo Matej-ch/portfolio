@@ -21,7 +21,8 @@
                         {% endfor %}
                     </span>
 
-                    <a class="project__header" href="{{ path('app_project_show',{slug:project.slug}) }}">
+                    <a class="project__header" href="{{ path('app_project_show',{slug:project.slug}) }}"
+                       aria-label="Project detail link">
                         {% if project.bgImg %}
                             <div class="h-32 lg:h-48"
                                  style='background: url("{{ asset('uploads/projects/%s' | format(project.bgImg)) }}") no-repeat;background-size: contain'></div>
@@ -67,14 +68,15 @@
                         <ul>
                             {% if project.projectUrl %}
                                 <li class="project_url">
-                                    <a href="{{ project.projectUrl }}">
+                                    <a href="{{ project.projectUrl }}" aria-label="Demo {{ project.name }}">
                                         <i class="fas fa-globe-europe fa-2x"></i>
                                     </a>
                                 </li>
                             {% endif %}
                             {% if project.sourceUrl %}
                                 <li class="source_url">
-                                    <a target="_blank" rel="noreferrer noopener" href="{{ project.sourceUrl }}">
+                                    <a target="_blank" rel="noreferrer noopener" href="{{ project.sourceUrl }}"
+                                       aria-label="Source code {{ project.name }}">
                                         <i class="fab fa-github fa-2x"></i>
                                     </a>
                                 </li>
