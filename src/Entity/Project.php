@@ -78,10 +78,14 @@ class Project
     #[ORM\Column(nullable: true)]
     private ?int $ordering = null;
 
+    #[ORM\ManyToMany(targetEntity: ProjectCollection::class, mappedBy: 'project')]
+    private Collection $collections;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->language = new ArrayCollection();
+        $this->collections = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -317,6 +321,33 @@ class Project
     public function setOrdering(?int $ordering): self
     {
         $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectCollection>
+     */
+    public function getCollections(): Collection
+    {
+        return $this->collections;
+    }
+
+    public function addCollection(ProjectCollection $collection): self
+    {
+        if (!$this->collections->contains($collection)) {
+            $this->collections->add($collection);
+            $collection->addProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollection(ProjectCollection $collection): self
+    {
+        if ($this->collections->removeElement($collection)) {
+            $collection->removeProject($this);
+        }
 
         return $this;
     }
