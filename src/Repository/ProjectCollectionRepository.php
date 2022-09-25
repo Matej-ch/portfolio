@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ProjectCollection;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,6 +17,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProjectCollectionRepository extends ServiceEntityRepository
 {
+    public const PAGINATOR_PER_PAGE = 12;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ProjectCollection::class);
@@ -39,28 +42,16 @@ class ProjectCollectionRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return ProjectCollection[] Returns an array of ProjectCollection objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function getProjectPaginator(string $search = null, int $offset = 0): Paginator
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('project_collection')
+            ->leftJoin('project_collection.project', 'project')
+            ->addSelect('project');
 
-//    public function findOneBySomeField($value): ?ProjectCollection
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return new Paginator($queryBuilder
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
+            ->setFirstResult($offset)
+            ->getQuery());
+    }
 }

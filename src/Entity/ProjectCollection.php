@@ -6,8 +6,11 @@ use App\Repository\ProjectCollectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[ORM\Entity(repositoryClass: ProjectCollectionRepository::class)]
+#[UniqueEntity("slug")]
 class ProjectCollection
 {
     #[ORM\Id]
@@ -23,6 +26,9 @@ class ProjectCollection
 
     #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'collections')]
     private Collection $project;
+
+    #[ORM\Column(length: 255, unique: true)]
+    private string $slug;
 
     public function __construct()
     {
@@ -80,5 +86,29 @@ class ProjectCollection
         $this->project->removeElement($project);
 
         return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function computeSlug(SluggerInterface $slugger)
+    {
+        if (!$this->slug || '-' === $this->slug) {
+            $this->slug = (string)$slugger->slug((string)$this)->lower();
+        }
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

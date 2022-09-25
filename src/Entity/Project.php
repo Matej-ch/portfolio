@@ -13,7 +13,6 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
@@ -24,28 +23,22 @@ class Project
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['project:list', 'project:item'])]
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     #[NotBlank]
-    #[Groups(['project:list', 'project:item'])]
     private string $name;
 
     #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
-    #[Groups(['project:list', 'project:item'])]
     private int $isActive = 1;
 
     #[ORM\Column(type: 'string', length: 1024, nullable: true)]
-    #[Groups(['project:list', 'project:item'])]
     private ?string $description;
 
     #[ORM\Column(type: 'string', length: 100, unique: true)]
-    #[Groups(['project:list', 'project:item'])]
     private string $slug;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
-    #[Groups(['project:list', 'project:item'])]
     private $createdAt;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
@@ -174,7 +167,7 @@ class Project
 
     public function __toString(): string
     {
-        return 'Project';
+        return $this->name;
     }
 
     public function getSourceUrl(): ?string

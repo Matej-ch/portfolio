@@ -23,21 +23,6 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
-    /**
-     * @return Project[] Returns an array of Project objects
-     */
-    public function findAllOrderByNewest()
-    {
-        $qb = $this->createQueryBuilder('p');
-
-        return $this->addIsActiveQueryBuilder($qb)
-            ->andWhere('p.createdAt IS NOT NULL')
-            ->orderBy('p.createdAt', 'DESC')
-            ->setMaxResults(self::PAGINATOR_PER_PAGE)
-            ->getQuery()
-            ->getResult();
-    }
-
     private function addIsActiveQueryBuilder(QueryBuilder $qb): QueryBuilder
     {
         return $qb->andWhere('p.isActive = :active')->setParameter('active', 1);

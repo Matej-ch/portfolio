@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Project {% endblock %}
+{% block title %} Project {{ project.name }} {% endblock %}
 
 {% block body %}
 
@@ -104,21 +104,6 @@
         Loading random projects...
         <span class="frame-loading-show fas fa-spinner fa-spin"></span>
     </turbo-frame>
-
-    <div class="px-4 lg:order-3 lg:text-right lg:self-center fixed -bottom-1 z-50 right-0">
-        <div class="px-3 mt-32 sm:mt-0" {{ stimulus_controller('modal-form',{
-            formUrl: path('app_contact_modal')
-        }) }}>
-            <button class="btn fixed bg-blue-500 text-white"
-                    data-action="modal-form#openModal">
-                <i class="fas fa-envelope"></i> Contact me
-            </button>
-            {{ include('fragments/_modal.html.twig',{
-                modalTitle: 'Get in Touch',
-                modalConfirm: 'Send'
-            }) }}
-        </div>
-    </div>
 
 {% endblock %}
 
