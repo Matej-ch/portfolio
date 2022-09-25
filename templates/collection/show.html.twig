@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Collection {{ collection.name }} {% endblock %}
+
+{% block body %}
+
+    <div class="w-full max-w-5xl mx-auto my-0 pt-6 lg:px-0 px-4 flex-1">
+        <header class="pb-4">
+            <div class="flex flex-row justify-between items-start">
+                <h1 class="text-slate-700 text-3xl leading-10 font-bold">{{ collection.name }}</h1>
+            </div>
+        </header>
+
+
+        <div class="py-6">
+            {{ collection.description|raw }}
+        </div>
+
+        <div class="w-full flex flex-col gap-2 py-2">
+
+            {% for project in collection.project %}
+                <a href="{{ path('app_project_show', { slug: project.slug }) }}">
+                    {{ project.name }}
+                </a>
+
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <turbo-frame id="random-projects" src="{{ path('app_random_projects') }}" loading="lazy" class="w-full">
+        Loading random projects...
+        <span class="frame-loading-show fas fa-spinner fa-spin"></span>
+    </turbo-frame>
+
+{% endblock %}
+
+{% block metas %}
+    {% if metaTags is not empty %}
+        {% for tag in metaTags %}
+            {% if tag.type is same as('name') %}
+                <meta name="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('http-equiv') %}
+                <meta http-equiv="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('charset') %}
+                <meta charset="{{ tag.typeContent }}">
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}

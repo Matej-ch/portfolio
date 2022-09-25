@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+    Collections of projects
+{% endblock %}
+
+{% block body %}
+
+    {% if collections|length > 0 %}
+        <div class="grid justify-center grid-flow-row md:grid-cols-4 gap-2 lg:gap-6 px-4 lg:px-10 pt-2 pb-4 md:pb-8">
+            {% for collection in collections %}
+                <div class="project relative">
+
+                    {% if collection.project|length > 0 %}
+                        <div class="mt-2 py-2 border-t border-slate-100 text-center">
+                            <div class="w-full flex flex-col gap-1 items-start px-2">
+
+
+                                {% for project in collection.project %}
+                                    <a href="{{ path('app_project_show', { slug: project.slug }) }}">
+                                        {{ project.name }}
+                                    </a>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="project__body px-2">
+                        <div class="py-2">
+                            <a class="text-slate-700 hover:text-blue-900 font-bold text-xl"
+                               href="{{ path('app_collection_show',{slug:collection.slug}) }}">{{ collection.name }}</a>
+                        </div>
+
+                        <div class="text-slate-600 py-2">{{ collection.description }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="flex flex-row px-4 lg:px-10 pb-6">
+            {% if previous >= 0 %}
+                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-800 border ml-0 rounded hover:bg-slate-200"
+                   href="{{ path('app_collections', { offset: previous }) }}">
+                    Previous
+                </a>
+            {% endif %}
+            {% if next < collections|length %}
+                <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-800 rounded hover:bg-slate-200 ml-auto"
+                   href="{{ path('app_collections', { offset: next }) }}">
+                    Next
+                </a>
+            {% endif %}
+        </div>
+
+    {% else %}
+        <div class="grid justify-center grid-flow-row md:grid-flow-col gap-2 lg:gap-6 px-4 lg:px-10 pt-6 pb-10">
+            No collections found
+        </div>
+    {% endif %}
+
+    <turbo-frame id="user-services" src="{{ path('app_user_services') }}" loading="lazy" class="w-full">
+        Loading user services...
+        <span class="frame-loading-show fas fa-spinner fa-spin"></span>
+    </turbo-frame>
+
+    <turbo-frame id="user-info" src="{{ path('app_user_info') }}" loading="lazy" class="w-full">
+        Loading user info...
+        <span class="frame-loading-show fas fa-spinner fa-spin"></span>
+    </turbo-frame>
+
+    <turbo-frame id="random-projects" src="{{ path('app_random_projects') }}" loading="lazy" class="w-full">
+        Loading random projects...
+        <span class="frame-loading-show fas fa-spinner fa-spin"></span>
+    </turbo-frame>
+
+{% endblock %}
+
+{% block metas %}
+    {% if metaTags is not empty %}
+        {% for tag in metaTags %}
+            {% if tag.type is same as('name') %}
+                <meta name="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('http-equiv') %}
+                <meta http-equiv="{{ tag.typeContent }}" content="{{ tag.content }}">
+            {% endif %}
+
+            {% if tag.type is same as('charset') %}
+                <meta charset="{{ tag.typeContent }}">
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+

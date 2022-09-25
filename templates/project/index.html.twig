@@ -15,11 +15,6 @@
         <div class="grid justify-center grid-flow-row md:grid-cols-4 gap-2 lg:gap-6 px-4 lg:px-10 pt-2 pb-4 md:pb-8">
             {% for project in projects %}
                 <div class="project relative">
-                    <span class="w-full flex-wrap gap-1 absolute top-1 left-1 hidden small-tags">
-                        {% for tag in project.tags %}
-                            <a class="sm-tag" href="{{ path('app_homepage', { q: tag.name }) }}">{{ tag.name }}</a>
-                        {% endfor %}
-                    </span>
 
                     <a class="project__header" href="{{ path('app_project_show',{slug:project.slug}) }}"
                        aria-label="Project detail link">
@@ -122,21 +117,6 @@
         Loading random projects...
         <span class="frame-loading-show fas fa-spinner fa-spin"></span>
     </turbo-frame>
-
-    <div class="px-4 lg:order-3 lg:text-right lg:self-center fixed -bottom-1 z-50 right-0">
-        <div class="px-3 mt-32 sm:mt-0" {{ stimulus_controller('modal-form',{
-            formUrl: path('app_contact_modal')
-        }) }}>
-            <button class="btn fixed bg-blue-500 text-white"
-                    data-action="modal-form#openModal">
-                <i class="fas fa-envelope"></i> Contact me
-            </button>
-            {{ include('fragments/_modal.html.twig',{
-                modalTitle: 'Get in Touch',
-                modalConfirm: 'Send'
-            }) }}
-        </div>
-    </div>
 
 {% endblock %}
 

@@ -101,6 +101,8 @@ class ProjectCrudController extends AbstractCrudController
 
         yield FormField::addTab('Github');
         yield BooleanField::new('readme_is_enabled')->setHelp('Whether to load readme from github');
+        yield FormField::addTab('Collections');
+        yield AssociationField::new('collections')->hideOnIndex()->setFormTypeOption('by_reference', false);
 
     }
 }
