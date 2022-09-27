@@ -36,13 +36,13 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, TwoFac
     private ?string $plainPassword;
 
     #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     #[ORM\Column(type: 'string', length: 255, unique: true)]
-    private $email;
+    private ?string $email;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $totpSecret;
+    private ?string $totpSecret;
 
     public function getId(): ?int
     {

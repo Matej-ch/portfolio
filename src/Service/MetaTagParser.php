@@ -8,13 +8,9 @@ use Symfony\Contracts\Cache\ItemInterface;
 
 class MetaTagParser
 {
-    private CacheInterface $metaTagsCache;
-    private MetaTagRepository $metaTagRepository;
-
-    public function __construct(CacheInterface $metaTagsCache, MetaTagRepository $metaTagRepository)
+    public function __construct(private readonly CacheInterface    $metaTagsCache,
+                                private readonly MetaTagRepository $metaTagRepository)
     {
-        $this->metaTagsCache = $metaTagsCache;
-        $this->metaTagRepository = $metaTagRepository;
     }
 
     public function parse($pageName)
