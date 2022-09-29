@@ -11,11 +11,8 @@ class ImageOptimizer
 
     private const MAX_HEIGHT = 400;
 
-    private Imagine $imagine;
-
-    public function __construct()
+    public function __construct(private readonly Imagine $imagine)
     {
-        $this->imagine = new Imagine();
     }
 
     public function resize(string $filename): void

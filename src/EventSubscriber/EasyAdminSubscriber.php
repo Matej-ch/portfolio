@@ -10,6 +10,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
+    public function __construct(private readonly ImageOptimizer $imageOptimizer)
+    {
+    }
+
+
     public static function getSubscribedEvents(): array
     {
         return [
@@ -27,8 +32,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         }
 
         if (!empty($entity->getBgImg())) {
-            $optimizer = new ImageOptimizer();
-            $optimizer->resize('uploads/projects/' . $entity->getBgImg());
+            $this->imageOptimizer->resize('uploads/projects/' . $entity->getBgImg());
         }
     }
 }
