@@ -15,30 +15,30 @@ class UserInfo
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'boolean')]
-    private $isActive;
+    private ?bool $isActive = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $data;
+    private ?string $data = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $avatar;
+    private ?string $avatar = null;
 
-    public $decodedData;
+    public ?array $decodedData = null;
 
     #[ORM\ManyToMany(targetEntity: Service::class, inversedBy: 'userInfos')]
-    private $service;
+    private Collection $service;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $avatarBig;
+    private ?string $avatarBig = null;
 
     #[ORM\Column(type: 'string', length: 2048, nullable: true)]
-    private $whoAmI;
+    private ?string $whoAmI = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $aboutMeTitle;
+    private ?string $aboutMeTitle = null;
 
     public function __construct()
     {
@@ -97,37 +97,37 @@ class UserInfo
         return $this->decodedData;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->decodedData['name'] ?? '';
     }
 
-    public function getWorkEmail()
+    public function getWorkEmail(): string
     {
         return $this->decodedData['work_email'] ?? '';
     }
 
-    public function getLocation()
+    public function getLocation(): string
     {
         return $this->decodedData['location'] ?? '';
     }
 
-    public function getEducation()
+    public function getEducation(): string
     {
         return $this->decodedData['education'] ?? '';
     }
 
-    public function getWork()
+    public function getWork(): string
     {
         return $this->decodedData['work'] ?? '';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->decodedData['description'] ?? '';
     }
 
-    public function getGithubName()
+    public function getGithubName(): string
     {
         return $this->decodedData['github_name'] ?? '';
     }
@@ -196,7 +196,7 @@ class UserInfo
     }
 
     /**
-     * @return Collection|Service[]
+     * @return Collection
      */
     public function getService(): Collection
     {

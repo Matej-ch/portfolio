@@ -14,16 +14,16 @@ class ProjectState
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $name;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'string', length: 1024, nullable: true)]
-    private $description;
+    private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'projectState', targetEntity: Project::class)]
-    private $projects;
+    private Collection $projects;
 
     public function __construct()
     {
@@ -60,7 +60,7 @@ class ProjectState
     }
 
     /**
-     * @return Collection|Project[]
+     * @return Collection
      */
     public function getProjects(): Collection
     {

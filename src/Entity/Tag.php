@@ -13,10 +13,10 @@ class Tag
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $name;
+    #[ORM\Column(type: 'string', length: 255, nullable: false, options: ['default' => ''])]
+    private string $name;
 
     #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
     private int $ordering;
@@ -25,7 +25,7 @@ class Tag
     private int $isActive = 1;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'tags')]
-    private $projects;
+    private Collection $projects;
 
     public function __construct()
     {
@@ -74,7 +74,7 @@ class Tag
     }
 
     /**
-     * @return Collection|Project[]
+     * @return Collection
      */
     public function getProjects(): Collection
     {

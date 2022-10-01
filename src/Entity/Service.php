@@ -14,16 +14,16 @@ class Service
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $title;
+    private ?string $title;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $description;
+    private ?string $description;
 
     #[ORM\ManyToMany(targetEntity: UserInfo::class, mappedBy: 'service')]
-    private $userInfos;
+    private Collection $userInfos;
 
     public function __construct()
     {
@@ -60,7 +60,7 @@ class Service
     }
 
     /**
-     * @return Collection|UserInfo[]
+     * @return Collection
      */
     public function getUserInfos(): Collection
     {

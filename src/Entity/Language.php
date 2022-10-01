@@ -14,26 +14,26 @@ class Language
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $name;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'json', length: 512, nullable: true)]
-    private $versions;
+    private ?string $versions = null;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $icon;
+    private ?string $icon = null;
 
     #[ORM\Column(type: 'string', length: 512, nullable: false)]
     #[Assert\NotBlank]
-    private $type;
+    private ?string $type = null;
 
     #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
-    private $hide = false;
+    private ?bool $hide = false;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'language')]
-    private $projects;
+    private Collection $projects;
 
     public function __construct()
     {
@@ -135,7 +135,7 @@ class Language
     }
 
     /**
-     * @return Collection|Project[]
+     * @return Collection
      */
     public function getProjects(): Collection
     {
