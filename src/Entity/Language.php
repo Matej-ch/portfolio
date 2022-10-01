@@ -30,7 +30,7 @@ class Language
     private ?string $type = null;
 
     #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
-    private ?bool $hide = false;
+    private bool $hide = false;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'language')]
     private Collection $projects;

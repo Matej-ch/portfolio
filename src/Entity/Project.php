@@ -23,20 +23,20 @@ class Project
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     #[NotBlank]
-    private string $name;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
     private int $isActive = 1;
 
     #[ORM\Column(type: 'string', length: 1024, nullable: true)]
-    private ?string $description;
+    private ?string $description = null;
 
     #[ORM\Column(type: 'string', length: 100, unique: true)]
-    private string $slug;
+    private ?string $slug = null;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $createdAt;
@@ -45,31 +45,31 @@ class Project
     private $updatedAt;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'projects')]
-    private $tags;
+    private Collection $tags;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $sourceUrl;
+    private ?string $sourceUrl = null;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $projectUrl;
+    private ?string $projectUrl = null;
 
     #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'projects')]
-    private $language;
+    private Collection $language;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $bgImg;
+    private ?string $bgImg = null;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $shortDescription;
+    private ?string $shortDescription = null;
 
     #[ORM\ManyToOne(targetEntity: ProjectState::class, inversedBy: 'projects')]
-    private $projectState;
+    private Collection $projectState;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $readmeIsEnabled = null;
+    private bool $readmeIsEnabled = false;
 
     #[ORM\Column(nullable: true)]
-    private ?int $ordering = null;
+    private int $ordering = 0;
 
     #[ORM\ManyToMany(targetEntity: ProjectCollection::class, mappedBy: 'project')]
     private Collection $collections;
@@ -195,7 +195,7 @@ class Project
     }
 
     /**
-     * @return Collection|Tag[]
+     * @return Collection
      */
     public function getTags(): Collection
     {
@@ -222,7 +222,7 @@ class Project
     }
 
     /**
-     * @return Collection|Language[]
+     * @return Collection
      */
     public function getLanguage(): Collection
     {

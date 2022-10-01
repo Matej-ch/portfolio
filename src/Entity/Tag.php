@@ -16,10 +16,10 @@ class Tag
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false, options: ['default' => ''])]
-    private string $name;
+    private string $name = '';
 
     #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
-    private int $ordering;
+    private int $ordering = 1;
 
     #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
     private int $isActive = 1;

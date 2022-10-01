@@ -11,19 +11,19 @@ class ExternalSite
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private string $name;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'string', length: 1024, nullable: true)]
-    private ?string $url;
+    private ?string $url = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $icon;
+    private ?string $icon = null;
 
     #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
-    private int $ordering;
+    private int $ordering = 1;
 
     #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $hide = false;

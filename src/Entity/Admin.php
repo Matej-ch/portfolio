@@ -22,24 +22,24 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, TwoFac
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255, unique: true, nullable: true)]
-    private $username;
+    private ?string $username = null;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $password;
+    private ?string $password = null;
 
-    private ?string $plainPassword;
+    private ?string $plainPassword = null;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
 
     #[ORM\Column(type: 'string', length: 255, unique: true)]
-    private ?string $email;
+    private ?string $email = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $totpSecret;
@@ -93,7 +93,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, TwoFac
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         $this->plainPassword = null;
@@ -124,7 +124,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, TwoFac
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getPlainPassword(): ?string
     {
