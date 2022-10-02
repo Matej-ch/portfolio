@@ -74,6 +74,9 @@ class Project
     #[ORM\ManyToMany(targetEntity: ProjectCollection::class, mappedBy: 'project')]
     private ?Collection $collections;
 
+    #[ORM\Column(options: ['default' => false])]
+    private bool $isLanding = false;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -341,6 +344,18 @@ class Project
         if ($this->collections->removeElement($collection)) {
             $collection->removeProject($this);
         }
+
+        return $this;
+    }
+
+    public function isIsLanding(): ?bool
+    {
+        return $this->isLanding;
+    }
+
+    public function setIsLanding(bool $isLanding): self
+    {
+        $this->isLanding = $isLanding;
 
         return $this;
     }

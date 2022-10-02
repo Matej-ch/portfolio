@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserInfoRepository;
 use App\Service\MetaTagParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,11 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LandingController extends AbstractController
 {
-    #[Route('/landing', name: 'app_landing')]
-    public function index(MetaTagParser $metaTagParser): Response
+    #[Route('/', name: 'app_landing')]
+    public function index(MetaTagParser $metaTagParser, UserInfoRepository $userInfoRepository): Response
     {
         return $this->render('landing/index.html.twig', [
-            'metaTags' => $metaTagParser->parse('app_landing')
+            'metaTags' => $metaTagParser->parse('app_landing'),
+            'userInfo' => $userInfoRepository->findActive()
         ]);
     }
 }

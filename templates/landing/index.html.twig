@@ -1,9 +1,22 @@
-{% extends 'base.html.twig' %}
-
-{% block title %} Contact me {% endblock %}
+{% extends 'landing.html.twig' %}
 
 {% block body %}
-    test
+    <div
+            {{ stimulus_controller('particle',{
+                'speedMod': 0,
+                'particleCount': 400,
+                'lineModifier': 10000,
+                'particleColor': 'rgb(70, 138, 246)',
+                'bgColor': 'rgb(59 130 246)',
+                'mouseInteraction': false,
+                'lineColor': [85, 147, 247]
+            }) }}
+
+            class="absolute top-0 w-full h-full bg-center js-background-parent"
+    >
+        <canvas id="canvas" data-particle-target="canvas" class="w-full"></canvas>
+    </div>
+
 {% endblock %}
 
 {% block metas %}

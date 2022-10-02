@@ -3,11 +3,12 @@
 
         <div class="container px-2 lg:px-4 mx-auto items-center grid grid-rows-2 lg:grid-rows-none lg:grid-cols-3 py-1">
 
-            <div
-                    class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-                <a class="text-4xl leading-none font-bold mr-4 whitespace-nowrap uppercase text-white logo"
-                   href={{ path('app_homepage') }}>
-                    MC
+            <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+
+
+                <a class="text-4xl leading-none font-bold whitespace-nowrap uppercase text-white logo"
+                   href={{ path('app_landing') }}>
+                    M
                 </a>
 
                 <button
@@ -19,9 +20,9 @@
                 </button>
             </div>
 
-            <form action="{{ path('app_homepage') }}"
+            <form action="{{ path('app_projects') }}"
                   class="grid grid-rows-1 relative" {{ stimulus_controller('search-preview',{
-                url: path('app_homepage')
+                url: path('app_projects')
             }) }}>
 
                 <div class="relative mx-auto w-full">
@@ -51,11 +52,11 @@
                 <ul class="flex flex-row md:flex-row items-baseline list-none lg:ml-auto">
                     <li>
                         {% set activeClass = '' %}
-                        {% if app.request.get('origin') is same as('app_homepage') %}
+                        {% if app.request.get('origin') is same as('app_projects') %}
                             {% set activeClass = 'is-active' %}
                         {% endif %}
                         <a class="pr-3 lg:px-3 flex text-sm uppercase font-bold text-white hover:opacity-75 py-2 {{ activeClass }}"
-                           href={{ path('app_homepage') }}>
+                           href={{ path('app_projects') }}>
                             Portfolio
                         </a>
                     </li>

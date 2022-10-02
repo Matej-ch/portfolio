@@ -19,12 +19,12 @@ class ProjectCollectionController extends AbstractController
         $offset = max(0, $request->query->getInt('offset', 0));
 
         $paginator = $repository->getProjectPaginator($request->query->get('q'), $offset);
-        
+
         return $this->render('collection/index.html.twig', [
             'collections' => $paginator,
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
-            'metaTags' => $metaTagParser->parse('app_homepage')
+            'metaTags' => $metaTagParser->parse('app_projects')
         ]);
     }
 

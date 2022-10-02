@@ -40,7 +40,7 @@
 
                                     {% for language in project.language %}
                                         {% if language.icon|length %}
-                                            <a href="{{ path('app_homepage', { q: language.name }) }}">
+                                            <a href="{{ path('app_projects', { q: language.name }) }}">
                                                 <img width="30" height="30" style="max-width: 30px;height: auto"
                                                      src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
                                                      alt="{{ language.name }}">
@@ -48,7 +48,7 @@
 
                                         {% else %}
                                             <a class="btn-sm btn-gold"
-                                               href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                                               href="{{ path('app_projects', { q: language.name }) }}">{{ language.name }}</a>
                                         {% endif %}
                                     {% endfor %}
 
@@ -85,13 +85,13 @@
         <div class="flex flex-row px-4 lg:px-10 pb-6">
             {% if previous >= 0 %}
                 <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-800 border ml-0 rounded hover:bg-slate-200"
-                   href="{{ path('app_homepage', { offset: previous }) }}">
+                   href="{{ path('app_projects', { offset: previous }) }}">
                     Previous
                 </a>
             {% endif %}
             {% if next < projects|length %}
                 <a class="relative block py-2 px-3 leading-tight bg-white border border-slate-300 text-blue-800 rounded hover:bg-slate-200 ml-auto"
-                   href="{{ path('app_homepage', { offset: next }) }}">
+                   href="{{ path('app_projects', { offset: next }) }}">
                     Next
                 </a>
             {% endif %}

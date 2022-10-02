@@ -51,7 +51,7 @@ class SitemapController extends AbstractController
     {
         $urls = [];
 
-        $urls[] = ['loc' => $this->generateUrl('app_homepage'), 'label' => 'Projects homepage'];
+        $urls[] = ['loc' => $this->generateUrl('app_projects'), 'label' => 'Projects homepage'];
         $urls[] = ['loc' => $this->generateUrl('app_collections'), 'label' => 'Projects collections'];
         $urls[] = ['loc' => $this->generateUrl('app_about'), 'label' => 'About me'];
 

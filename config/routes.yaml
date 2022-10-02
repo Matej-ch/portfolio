@@ -1,6 +1,6 @@
 index:
   path: /
-  controller: App\Controller\ProjectController::homepage
+  controller: App\Controller\LandingController::index
 controllers:
   resource: ../src/Controller/
   type: attribute
