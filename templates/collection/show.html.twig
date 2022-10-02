@@ -12,7 +12,7 @@
         </header>
 
 
-        <div class="py-6">
+        <div class="py-2">
             {{ collection.description|raw }}
         </div>
 
@@ -22,6 +22,38 @@
                 <a href="{{ path('app_project_show', { slug: project.slug }) }}">
                     {{ project.name }}
                 </a>
+
+                <a href="{{ path('app_project_show', { slug: project.slug }) }}">
+                    {% if project.bgImg %}
+                        <img class="w-full" src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}"
+                             alt="{{ project.name }} image">
+                    {% else %}
+                        <img src="https://via.placeholder.com/1200x400.jpeg?text=image+not+set"
+                             alt="{{ project.name }} image"
+                             class="w-full">
+                    {% endif %}
+                </a>
+
+                {% if project.projectUrl or project.sourceUrl %}
+                    <div class="flex flex-row justify-between py-2 mb-2 flex-wrap gap-1">
+                        {% if project.projectUrl %}
+                            <div>
+                                <a class="btn btn-blue" href="{{ project.projectUrl }}">
+                                    <i class="fas fa-globe-europe"></i>
+                                    Project page
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if project.sourceUrl %}
+                            <div>
+                                <a class="btn btn-blue" href="{{ project.sourceUrl }}">
+                                    <i class="fab fa-github"></i>
+                                    Source code
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
 
 
             {% endfor %}

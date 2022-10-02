@@ -54,7 +54,7 @@ class Project
     private ?string $projectUrl = null;
 
     #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'projects')]
-    private Collection $language;
+    private ?Collection $language;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $bgImg = null;
@@ -63,16 +63,16 @@ class Project
     private ?string $shortDescription = null;
 
     #[ORM\ManyToOne(targetEntity: ProjectState::class, inversedBy: 'projects')]
-    private Collection $projectState;
+    private ?ProjectState $projectState;
 
     #[ORM\Column(nullable: true)]
-    private bool $readmeIsEnabled = false;
+    private ?bool $readmeIsEnabled = false;
 
     #[ORM\Column(nullable: true)]
     private int $ordering = 0;
 
     #[ORM\ManyToMany(targetEntity: ProjectCollection::class, mappedBy: 'project')]
-    private Collection $collections;
+    private ?Collection $collections;
 
     public function __construct()
     {
