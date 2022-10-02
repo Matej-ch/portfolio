@@ -23,7 +23,7 @@ class ProjectState
     private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'projectState', targetEntity: Project::class)]
-    private Collection $projects;
+    private ?Collection $projects;
 
     public function __construct()
     {

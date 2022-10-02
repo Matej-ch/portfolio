@@ -71,7 +71,7 @@
         {% endif %}
 
 
-        <h2 class="text-xl leading-10 text-slate-700 font-bold border-b-2 mb-2">Technical Sheet</h2>
+        <h2 class="text-xl leading-10 text-slate-700 font-bold border-b-2 border-slate-300 mb-2">Technical Sheet</h2>
 
         <div class="w-full flex flex-wrap gap-2 mt-4 py-4">
 
@@ -98,6 +98,20 @@
                 {% endfor %}
             </div>
         </div>
+
+        {% if project.collections|length %}
+            <div class="pt-10 pb-6 border-t border-slate-300 text-center">
+                <h3 class="font-bold text-slate-700 text-xl text-left border-b-2 mb-2">Collections containing
+                    project</h3>
+                <div class="w-full flex flex-wrap gap-1">
+                    {% for collection in project.collections %}
+                        <a class="tag"
+                           href="{{ path('app_collection_show', { slug: collection.slug }) }}">{{ collection.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
     </div>
 
     <turbo-frame id="random-projects" src="{{ path('app_random_projects') }}" loading="lazy" class="w-full">
