@@ -52,6 +52,7 @@ class ProjectCollectionCrudController extends AbstractCrudController
             ->setTargetFieldName('name')
             ->setFormTypeOption('disabled', $pageName !== Crud::PAGE_NEW)
             ->hideOnIndex();
+        yield BooleanField::new('is_landing')->setHelp('Show project on landing page');
         yield AssociationField::new('project')->hideOnIndex();
 
     }

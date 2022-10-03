@@ -348,7 +348,7 @@ class Project
         return $this;
     }
 
-    public function isIsLanding(): ?bool
+    public function isIsLanding(): bool
     {
         return $this->isLanding;
     }

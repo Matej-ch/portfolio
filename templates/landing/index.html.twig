@@ -5,16 +5,77 @@
             {{ stimulus_controller('particle',{
                 'speedMod': 0,
                 'particleCount': 400,
-                'lineModifier': 10000,
+                'lineModifier': 15000,
                 'particleColor': 'rgb(70, 138, 246)',
-                'bgColor': 'rgb(59 130 246)',
+                'bgColor': 'rgb(59, 130, 246)',
                 'mouseInteraction': false,
                 'lineColor': [85, 147, 247]
             }) }}
 
-            class="absolute top-0 w-full h-full bg-center js-background-parent"
+            class="absolute top-0 -z-10 w-full h-full bg-center js-background-parent"
     >
         <canvas id="canvas" data-particle-target="canvas" class="w-full"></canvas>
+    </div>
+
+    <div class="text-black landing container mx-auto">
+        <header class="landing__header gap-2 py-8">
+            <div class="self-center">
+                <a class="text-4xl leading-none font-bold whitespace-nowrap uppercase text-white logo"
+                   href={{ path('app_landing') }}>M</a>
+            </div>
+            <div class="self-center">
+                <a class="uppercase font-bold text-slate-800 hover:text-white transition hover:duration-200 ease-in-out"
+                   href="{{ path('app_about') }}">About</a>
+            </div>
+            <div class="self-center">
+                <a class="uppercase font-bold text-slate-800 hover:text-white transition hover:duration-200 ease-in-out"
+                   href="{{ path('app_projects') }}">Projects</a>
+            </div>
+            <div class="self-center">
+                <a class="uppercase font-bold text-slate-800 hover:text-white transition hover:duration-200 ease-in-out"
+                   href="{{ path('app_contact') }}">Contact</a>
+            </div>
+
+            <div class="self-center gap-4 flex">
+                {% for site in sites %}
+                    {% if site.name is same as('fiverr') %}
+                    {% else %}
+                        <a class="text-slate-800 text-xl hover:text-white transition hover:duration-200 ease-in-out"
+                           href="{{ site['url'] }}" title="{{ site['name'] }}">
+                            <i class="{{ site['icon'] }}"></i>
+                        </a>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </header>
+        <div class="landing__photo my-6">
+            <img alt="avatar"
+                 src="{{ asset('uploads/users/%s' | format(userInfo.avatar|default('https://via.placeholder.com/150'))) | default('https://via.placeholder.com/150') }}"
+                 class="shadow-xl rounded-full align-middle border-none mx-auto"
+                 style="max-width: 150px;"/>
+            <div class="text-center mt-4 text-slate-900">
+                {{ userInfo.aboutMeTitle }}
+            </div>
+        </div>
+        <main class="landing__main pr-8 pl-4 border-l">
+            <h2 class="text-4xl font-semibold mb-4 text-slate-900">WELCOME.</h2>
+            <div class="text-slate-900">{{ userInfo.whoAmI |default('Description')| raw }}</div>
+        </main>
+        <div class="landing__projects">
+            <div class="flex flex-col">
+                <h2 class="text-2xl mb-4 px-2 font-semibold text-slate-900">Projects</h2>
+                <div class="px-2">
+                    {% for project in projects %}
+                        <div class="pt-2 pb-1">
+                            <a class="landing__project text-slate-900"
+                               href="{{ path('app_project_show',{slug:project.slug}) }}">{{ project.name }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="landing__goto"><a href="{{ path('app_projects') }}">Checkout other projects</a></div>
     </div>
 
 {% endblock %}

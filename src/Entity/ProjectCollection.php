@@ -30,6 +30,9 @@ class ProjectCollection
     #[ORM\Column(length: 255, unique: true)]
     private string $slug;
 
+    #[ORM\Column(options: ['default' => false])]
+    private bool $isLanding = false;
+
     public function __construct()
     {
         $this->project = new ArrayCollection();
@@ -110,5 +113,17 @@ class ProjectCollection
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function isIsLanding(): bool
+    {
+        return $this->isLanding;
+    }
+
+    public function setIsLanding(bool $isLanding): self
+    {
+        $this->isLanding = $isLanding;
+
+        return $this;
     }
 }
