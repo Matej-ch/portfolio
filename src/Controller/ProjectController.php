@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
 
-    #[Route('/projects', name: 'app_homepage')]
+    #[Route('/projects', name: 'app_projects')]
     public function homepage(Request $request, ProjectRepository $repository, MetaTagParser $metaTagParser): Response
     {
         $offset = max(0, $request->query->getInt('offset', 0));
@@ -33,7 +33,7 @@ class ProjectController extends AbstractController
             'projects' => $paginator,
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
-            'metaTags' => $metaTagParser->parse('app_homepage')
+            'metaTags' => $metaTagParser->parse('app_projects')
         ]);
     }
 

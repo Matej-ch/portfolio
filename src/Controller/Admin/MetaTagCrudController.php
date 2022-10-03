@@ -21,7 +21,7 @@ class MetaTagCrudController extends AbstractCrudController
         yield ChoiceField::new('pageName')->setChoices([
             'About page' => 'app_about',
             'Contact page' => 'app_contact',
-            'Projects page' => 'app_homepage',
+            'Projects page' => 'app_projects',
             'Project detail page' => 'app_project_show',
             'Landing page' => 'app_landing',
             'Project collections' => 'app_collections',

@@ -79,6 +79,7 @@ class ProjectCrudController extends AbstractCrudController
             ->setUploadDir('public/uploads/projects')
             ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')->hideOnIndex();
         yield BooleanField::new('is_active')->setHelp('Only active project will show on project page');
+        yield BooleanField::new('is_landing')->setHelp('Show project on landing page');
         yield IntegerField::new('ordering');
         yield SlugField::new('slug')
             ->setHelp('Is generated automatically')

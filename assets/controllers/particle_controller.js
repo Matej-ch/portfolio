@@ -1,6 +1,7 @@
 import {Controller} from '@hotwired/stimulus';
 import PBackground from "@mtjch/bg_particles/src/js/PBackground";
 
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     bg = null;
     bgOptions = {};
@@ -8,39 +9,44 @@ export default class extends Controller {
     static targets = ['canvas', 'settingBtn', 'settingMenu'];
 
     static values = {
-        speedMod: Number,
-        particleCount: Number,
-        lineModifier: Number,
+        speedMod: {type: Number, default: 5},
+        particleCount: {type: Number, default: 200},
+        lineModifier: {type: Number, default: 10000},
+        particleColor: String,
+        mouseInteraction: {type: Boolean, default: true},
+        bgColor: {type: String, default: 'linear-gradient(0.15turn, rgb(223, 185, 106, 1), rgb(135, 190, 231, 1)90% )'},
+        lineColor: {type: Array, default: [0, 84, 219]}
     };
 
-    connect() {
+    initialize() {
 
-        this.bgOptions = {
-            canvasSelector: `#${this.canvasTarget.id}`,
-            bgColor: 'linear-gradient(0.15turn, rgb(223, 185, 106, 1), rgb(135, 190, 231, 1)90% )',
-            canvasW: window.innerWidth,
-            canvasH: this.element.clientHeight,
-            speedMod: 5,
-            particleCount: 200,
-            lineModifier: 10000,
-            lineColor: [0, 84, 219]
+        if (window.innerWidth <= 600) {
+            this.particleCountValue /= 3;
         }
 
         this.bgOptions = {
-            ...this.bgOptions, ...{
-                speedMod: this.speedModValue,
-                particleCount: this.particleCountValue,
-                lineModifier: this.lineModifierValue
-            }
-        };
+            canvasSelector: `#${this.canvasTarget.id}`,
+            bgColor: this.bgColorValue,
+            canvasW: window.innerWidth,
+            canvasH: this.element.clientHeight,
+            speedMod: this.speedModValue,
+            particleCount: this.particleCountValue,
+            lineModifier: this.lineModifierValue,
+            particleColor: this.particleColorValue || null,
+            mouseInteraction: this.mouseInteractionValue,
+            lineColor: this.lineColorValue
+        }
 
-        //console.log(this.bgOptions);
         this.bg = new PBackground(this.bgOptions);
 
         this.initializeParticles(this.bg);
 
         /** start animation */
         this.bg.animate();
+    }
+
+    disconnect() {
+        this.bg = null;
     }
 
     showMenu() {

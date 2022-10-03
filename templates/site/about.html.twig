@@ -165,7 +165,7 @@
                                 <div class="w-full flex flex-row space-x-2 justify-center items-center flex-wrap gap-1">
                                     {% for language in languages %}
                                         {% if language.icon|length %}
-                                            <a href="{{ path('app_homepage', { q: language.name }) }}"
+                                            <a href="{{ path('app_projects', { q: language.name }) }}"
                                                title="{{ language.name }}" aria-label="Search by {{ language.name }}">
                                                 <img width="50" height="50" style="max-width: 50px;height: auto"
                                                      src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
@@ -174,7 +174,7 @@
 
                                         {% else %}
                                             <a class="btn-sm btn-gold" aria-label="Search by {{ language.name }}"
-                                               href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                                               href="{{ path('app_projects', { q: language.name }) }}">{{ language.name }}</a>
                                         {% endif %}
                                     {% endfor %}
                                 </div>

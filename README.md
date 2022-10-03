@@ -32,14 +32,14 @@
 * Admin functionality
 * Connection to GitHub api for readme and other data
 * Custom metadata for main page
+* Project collections
+* Landing page
 
 #### TODO
 
 1. [ ] Hire me page
-2. [ ] Landing page
-3. [ ] Contact me page finish
-4. [ ] Email sending
-5. [ ] Project collections
+2. [ ] Contact me page finish
+3. [ ] Email sending
 
 ### Commands
 

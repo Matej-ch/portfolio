@@ -68,4 +68,14 @@ class ProjectRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findLanding()
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $this->addIsActiveQueryBuilder($qb)
+            ->andWhere('p.isLanding = :is_landing')->setParameter('is_landing', 1)
+            ->getQuery()
+            ->getResult();
+    }
 }

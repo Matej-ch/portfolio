@@ -77,7 +77,7 @@
 
             {% for language in project.language %}
                 {% if language.icon|length %}
-                    <a href="{{ path('app_homepage', { q: language.name }) }}">
+                    <a href="{{ path('app_projects', { q: language.name }) }}">
                         <img width="50" height="50" style="max-width: 50px;height: auto"
                              src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
                              alt="{{ language.name }}">
@@ -85,7 +85,7 @@
 
                 {% else %}
                     <a class="btn-sm btn-gold"
-                       href="{{ path('app_homepage', { q: language.name }) }}">{{ language.name }}</a>
+                       href="{{ path('app_projects', { q: language.name }) }}">{{ language.name }}</a>
                 {% endif %}
             {% endfor %}
         </div>
@@ -94,7 +94,7 @@
         <div class="py-4 border-t border-slate-300 text-center">
             <div class="w-full flex flex-wrap gap-1">
                 {% for tag in project.tags %}
-                    <a class="tag" href="{{ path('app_homepage', { q: tag.name }) }}">{{ tag.name }}</a>
+                    <a class="tag" href="{{ path('app_projects', { q: tag.name }) }}">{{ tag.name }}</a>
                 {% endfor %}
             </div>
         </div>
