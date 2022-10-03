@@ -54,4 +54,15 @@ class ProjectCollectionRepository extends ServiceEntityRepository
             ->setFirstResult($offset)
             ->getQuery());
     }
+
+    public function findLanding()
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $qb
+            ->where('p.isLanding = :is_landing')
+            ->setParameter('is_landing', 1)
+            ->getQuery()
+            ->getResult();
+    }
 }
