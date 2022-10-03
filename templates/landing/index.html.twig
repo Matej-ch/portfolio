@@ -18,7 +18,7 @@
     </div>
 
     <div class="text-black landing container mx-auto">
-        <header class="landing__header gap-2 py-8">
+        <header class="landing__header">
             <div class="self-center">
                 <a class="text-4xl leading-none font-bold whitespace-nowrap uppercase text-white logo"
                    data-turbo="false"
@@ -37,7 +37,7 @@
                    href="{{ path('app_contact') }}">Contact</a>
             </div>
 
-            <div class="self-center gap-4 flex">
+            <div class="self-center gap-4 flex external_sites">
                 {% for site in sites %}
                     {% if site.name is same as('fiverr') %}
                     {% else %}

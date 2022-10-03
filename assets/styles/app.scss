@@ -726,6 +726,9 @@ turbo-frame[busy] {
     grid-area: header;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   &__photo {
@@ -801,5 +804,23 @@ turbo-frame[busy] {
     inset: 0;
     z-index: -1;
     border-radius: 5px;
+  }
+}
+
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet) {
+  .landing {
+    grid-template-areas:
+          "header"
+          "photo"
+          "main"
+          "project"
+          "goto";
+    grid-template-columns: repeat(1, 1fr);
+
+    &__header {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 1rem 0.5rem;
+    }
   }
 }

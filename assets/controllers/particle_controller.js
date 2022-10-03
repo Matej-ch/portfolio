@@ -19,6 +19,11 @@ export default class extends Controller {
     };
 
     initialize() {
+
+        if (window.innerWidth <= 600) {
+            this.particleCountValue /= 3;
+        }
+
         this.bgOptions = {
             canvasSelector: `#${this.canvasTarget.id}`,
             bgColor: this.bgColorValue,
