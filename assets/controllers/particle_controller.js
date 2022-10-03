@@ -1,6 +1,7 @@
 import {Controller} from '@hotwired/stimulus';
 import PBackground from "@mtjch/bg_particles/src/js/PBackground";
 
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     bg = null;
     bgOptions = {};
@@ -17,7 +18,7 @@ export default class extends Controller {
         lineColor: {type: Array, default: [0, 84, 219]}
     };
 
-    connect() {
+    initialize() {
         this.bgOptions = {
             canvasSelector: `#${this.canvasTarget.id}`,
             bgColor: this.bgColorValue,
@@ -37,6 +38,10 @@ export default class extends Controller {
 
         /** start animation */
         this.bg.animate();
+    }
+
+    disconnect() {
+        this.bg = null;
     }
 
     showMenu() {

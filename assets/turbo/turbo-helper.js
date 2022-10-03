@@ -34,7 +34,7 @@ const TurboHelper = class {
             // for analytics
         });
 
-        document.addEventListener('turbo:visit  ', () => {
+        document.addEventListener('turbo:visit', () => {
             document.body.classList.add('turbo-loading');
         });
     }
