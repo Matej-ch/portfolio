@@ -24,9 +24,9 @@ class LandingController extends AbstractController
                           CacheInterface              $cache): Response
     {
 
-        $collections = $cache->get("project_collection", function (ItemInterface $item) use ($projectCollectionRepository) {
+        $sites = $cache->get("external_sites", function (ItemInterface $item) use ($externalSiteRepository) {
             $item->expiresAfter(7200);
-            return $projectCollectionRepository->findLanding();
+            return $externalSiteRepository->findAllForFooter();
         });
 
         $userInfo = $cache->get("user_info", function (ItemInterface $item) use ($userInfoRepository) {
@@ -39,9 +39,9 @@ class LandingController extends AbstractController
             return $projectRepository->findLanding();
         });
 
-        $sites = $cache->get("external_sites", function (ItemInterface $item) use ($externalSiteRepository) {
+        $collections = $cache->get("project_collection", function (ItemInterface $item) use ($projectCollectionRepository) {
             $item->expiresAfter(7200);
-            return $externalSiteRepository->findAllForFooter();
+            return $projectCollectionRepository->findLanding();
         });
 
         return $this->render('landing/index.html.twig', [
