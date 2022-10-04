@@ -16,12 +16,12 @@ use Symfony\Contracts\Cache\ItemInterface;
 class LandingController extends AbstractController
 {
     #[Route('/', name: 'app_landing')]
-    public function index(MetaTagParser               $metaTagParser,
-                          UserInfoRepository          $userInfoRepository,
-                          ProjectRepository           $projectRepository,
-                          ExternalSiteRepository      $externalSiteRepository,
-                          ProjectCollectionRepository $projectCollectionRepository,
-                          CacheInterface              $cache): Response
+    public function index(
+        UserInfoRepository          $userInfoRepository,
+        ProjectRepository           $projectRepository,
+        ExternalSiteRepository      $externalSiteRepository,
+        ProjectCollectionRepository $projectCollectionRepository,
+        CacheInterface              $cache): Response
     {
 
         $sites = $cache->get("external_sites", function (ItemInterface $item) use ($externalSiteRepository) {
@@ -45,7 +45,6 @@ class LandingController extends AbstractController
         });
 
         return $this->render('landing/index.html.twig', [
-            'metaTags' => $metaTagParser->parse('app_landing'),
             'userInfo' => $userInfo,
             'projects' => $projects,
             'collections' => $collections,
