@@ -718,7 +718,7 @@ turbo-frame[busy] {
           ". . ."
           ". photo ."
           "main main project"
-          "goto . .";
+          "goto . project";
   grid-template-columns: repeat(3, 1fr);
 
 
@@ -821,6 +821,15 @@ $breakpoint-tablet: 768px;
     &__header {
       grid-template-columns: repeat(2, 1fr);
       padding: 1rem 0.5rem;
+    }
+
+    header div:first-child {
+      display: none;
+    }
+
+    &__goto {
+      text-align: center;
+      margin-bottom: 1em;
     }
   }
 }

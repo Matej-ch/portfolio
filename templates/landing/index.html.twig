@@ -46,7 +46,6 @@
                             <i class="{{ site['icon'] }}"></i>
                         </a>
                     {% endif %}
-
                 {% endfor %}
             </div>
         </header>
@@ -71,6 +70,15 @@
                         <div class="pt-2 pb-1">
                             <a class="landing__project text-slate-900"
                                href="{{ path('app_project_show',{slug:project.slug}) }}">{{ project.name }}</a>
+                        </div>
+                    {% endfor %}
+
+                    {% for collection in collections %}
+                        <div class="pt-2 pb-1">
+                            <a class="landing__project text-slate-900"
+                               title="Collection of {{ collection.project|length }} projects"
+                               href="{{ path('app_collection_show',{slug:collection.slug}) }}">{{ collection.name }}
+                                ({{ collection.project|length }})</a>
                         </div>
                     {% endfor %}
                 </div>
