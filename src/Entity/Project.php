@@ -45,7 +45,7 @@ class Project
     private $updatedAt;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'projects')]
-    private Collection $tags;
+    private ?Collection $tags = null;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private ?string $sourceUrl = null;
@@ -54,7 +54,7 @@ class Project
     private ?string $projectUrl = null;
 
     #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'projects')]
-    private ?Collection $language;
+    private ?Collection $language = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $bgImg = null;
@@ -63,7 +63,7 @@ class Project
     private ?string $shortDescription = null;
 
     #[ORM\ManyToOne(targetEntity: ProjectState::class, inversedBy: 'projects')]
-    private ?ProjectState $projectState;
+    private ?ProjectState $projectState = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $readmeIsEnabled = false;
@@ -197,9 +197,6 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function getTags(): Collection
     {
         return $this->tags;
@@ -224,9 +221,6 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function getLanguage(): Collection
     {
         return $this->language;
