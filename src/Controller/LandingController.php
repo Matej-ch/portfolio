@@ -6,7 +6,6 @@ use App\Repository\ExternalSiteRepository;
 use App\Repository\ProjectCollectionRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\UserInfoRepository;
-use App\Service\MetaTagParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,16 +20,18 @@ class LandingController extends AbstractController
         ProjectRepository           $projectRepository,
         ExternalSiteRepository      $externalSiteRepository,
         ProjectCollectionRepository $projectCollectionRepository,
-        /*CacheInterface              $cache*/): Response
+        CacheInterface              $cache): Response
     {
 
-        /*$sites = $cache->get("external_sites", function (ItemInterface $item) use ($externalSiteRepository) {
+        $sites = $cache->get("external.sites", function (ItemInterface $item) use ($externalSiteRepository) {
             $item->expiresAfter(7200);
+
             return $externalSiteRepository->findAllForFooter();
         });
 
-        $userInfo = $cache->get("user_info", function (ItemInterface $item) use ($userInfoRepository) {
+        $userInfo = $cache->get("user.info", function (ItemInterface $item) use ($userInfoRepository) {
             $item->expiresAfter(7200);
+
             return $userInfoRepository->findActive();
         });
 
@@ -39,16 +40,16 @@ class LandingController extends AbstractController
             return $projectRepository->findLanding();
         });
 
-        $collections = $cache->get("project_collection", function (ItemInterface $item) use ($projectCollectionRepository) {
+        $collections = $cache->get("project.collection", function (ItemInterface $item) use ($projectCollectionRepository) {
             $item->expiresAfter(7200);
             return $projectCollectionRepository->findLanding();
-        });*/
+        });
 
         return $this->render('landing/index.html.twig', [
-            'userInfo' => $userInfoRepository->findActive(),
-            'projects' => $projectRepository->findLanding(),
-            'collections' => $projectCollectionRepository->findLanding(),
-            'sites' => $externalSiteRepository->findAllForFooter(),
+            'userInfo' => $userInfo/*$userInfoRepository->findActive()*/,
+            'projects' => $projects/*$projectRepository->findLanding()*/,
+            'collections' => $collections/*$projectCollectionRepository->findLanding()*/,
+            'sites' => $sites/*$externalSiteRepository->findAllForFooter()*/,
         ]);
     }
 }

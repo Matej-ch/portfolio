@@ -22,7 +22,7 @@
 * generate APP_SECRET ```APP_RUNTIME_ENV=prod php bin/console secrets:set APP_SECRET``` and
   add ```APP_SECRET='%env(APP_SECRET)%'``` to ```.env.prod``` file on
   server
-* Run ```composer dump-env``` and make sure APP_SECRET is set and not empty
+* Run ```composer dump-env <enviroment>``` and make sure APP_SECRET is set and not empty
 
 ### Features
 
