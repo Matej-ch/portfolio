@@ -78,8 +78,8 @@ class ProjectCrudController extends AbstractCrudController
             ->setBasePath('uploads/projects')
             ->setUploadDir('public/uploads/projects')
             ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')->hideOnIndex();
-        yield BooleanField::new('is_active')->setHelp('Only active project will show on project page');
-        yield BooleanField::new('is_landing')->setHelp('Show project on landing page');
+        yield BooleanField::new('isActive')->setHelp('Only active project will show on project page')->setSortable(true);
+        yield BooleanField::new('isLanding')->setHelp('Show project on landing page')->setSortable(true);
         yield IntegerField::new('ordering');
         yield SlugField::new('slug')
             ->setHelp('Is generated automatically')
@@ -101,7 +101,7 @@ class ProjectCrudController extends AbstractCrudController
         yield AssociationField::new('projectState');
 
         yield FormField::addTab('Github');
-        yield BooleanField::new('readme_is_enabled')->setHelp('Whether to load readme from github');
+        yield BooleanField::new('readmeIsEnabled')->setHelp('Whether to load readme from github')->setSortable(true);
         yield FormField::addTab('Collections');
         yield AssociationField::new('collections')->hideOnIndex()->setFormTypeOption('by_reference', false);
 

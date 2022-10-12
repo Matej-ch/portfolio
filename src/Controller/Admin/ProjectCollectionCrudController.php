@@ -8,9 +8,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -40,7 +37,8 @@ class ProjectCollectionCrudController extends AbstractCrudController
     {
         return $filters
             ->add(TextFilter::new('name'))
-            ->add(BooleanFilter::new('description'));
+            ->add(TextFilter::new('description'))
+            ->add(BooleanFilter::new('is_landing'));
     }
 
     public function configureFields(string $pageName): iterable
@@ -52,7 +50,7 @@ class ProjectCollectionCrudController extends AbstractCrudController
             ->setTargetFieldName('name')
             ->setFormTypeOption('disabled', $pageName !== Crud::PAGE_NEW)
             ->hideOnIndex();
-        yield BooleanField::new('is_landing')->setHelp('Show project on landing page');
+        yield BooleanField::new('isLanding')->setHelp('Show project on landing page')->setSortable(true);
         yield AssociationField::new('project')->hideOnIndex();
 
     }
