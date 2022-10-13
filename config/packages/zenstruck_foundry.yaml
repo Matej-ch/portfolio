@@ -5,8 +5,3 @@ when@dev: &dev
     auto_refresh_proxies: true
 
 when@test: *dev
-
-when@prod:
-  zenstruck_foundry:
-    # Whether to auto-refresh proxies by default (https://github.com/zenstruck/foundry#auto-refresh)
-    auto_refresh_proxies: true
