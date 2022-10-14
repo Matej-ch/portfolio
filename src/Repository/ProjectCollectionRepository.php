@@ -57,10 +57,12 @@ class ProjectCollectionRepository extends ServiceEntityRepository
 
     public function findLanding()
     {
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('project_collection');
 
         return $qb
-            ->where('p.isLanding = :is_landing')
+            ->where('project_collection.isLanding = :is_landing')
+            ->leftJoin('project_collection.project', 'project')
+            ->addSelect('project')
             ->setParameter('is_landing', 1)
             ->getQuery()
             ->getResult();

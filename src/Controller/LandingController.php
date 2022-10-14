@@ -46,10 +46,10 @@ class LandingController extends AbstractController
         });
 
         return $this->render('landing/index.html.twig', [
-            'userInfo' => $userInfo/*$userInfoRepository->findActive()*/,
-            'projects' => $projects/*$projectRepository->findLanding()*/,
-            'collections' => $collections/*$projectCollectionRepository->findLanding()*/,
-            'sites' => $sites/*$externalSiteRepository->findAllForFooter()*/,
+            'userInfo' => $userInfo,
+            'projects' => $projects,
+            'collections' => $collections,
+            'sites' => $sites,
         ]);
     }
 }
