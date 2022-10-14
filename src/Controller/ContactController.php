@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\MetaTagParser;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,6 +20,47 @@ class ContactController extends AbstractController
 {
     #[Route('/contact-modal', name: 'app_contact_modal')]
     public function contactModal(Request $request): Response
+    {
+        $form = $this->getForm($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if ($request->get('fetch')) {
+                return new Response(null, 204);
+            }
+        }
+
+        //422 unprocessable entity
+        return $this->render('contact/modal.html.twig', [
+            'form' => $form->createView(),
+        ], new Response(null, $form->isSubmitted() ? 422 : 200));
+    }
+
+    #[Route('/contact', name: 'app_contact')]
+    public function show(Request $request, MetaTagParser $metaTagParser): Response
+    {
+        $form = $this->getForm($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if ($request->get('fetch')) {
+                return new Response(null, 204);
+            }
+        }
+
+        return $this->render('contact/show.html.twig', [
+            'form' => $form->createView(),
+            'metaTags' => $metaTagParser->parse('app_contact')
+        ], new Response(null, $form->isSubmitted() ? 422 : 200));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    private function getForm(Request $request): \Symfony\Component\Form\FormInterface
     {
         $defaultData = [];
         $form = $this->createFormBuilder($defaultData)
@@ -53,29 +95,10 @@ class ContactController extends AbstractController
                     new Length(['min' => 3]),
                     new NotBlank()]
             ])
+            ->add('captcha', CaptchaType::class)
             ->getForm();
 
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            if ($request->get('fetch')) {
-                return new Response(null, 204);
-            }
-        }
-
-        //422 unprocessable entity
-        return $this->render('contact/modal.html.twig', [
-            'form' => $form->createView(),
-        ], new Response(null, $form->isSubmitted() ? 422 : 200));
-    }
-
-    #[Route('/contact', name: 'app_contact')]
-    public function show(Request $request, MetaTagParser $metaTagParser): Response
-    {
-        return $this->render('contact/show.html.twig', [
-            'metaTags' => $metaTagParser->parse('app_contact')
-        ]);
+        return $form;
     }
 }

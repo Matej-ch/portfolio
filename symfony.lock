@@ -123,6 +123,9 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "gregwar/captcha-bundle": {
+        "version": "v2.2.0"
+    },
     "guzzlehttp/promises": {
         "version": "1.5.1"
     },
