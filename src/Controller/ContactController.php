@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserInfoRepository;
 use App\Service\MetaTagParser;
 use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,7 +39,7 @@ class ContactController extends AbstractController
     }
 
     #[Route('/contact', name: 'app_contact')]
-    public function show(Request $request, MetaTagParser $metaTagParser): Response
+    public function show(Request $request, MetaTagParser $metaTagParser, UserInfoRepository $userInfoRepository): Response
     {
         $form = $this->getForm($request);
 
@@ -52,7 +53,8 @@ class ContactController extends AbstractController
 
         return $this->render('contact/show.html.twig', [
             'form' => $form->createView(),
-            'metaTags' => $metaTagParser->parse('app_contact')
+            'metaTags' => $metaTagParser->parse('app_contact'),
+            'userInfo' => $userInfoRepository->findActive()
         ], new Response(null, $form->isSubmitted() ? 422 : 200));
     }
 
