@@ -11,15 +11,14 @@
             </div>
         </header>
 
-
         <div class="py-2">
             {{ collection.description|raw }}
         </div>
 
-        <div class="w-full flex flex-col gap-2 py-2">
+        <div class="w-full flex flex-col gap-2 pb-2 pt-4">
 
             {% for project in collection.project %}
-                <a href="{{ path('app_project_show', { slug: project.slug }) }}">
+                <a href="{{ path('app_project_show', { slug: project.slug }) }}" class="font-semibold">
                     {{ project.name }}
                 </a>
 
@@ -45,6 +44,7 @@
                             </div>
                         {% endif %}
                         {% if project.sourceUrl %}
+                            <div></div>
                             <div>
                                 <a class="btn btn-blue" href="{{ project.sourceUrl }}">
                                     <i class="fab fa-github"></i>

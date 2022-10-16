@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}
     Collections of projects
 {% endblock %}
@@ -13,10 +12,8 @@
                 <div class="project relative">
 
                     {% if collection.project|length > 0 %}
-                        <div class="mt-2 py-2 border-t border-slate-100 text-center">
+                        <div class="mt-2 py-2 text-center">
                             <div class="w-full flex flex-col gap-1 items-start px-2">
-
-
                                 {% for project in collection.project %}
                                     <a href="{{ path('app_project_show', { slug: project.slug }) }}">
                                         {{ project.name }}
@@ -33,7 +30,7 @@
                                href="{{ path('app_collection_show',{slug:collection.slug}) }}">{{ collection.name }}</a>
                         </div>
 
-                        <div class="text-slate-600 py-2">{{ collection.description }}</div>
+                        <div class="text-slate-600 py-2">{{ collection.description|raw }}</div>
                     </div>
                 </div>
             {% endfor %}
