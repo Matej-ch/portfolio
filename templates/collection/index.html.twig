@@ -12,13 +12,24 @@
                 <div class="project relative">
 
                     {% if collection.project|length > 0 %}
-                        <div class="mt-2 py-2 text-center">
+                        <div class="mt-2 py-2 text-center border-blue-500 border-b mx-2">
                             <div class="w-full flex flex-col gap-1 items-start px-2">
                                 {% for project in collection.project %}
-                                    <a href="{{ path('app_project_show', { slug: project.slug }) }}">
-                                        {{ project.name }}
-                                    </a>
-
+                                    <div class="flex flex-row items-center">
+                                        {% if project.bgImg %}
+                                            <img width="107" height="40"
+                                                 style="max-width: 107px;max-height: 40px"
+                                                 src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}"
+                                                 alt="{{ project.name }} image">
+                                        {% else %}
+                                            <img src="https://via.placeholder.com/107x40.jpeg?text=not+set"
+                                                 alt="{{ project.name }} image">
+                                        {% endif %}
+                                        <a class="hover:bg-blue-500 py-2 px-1 hover:font-semibold hover:text-amber-400 rounded-sm"
+                                           href="{{ path('app_project_show', { slug: project.slug }) }}">
+                                            {{ project.name }}
+                                        </a>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -30,7 +41,7 @@
                                href="{{ path('app_collection_show',{slug:collection.slug}) }}">{{ collection.name }}</a>
                         </div>
 
-                        <div class="text-slate-600 py-2">{{ collection.description|raw }}</div>
+                        <div class="text-slate-600 pb-2">{{ collection.description|raw }}</div>
                     </div>
                 </div>
             {% endfor %}
