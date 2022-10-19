@@ -59,23 +59,23 @@
             </div>
         </div>
         <main class="landing__main pr-8 pl-4 border-l">
-            <h2 class="text-4xl font-semibold mb-4 text-slate-900">WELCOME.</h2>
-            <div class="text-slate-900">{{ userInfo.whoAmI |default('Description')| raw }}</div>
+            <h2 class="text-4xl font-semibold mb-4 text-slate-900" style="color: #ffbc00">WELCOME.</h2>
+            <div class="text-slate-900 font-semibold">{{ userInfo.whoAmI |default('Description')| raw }}</div>
         </main>
         <div class="landing__projects">
             <div class="flex flex-col">
-                <h2 class="text-2xl mb-4 px-2 font-semibold text-slate-900">Projects</h2>
+                <h2 class="text-2xl mb-4 px-2 font-semibold text-slate-900" style="color: #ffbc00">Projects</h2>
                 <div class="px-2">
                     {% for project in projects %}
                         <div class="pt-2 pb-1">
-                            <a class="landing__project text-slate-900"
+                            <a class="landing__project text-slate-900 font-semibold"
                                href="{{ path('app_project_show',{slug:project.slug}) }}">{{ project.name }}</a>
                         </div>
                     {% endfor %}
 
                     {% for collection in collections %}
                         <div class="pt-2 pb-1">
-                            <a class="landing__project text-slate-900"
+                            <a class="landing__project text-slate-900 font-semibold"
                                title="Collection of {{ collection.project|length }} projects"
                                href="{{ path('app_collection_show',{slug:collection.slug}) }}">{{ collection.name }}
                                 ({{ collection.project|length }})</a>
@@ -87,4 +87,8 @@
         <div class="landing__goto"><a href="{{ path('app_projects') }}">Checkout other projects</a></div>
     </div>
 
+{% endblock %}
+
+{% block metas %}
+    <meta name="author" content="{{ userInfo.decodedData.name }} portfolio"/>
 {% endblock %}
