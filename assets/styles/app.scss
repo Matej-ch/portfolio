@@ -202,6 +202,12 @@ header, main, footer {
   }
 }
 
+.collection {
+  &__body {
+    margin-bottom: 0;
+  }
+}
+
 .required::after {
   content: '*';
   @apply text-red-700
