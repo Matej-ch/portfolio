@@ -14,6 +14,7 @@ export default class extends Controller {
         lineModifier: {type: Number, default: 10000},
         particleColor: String,
         mouseInteraction: {type: Boolean, default: true},
+        animate: {type: Boolean, default: true},
         bgColor: {type: String, default: 'linear-gradient(0.15turn, rgb(223, 185, 106, 1), rgb(135, 190, 231, 1)90% )'},
         lineColor: {type: Array, default: [0, 84, 219]}
     };
@@ -34,7 +35,8 @@ export default class extends Controller {
             lineModifier: this.lineModifierValue,
             particleColor: this.particleColorValue || null,
             mouseInteraction: this.mouseInteractionValue,
-            lineColor: this.lineColorValue
+            lineColor: this.lineColorValue,
+            runAnimation: {value: this.animateValue}
         }
 
         this.bg = new PBackground(this.bgOptions);
@@ -60,20 +62,14 @@ export default class extends Controller {
     }
 
     updateBackground(event) {
-        //console.log(event.currentTarget.value)
+
         this.bg.speedModValue = parseFloat(event.currentTarget.value);
 
-        //console.log('parseFloat(event.currentTarget.value)',parseFloat(event.currentTarget.value));
-        //console.log('this.bg.speedModValue',this.bg.speedModValue);
 
         this.initializeParticles(this.bg);
     }
 
     initializeParticles(bg) {
-
-        //bg.speedModValue = this.speedModValue;
-        //console.log('initializeParticles bg.speedModValue',bg.speedModValue);
-        //console.log('this.speedModValue',this.speedModValue);
         /** initialize particles */
         bg.init();
     }
