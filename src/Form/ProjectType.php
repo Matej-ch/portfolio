@@ -17,30 +17,29 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class)
-            ->add('description',TextType::class)
-            ->add('slug',TextType::class)
-            ->add('isActive',ChoiceType::class,[
-                'choices'  => [
+            ->add('name', TextType::class)
+            ->add('description', TextType::class)
+            ->add('slug', TextType::class)
+            ->add('isActive', ChoiceType::class, [
+                'choices' => [
                     'Yes' => true,
                     'No' => false,
                 ]
             ])
-            ->add('language',CollectionType::class,[
+            /*->add('language', CollectionType::class, [
                 'entry_type' => LanguageType::class,
                 'allow_delete' => true,
                 'allow_add' => true,
                 'by_reference' => false,
-            ])
-            ->add('tags',CollectionType::class,[
+            ])*/
+            /*->add('tags',CollectionType::class,[
                 'entry_type' => TagType::class,
                 'allow_delete' => true,
                 'allow_add' => true,
                 'by_reference' => false,
-            ])
+            ])*/
             ->add('createdAt', DateType::class)
-            ->add('save', SubmitType::class)
-        ;
+            ->add('save', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
