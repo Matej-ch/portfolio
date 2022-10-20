@@ -77,11 +77,15 @@ class Project
     #[ORM\Column(options: ['default' => false])]
     private bool $isLanding = false;
 
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectImage::class)]
+    private Collection $projectImages;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->language = new ArrayCollection();
         $this->collections = new ArrayCollection();
+        $this->projectImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -350,6 +354,36 @@ class Project
     public function setIsLanding(bool $isLanding): self
     {
         $this->isLanding = $isLanding;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectImage>
+     */
+    public function getProjectImages(): Collection
+    {
+        return $this->projectImages;
+    }
+
+    public function addProjectImage(ProjectImage $projectImage): self
+    {
+        if (!$this->projectImages->contains($projectImage)) {
+            $this->projectImages->add($projectImage);
+            $projectImage->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectImage(ProjectImage $projectImage): self
+    {
+        if ($this->projectImages->removeElement($projectImage)) {
+            // set the owning side to null (unless already changed)
+            if ($projectImage->getProject() === $this) {
+                $projectImage->setProject(null);
+            }
+        }
 
         return $this;
     }

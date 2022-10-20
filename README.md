@@ -34,12 +34,13 @@
 * Custom metadata for main page
 * Project collections
 * Landing page
+* Contact me page
+* Project image gallery
 
 #### TODO
 
 1. [ ] Hire me page
-2. [ ] Contact me page finish
-3. [ ] Email sending
+2. [ ] Email sending
 
 ### Commands
 

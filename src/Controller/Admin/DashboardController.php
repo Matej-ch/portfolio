@@ -8,6 +8,7 @@ use App\Entity\Language;
 use App\Entity\MetaTag;
 use App\Entity\Project;
 use App\Entity\ProjectCollection;
+use App\Entity\ProjectImage;
 use App\Entity\ProjectState;
 use App\Entity\Service;
 use App\Entity\Tag;
@@ -56,10 +57,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Admins', 'fas fa-map-marker-alt', Admin::class);
 
         yield MenuItem::section('Project');
-        yield MenuItem::linkToCrud('Collections', 'fas fas fa-folder-open', ProjectCollection::class);
+
         yield MenuItem::linkToCrud('Projects', 'fas fa-map-marker-alt', Project::class);
-        yield MenuItem::linkToCrud('Project states', 'fas fa-sign', ProjectState::class);
+        yield MenuItem::linkToCrud('States', 'fas fa-sign', ProjectState::class);
         yield MenuItem::linkToCrud('Languages', 'fas fa-comments', Language::class);
+        yield MenuItem::linkToCrud('Images', 'fas fa-image', ProjectImage::class);
+
+        yield MenuItem::section('Collection');
+        yield MenuItem::linkToCrud('Collections', 'fas fas fa-folder-open', ProjectCollection::class);
 
         yield MenuItem::section('Site');
         yield MenuItem::linkToCrud('External sites', 'fas fa-globe', ExternalSite::class);

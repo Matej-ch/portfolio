@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -94,6 +95,9 @@ class ProjectCrudController extends AbstractCrudController
         yield FormField::addTab('Description');
         yield TextField::new('short_description')->onlyOnForms();
         yield TextEditorField::new('description')->setNumOfRows(20)->hideOnIndex();
+
+        yield FormField::addTab('Images');
+        yield CollectionField::new('projectImages');
 
         yield FormField::addTab('Tags / State');
         yield AssociationField::new('language')->autocomplete()->hideOnIndex();
