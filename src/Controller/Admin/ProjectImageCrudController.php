@@ -30,6 +30,8 @@ class ProjectImageCrudController extends AbstractCrudController
         yield ImageField::new('src')
             ->setBasePath('uploads/projects')
             ->setUploadDir('public/uploads/projects')
-            ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')->hideOnIndex();
+            ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')->hideOnIndex()
+            ->setLabel('Image');
+        yield TextField::new('alt')->setLabel('Image alt');
     }
 }

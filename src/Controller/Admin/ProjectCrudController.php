@@ -97,7 +97,10 @@ class ProjectCrudController extends AbstractCrudController
         yield TextEditorField::new('description')->setNumOfRows(20)->hideOnIndex();
 
         yield FormField::addTab('Images');
-        yield CollectionField::new('projectImages')->useEntryCrudForm(ProjectImageCrudController::class)->onlyOnForms();
+        yield CollectionField::new('projectImages')
+            ->renderExpanded()
+            ->setEntryIsComplex()
+            ->useEntryCrudForm(ProjectImageCrudController::class)->onlyOnForms();
 
         yield FormField::addTab('Tags / State');
         yield AssociationField::new('language')->autocomplete()->hideOnIndex();
