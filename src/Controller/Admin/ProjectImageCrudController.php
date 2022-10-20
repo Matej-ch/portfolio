@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\ProjectImage;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ProjectImageCrudController extends AbstractCrudController
@@ -26,5 +27,9 @@ class ProjectImageCrudController extends AbstractCrudController
     {
         yield TextField::new('title');
         yield TextField::new('caption');
+        yield ImageField::new('src')
+            ->setBasePath('uploads/projects')
+            ->setUploadDir('public/uploads/projects')
+            ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')->hideOnIndex();
     }
 }

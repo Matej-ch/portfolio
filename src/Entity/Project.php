@@ -77,7 +77,7 @@ class Project
     #[ORM\Column(options: ['default' => false])]
     private bool $isLanding = false;
 
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectImage::class)]
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectImage::class, cascade: ['persist'])]
     private Collection $projectImages;
 
     public function __construct()
