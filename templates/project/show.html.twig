@@ -56,12 +56,25 @@
             {{ project.description|raw }}
         </div>
 
+        {% if project.projectImages is not empty %}
+            <div class="image-gallery">
+                {% for image in project.projectImages %}
+                    <figure>
+                        <img src="{{ asset('uploads/projects/%s' | format(image.src)) }}" alt="{{ image.alt }}"
+                             title="{{ image.title }}">
+                        <figcaption>{{ image.caption }}</figcaption>
+                    </figure>
+
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {% if githubName is not empty and project.readmeIsEnabled %}
 
             {% set githubProjectName = project.sourceUrl|split('/')|last %}
 
-            <div class="">
-                <div class="" {{ stimulus_controller('github-readme',{
+            <div>
+                <div {{ stimulus_controller('github-readme',{
                     githubName: githubName,
                     projectName: githubProjectName
                 }) }}>

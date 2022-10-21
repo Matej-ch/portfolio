@@ -839,3 +839,27 @@ $breakpoint-tablet: 768px;
     }
   }
 }
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  /*  grid-template-rows: repeat(auto-fit, 260px);*/
+  grid-auto-flow: dense;
+  grid-gap: 0.3rem;
+
+  figure {
+    border: thin #c0c0c0 solid;
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    margin: auto;
+  }
+
+  figcaption {
+    background-color: #222;
+    color: #fff;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+  }
+}
