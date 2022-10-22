@@ -10,7 +10,8 @@ window.onload = function () {
             initialZoomLevel: 0,
             secondaryZoomLevel: 1,
             maxZoomLevel: 1,
-            bgOpacity: 0.2,
+            zoom: false,
+            bgOpacity: 0.65,
             padding: {top: 20, bottom: 40, left: 50, right: 50},
             pswpModule: () => import('photoswipe')
         });
@@ -29,11 +30,7 @@ window.onload = function () {
                         if (currSlideElement) {
                             const hiddenCaption = currSlideElement.querySelector('.hidden-caption-content');
                             if (hiddenCaption) {
-                                // get caption from element with class hidden-caption-content
                                 captionHTML = hiddenCaption.innerHTML;
-                            } else {
-                                // get caption from alt attribute
-                                captionHTML = currSlideElement.querySelector('img').getAttribute('alt');
                             }
                         }
                         el.innerHTML = captionHTML || '';

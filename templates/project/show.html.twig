@@ -60,25 +60,17 @@
             <div id="image-gallery" class="image-gallery pswp-gallery">
                 {% for image in project.projectImages %}
                     <a href="{{ asset('uploads/projects/%s' | format(image.src)) }}">
-                        <span>{{ image.title }}</span>
+                        <span class="py-1 px-1 text-left">{{ image.title }}</span>
                         <img src="{{ asset('uploads/projects/%s' | format(image.src)) }}" alt="{{ image.alt }}"
                              title="{{ image.title }}">
                         <span class="hidden-caption-content">{{ image.caption }}</span>
                     </a>
-                    {# <figure>
-                        <img src="{{ asset('uploads/projects/%s' | format(image.src)) }}" alt="{{ image.alt }}"
-                             title="{{ image.title }}">
-                        <figcaption>{{ image.caption }}</figcaption>
-                    </figure> #}
-
                 {% endfor %}
             </div>
         {% endif %}
 
         {% if githubName is not empty and project.readmeIsEnabled %}
-
             {% set githubProjectName = project.sourceUrl|split('/')|last %}
-
             <div>
                 <div {{ stimulus_controller('github-readme',{
                     githubName: githubName,
