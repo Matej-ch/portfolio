@@ -863,3 +863,27 @@ $breakpoint-tablet: 768px;
     text-align: center;
   }*/
 }
+
+.pswp__custom-caption {
+  background: rgba(59, 130, 246, 1);
+  font-size: 1em;
+  font-weight: 700;
+  color: rgba(255, 188, 0, 1);
+  width: calc(100% - 32px);
+  max-width: 400px;
+  padding: 0.5em 0.65em;
+  border-radius: 2px;
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+}
+
+.pswp__custom-caption a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.hidden-caption-content {
+  display: none;
+}
