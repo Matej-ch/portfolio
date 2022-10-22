@@ -19,6 +19,8 @@
 
 .idea
 
+/public/build/*.js.LICENSE.txt
+
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 npm-debug.log
