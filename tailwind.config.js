@@ -5,7 +5,11 @@ module.exports = {
         './assets/**/*.scss'
     ],
     theme: {
-        extend: {},
+        extend: {
+            maxWidth: {
+                '10xl': '130rem',
+            }
+        },
     },
     plugins: [
         require("@tailwindcss/forms")({
