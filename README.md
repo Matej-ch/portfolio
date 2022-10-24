@@ -36,11 +36,11 @@
 * Landing page
 * Contact me page
 * Project image gallery
+* Hire me page (on page contact)
 
 #### TODO
 
-1. [ ] Hire me page
-2. [ ] Email sending
+1. [ ] Email sending
 
 ### Commands
 
