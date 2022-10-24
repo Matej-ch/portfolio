@@ -4,79 +4,111 @@
 
 {% block body %}
 
-    <div class="grid grid-flow-row md:grid-cols-1 gap-2 lg:gap-6 px-4 lg:px-10 py-8 md:pb-8 max-w-4xl mx-auto">
-        <h3 class="text-3xl font-semibold">
-            Get in Touch
-        </h3>
-        {{ form_start(form) }}
-        <div class="flex flex-col space-y-4">
-            <div class="flex flex-col">
-                {{ form_label(form.name) }}
+    <div class="grid grid-flow-row md:grid-cols-2 gap-4 container px-4 mx-auto">
+        <div class="grid grid-flow-row md:grid-cols-1 gap-2 px-2 lg:px-0 lg:gap-6 py-8 md:pb-8">
+            <h3 class="text-3xl font-semibold">
+                Get in Touch
+            </h3>
+            {{ form_start(form) }}
+            <div class="flex flex-col space-y-4">
+                <div class="flex flex-col">
+                    {{ form_label(form.name) }}
 
-                <div class="text-red-700 text-sm">
-                    {{ form_errors(form.name) }}
+                    <div class="text-red-700 text-sm">
+                        {{ form_errors(form.name) }}
+                    </div>
+
+                    <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
+                        {{ form_widget(form.name,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
+                    </div>
+
+                </div>
+                <div class="flex flex-col">
+                    {{ form_label(form.email) }}
+
+                    <div class="text-red-700 text-sm">
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
+                        {{ form_widget(form.email,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
+                    </div>
+
                 </div>
 
-                <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
-                    {{ form_widget(form.name,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
+                <div class="flex flex-col">
+                    {{ form_label(form.website) }}
+
+                    <div class="text-red-700 text-sm">
+                        {{ form_errors(form.website) }}
+                    </div>
+
+                    <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
+                        {{ form_widget(form.website,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
+                    </div>
+
                 </div>
 
+                <div class="flex flex-col">
+                    {{ form_label(form.message) }}
+
+                    <div class="text-red-700 text-sm">
+                        {{ form_errors(form.message) }}
+                    </div>
+
+                    <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
+                        {{ form_widget(form.message,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
+                    </div>
+                </div>
+
+                <div>
+                    Please prove you are human
+                    <div class="flex flex-row gap-2">
+                        {{ form_widget(form.captcha,{attr: {class: 'px-4 py-3 w-full border-none bg-transparent outline-none focus:outline-none ring-2 ring-slate-300 rounded'}}) }}
+                    </div>
+                </div>
+
+                <div class="flex flex-row gap-2 items-center">
+                    <button type="submit" class="btn btn-success ease-linear transition-all duration-150">
+                        {{ button_label|default('Send') }}
+                    </button>
+                    <span> or write with <a class="text-blue-800 font-bold"
+                                            href="mailto:{{ userInfo.decodedData.work_email }}">mail client</a></span>
+                </div>
             </div>
-            <div class="flex flex-col">
-                {{ form_label(form.email) }}
-
-                <div class="text-red-700 text-sm">
-                    {{ form_errors(form.email) }}
-                </div>
-
-                <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
-                    {{ form_widget(form.email,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
-                </div>
-
-            </div>
-
-            <div class="flex flex-col">
-                {{ form_label(form.website) }}
-
-                <div class="text-red-700 text-sm">
-                    {{ form_errors(form.website) }}
-                </div>
-
-                <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
-                    {{ form_widget(form.website,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
-                </div>
-
-            </div>
-
-            <div class="flex flex-col">
-                {{ form_label(form.message) }}
-
-                <div class="text-red-700 text-sm">
-                    {{ form_errors(form.message) }}
-                </div>
-
-                <div class="w-full rounded bg-slate-50 px-4 ring-2 ring-slate-300">
-                    {{ form_widget(form.message,{attr: {class: 'my-3 w-full border-none bg-transparent outline-none focus:outline-none'}}) }}
-                </div>
-            </div>
-
-            <div>
-                Please prove you are human
-                <div class="flex flex-row gap-2">
-                    {{ form_widget(form.captcha,{attr: {class: 'px-4 py-3 w-full border-none bg-transparent outline-none focus:outline-none ring-2 ring-slate-300 rounded'}}) }}
-                </div>
-            </div>
-
-            <div class="flex flex-row gap-2 items-center">
-                <button type="submit" class="btn btn-success ease-linear transition-all duration-150">
-                    {{ button_label|default('Send') }}
-                </button>
-                <span> or write with <a class="text-blue-800 font-bold"
-                                        href="mailto:{{ userInfo.decodedData.work_email }}">mail client</a></span>
-            </div>
+            {{ form_end(form) }}
         </div>
-        {{ form_end(form) }}
+
+        <div class="grid grid-flow-row md:grid-cols-1 gap-2 px-2 lg:px-0 lg:gap-0 py-8 md:pb-8">
+            <h3 class="text-2xl font-semibold text-center">
+                Hire me
+            </h3>
+
+            {% if userInfo.decodedData.hasFiverr %}
+                <div itemscope itemtype='http://schema.org/Person' class='fiverr-seller-widget text-center'
+                     style='display: inline-block;'>
+                    <a itemprop='url' href=https://www.fiverr.com/matej_ch rel="nofollow" target="_blank"
+                       style='display: inline-block;'>
+                        <div class='fiverr-seller-content'
+                             id='fiverr-seller-widget-content-20540556-f167-48a5-b057-2fb68c86eaf4'
+                             itemprop='contentURL'
+                             style='display: none;'></div>
+                        <div id='fiverr-widget-seller-data' style='display: none;'>
+                            <div itemprop='name'>matej_ch</div>
+                            <div itemscope itemtype='http://schema.org/Organization'><span itemprop='name'>Fiverr</span>
+                            </div>
+                            <div itemprop='jobtitle'>Seller</div>
+                            <div itemprop='description'>I am web developer for over 7 years.
+                                In my free time I enjoy biking, hiking and working on my own web projects
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
     </div>
+
+
 
     <turbo-frame id="user-services" src="{{ path('app_user_services') }}" loading="lazy" class="w-full">
         Loading services...
@@ -100,5 +132,17 @@
             {% endif %}
 
         {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    {% if userInfo.decodedData.hasFiverr %}
+        <script id='fiverr-seller-widget-script-20540556-f167-48a5-b057-2fb68c86eaf4'
+                src='https://widgets.fiverr.com/api/v1/seller/matej_ch?widget_id=20540556-f167-48a5-b057-2fb68c86eaf4'
+                data-config='{"category_name":"Programming \u0026 Tech"}' async='true' defer='true'></script>
     {% endif %}
 {% endblock %}

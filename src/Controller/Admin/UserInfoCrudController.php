@@ -48,6 +48,9 @@ class UserInfoCrudController extends AbstractCrudController
             ->setHelp('Write something about yourself. Text in `Who am i` section on projects page');
         yield BooleanField::new('is_active')->renderAsSwitch(false)->setHelp('Whether this user info is used on portfolio page, only one user info can be active at once');
 
+        yield FormField::addTab('Hire me');
+        yield BooleanField::new('hasFiverr')->setHelp('Show fiverr widget on contact page')->onlyOnForms();
+
         yield FormField::addTab('Services');
         yield AssociationField::new('service')->hideOnIndex();
     }

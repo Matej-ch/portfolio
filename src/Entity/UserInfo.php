@@ -254,4 +254,18 @@ class UserInfo
 
         return $this;
     }
+
+    public function getHasFiverr(): ?bool
+    {
+        return (bool)($this->decodedData['hasFiverr'] ?? false);
+    }
+
+    public function setHasFiverr(bool $hasFiverr): self
+    {
+        $this->decodedData['hasFiverr'] = $hasFiverr;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
 }
