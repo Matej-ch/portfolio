@@ -255,14 +255,56 @@ class UserInfo
         return $this;
     }
 
-    public function getHasFiverr(): ?bool
+    public function getFiverrEnable(): ?bool
     {
-        return (bool)($this->decodedData['hasFiverr'] ?? false);
+        return $this->decodedData['fiverr']['enable'] ?? false;
     }
 
-    public function setHasFiverr(bool $hasFiverr): self
+    public function getFiverrHtml(): ?string
     {
-        $this->decodedData['hasFiverr'] = $hasFiverr;
+        return $this->decodedData['fiverr']['html'] ?? '';
+    }
+
+    public function getFiverrId(): ?string
+    {
+        return $this->decodedData['fiverr']['id'] ?? '';
+    }
+
+    public function getFiverrSrc(): ?string
+    {
+        return $this->decodedData['fiverr']['src'] ?? '';
+    }
+
+    public function setFiverrEnable(bool $enable): self
+    {
+        $this->decodedData['fiverr']['enable'] = $enable;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setFiverrHtml(string $html): self
+    {
+        $this->decodedData['fiverr']['html'] = $html;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setFiverrId(string $id): self
+    {
+        $this->decodedData['fiverr']['id'] = $id;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setFiverrSrc(string $src): self
+    {
+        $this->decodedData['fiverr']['src'] = $src;
 
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 

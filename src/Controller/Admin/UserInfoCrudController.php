@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -49,7 +50,10 @@ class UserInfoCrudController extends AbstractCrudController
         yield BooleanField::new('is_active')->renderAsSwitch(false)->setHelp('Whether this user info is used on portfolio page, only one user info can be active at once');
 
         yield FormField::addTab('Hire me');
-        yield BooleanField::new('hasFiverr')->setHelp('Show fiverr widget on contact page')->onlyOnForms();
+        yield BooleanField::new('fiverrEnable')->setLabel('Enable fiverr')->setHelp('Show fiverr widget on contact page')->onlyOnForms();
+        yield TextareaField::new('fiverrHtml')->setLabel('Fiverr html')->setHelp('This is html from your fiverr profile')->setNumOfRows(10)->onlyOnForms();
+        yield TextField::new('fiverrId')->setLabel('Script id')->setHelp('ID on script tag from your fiverr profile')->onlyOnForms();
+        yield TextField::new('fiverrSrc')->setLabel('Script src')->setHelp('Source (url) on script tag from your fiverr profile')->onlyOnForms();
 
         yield FormField::addTab('Services');
         yield AssociationField::new('service')->hideOnIndex();

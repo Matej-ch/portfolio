@@ -84,26 +84,8 @@
                 Hire me
             </h3>
 
-            {% if userInfo.decodedData.hasFiverr %}
-                <div itemscope itemtype='http://schema.org/Person' class='fiverr-seller-widget text-center'
-                     style='display: inline-block;'>
-                    <a itemprop='url' href=https://www.fiverr.com/matej_ch rel="nofollow" target="_blank"
-                       style='display: inline-block;'>
-                        <div class='fiverr-seller-content'
-                             id='fiverr-seller-widget-content-20540556-f167-48a5-b057-2fb68c86eaf4'
-                             itemprop='contentURL'
-                             style='display: none;'></div>
-                        <div id='fiverr-widget-seller-data' style='display: none;'>
-                            <div itemprop='name'>matej_ch</div>
-                            <div itemscope itemtype='http://schema.org/Organization'><span itemprop='name'>Fiverr</span>
-                            </div>
-                            <div itemprop='jobtitle'>Seller</div>
-                            <div itemprop='description'>I am web developer for over 7 years.
-                                In my free time I enjoy biking, hiking and working on my own web projects
-                            </div>
-                        </div>
-                    </a>
-                </div>
+            {% if userInfo.decodedData.fiverr.enable %}
+                {{ userInfo.decodedData.fiverr.html | raw }}
             {% endif %}
         </div>
     </div>
@@ -140,9 +122,9 @@
 
     {{ parent() }}
 
-    {% if userInfo.decodedData.hasFiverr %}
-        <script id='fiverr-seller-widget-script-20540556-f167-48a5-b057-2fb68c86eaf4'
-                src='https://widgets.fiverr.com/api/v1/seller/matej_ch?widget_id=20540556-f167-48a5-b057-2fb68c86eaf4'
+    {% if userInfo.decodedData.fiverr.enable %}
+        <script id='{{ userInfo.decodedData.fiverr.id }}'
+                src='{{ userInfo.decodedData.fiverr.src }}'
                 data-config='{"category_name":"Programming \u0026 Tech"}' async='true' defer='true'></script>
     {% endif %}
 {% endblock %}
