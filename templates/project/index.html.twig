@@ -20,7 +20,7 @@
                        aria-label="Project detail link">
                         {% if project.bgImg %}
                             <img width="400"
-                                 class="h-32 lg:h-48"
+                                 class="h-32 lg:h-48 w-full"
                                  src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}"
                                  alt="image of {{ project.name }}">
                         {% else %}

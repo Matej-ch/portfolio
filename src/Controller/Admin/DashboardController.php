@@ -51,8 +51,14 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToUrl('Homepage', 'fas fa-home', $this->generateUrl('app_projects'));
+        yield MenuItem::section('Frontend');
+        yield MenuItem::linkToUrl('Landing', 'fas fa-home', $this->generateUrl('app_landing'));
+        yield MenuItem::linkToUrl('Projects', 'fas fa-project-diagram', $this->generateUrl('app_projects'));
+        yield MenuItem::linkToUrl('Collections', 'fas fa-layer-group', $this->generateUrl('app_collections'));
+        yield MenuItem::linkToUrl('About me', 'fas fa-id-card', $this->generateUrl('app_about'));
+        yield MenuItem::linkToUrl('Contact', 'fas fa-address-book', $this->generateUrl('app_contact'));
 
+        yield MenuItem::section('User');
         yield MenuItem::linkToCrud('User info', 'fas fa-map-marker-alt', UserInfo::class);
         yield MenuItem::linkToCrud('Admins', 'fas fa-map-marker-alt', Admin::class);
 
