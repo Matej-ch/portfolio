@@ -16,15 +16,16 @@
             {% for project in projects %}
                 <div class="project relative">
 
-                    <a class="project__header" href="{{ path('app_project_show',{slug:project.slug}) }}"
+                    <a class="project__header mx-auto" href="{{ path('app_project_show',{slug:project.slug}) }}"
                        aria-label="Project detail link">
                         {% if project.bgImg %}
-                            <img width="400"
-                                 class="h-32 lg:h-48 w-full"
-                                 src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}"
-                                 alt="image of {{ project.name }}">
+                            <img
+                                    class="max-h-32 lg:max-h-48"
+                                    src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}"
+                                    alt="image of {{ project.name }}">
                         {% else %}
-                            <img src="https://via.placeholder.com/400x200/FFFFFF/FFFFFF" alt="image is missing">
+                            <img src="https://via.placeholder.com/400x200/FFFFFF/FFFFFF" alt="placeholder image"
+                                 class="max-h-32 lg:max-h-48">
                         {% endif %}
                     </a>
 
