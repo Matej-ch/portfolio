@@ -30,12 +30,12 @@
                     </a>
 
                     <div class="project__body px-2">
-                        <div class="py-2">
+                        <div class="py-2 mb-auto">
                             <a class="text-slate-700 hover:text-blue-900 font-bold text-xl"
                                href="{{ path('app_project_show',{slug:project.slug}) }}">{{ project.name }}</a>
-                        </div>
 
-                        <div class="text-slate-600 py-2">{{ project.shortDescription }}</div>
+                            <div class="text-slate-600 py-2">{{ project.shortDescription }}</div>
+                        </div>
 
                         {% if project.language|length > 0 %}
                             <div class="mt-2 py-2 border-t border-slate-100 text-center">
