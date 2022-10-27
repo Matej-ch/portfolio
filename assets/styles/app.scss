@@ -151,6 +151,14 @@ header, main, footer {
   @apply border-b-0;
 }
 
+.project-description {
+  menu, ol, ul {
+    list-style: unset;
+    margin: revert;
+    padding: revert;
+  }
+}
+
 .project {
 
   @apply bg-white rounded flex flex-col;
