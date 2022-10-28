@@ -20,11 +20,24 @@ const TurboHelper = class {
                 }
                 event.detail.newBody.classList.add('turbo-loading');
             }
+
+            if (document.querySelector('.js-fiver-script')) {
+                const fiverrScript = document.querySelector('.js-fiver-script');
+                
+                const script = document.createElement('script');
+                script.setAttribute('src', fiverrScript.src);
+                script.setAttribute('async', 'true');
+                script.setAttribute('defer', 'true');
+                script.id = fiverrScript.id;
+                script.classList.add('js-fiver-script');
+                script.dataset.config = fiverrScript.dataset.config;
+                fiverrScript.remove();
+                document.head.appendChild(script);
+            }
         });
 
         document.addEventListener('turbo:render', (event) => {
             if (!this.isPreviewRendered()) {
-
                 requestAnimationFrame(() => {
                     document.body.classList.remove('turbo-loading');
                 });
