@@ -84,6 +84,36 @@
                 Hire me
             </h3>
 
+            {% if userInfo.decodedData.upwork.enable %}
+                <div itemscope itemtype='http://schema.org/Person' class='upwork-seller-widget text-center'
+                     style='display: inline-block;'>
+                    <a itemprop='url' href="{{ userInfo.decodedData.upwork.src }}" rel="nofollow" target="_blank"
+                       style='display: inline-block;'>
+                        <div class="upwork-seller-content" itemprop="contentURL" style="display: inline-block;">
+                            <div class="crop">
+                                <img src="{{ asset('uploads/users/%s' | format(userInfo.avatar|default('https://via.placeholder.com/150'))) | default('https://via.placeholder.com/150') }}"
+                                     class="upwork-profile-img">
+                                <div class="overlay"></div>
+                            </div>
+                            <img src="https://d2nb1f6l8b7ky0.cloudfront.net/fiverr_icon.png" class="upwork-icon">
+                            <div class="upwork-seller-text">Freelancer</div>
+                            <div class="upwork-seller-category"> Web development</div>
+                            <div class="upwork-rating-stars" style="display: block;"></div>
+                            <div class="check-gigs-btn">Hire me</div>
+                        </div>
+                        <div style='display: none;'>
+                            <div itemprop='name'>matej_ch</div>
+                            <div itemscope itemtype='http://schema.org/Organization'><span itemprop='name'>Upwork</span>
+                            </div>
+                            <div itemprop='jobtitle'>Seller</div>
+                            <div itemprop='description'>I am web developer for over 7 years.
+                                In my free time I enjoy biking, hiking and working on my own web projects
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+
             {% if userInfo.decodedData.fiverr.enable %}
                 {{ userInfo.decodedData.fiverr.html | raw }}
             {% endif %}

@@ -275,9 +275,28 @@ class UserInfo
         return $this->decodedData['fiverr']['src'] ?? '';
     }
 
+    public function getUpworkEnable(): ?bool
+    {
+        return $this->decodedData['upwork']['enable'] ?? false;
+    }
+
+    public function getUpworkSrc(): ?string
+    {
+        return $this->decodedData['upwork']['src'] ?? '';
+    }
+
     public function setFiverrEnable(bool $enable): self
     {
         $this->decodedData['fiverr']['enable'] = $enable;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setUpworkEnable(bool $enable): self
+    {
+        $this->decodedData['upwork']['enable'] = $enable;
 
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 
@@ -305,6 +324,15 @@ class UserInfo
     public function setFiverrSrc(string $src): self
     {
         $this->decodedData['fiverr']['src'] = $src;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setUpworkSrc(string $src): self
+    {
+        $this->decodedData['upwork']['src'] = $src;
 
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 
