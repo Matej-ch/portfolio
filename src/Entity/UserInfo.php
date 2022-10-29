@@ -285,6 +285,11 @@ class UserInfo
         return $this->decodedData['upwork']['src'] ?? '';
     }
 
+    public function getUpworkLogo(): ?string
+    {
+        return $this->decodedData['upwork']['logo'] ?? '';
+    }
+
     public function setFiverrEnable(bool $enable): self
     {
         $this->decodedData['fiverr']['enable'] = $enable;
@@ -333,6 +338,15 @@ class UserInfo
     public function setUpworkSrc(string $src): self
     {
         $this->decodedData['upwork']['src'] = $src;
+
+        $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
+
+        return $this;
+    }
+
+    public function setUpworkLogo(string $src): self
+    {
+        $this->decodedData['upwork']['logo'] = $src;
 
         $this->data = json_encode($this->decodedData, JSON_THROW_ON_ERROR);
 

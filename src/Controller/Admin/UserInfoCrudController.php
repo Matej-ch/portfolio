@@ -60,9 +60,15 @@ class UserInfoCrudController extends AbstractCrudController
         yield TextField::new('fiverrId')->setLabel('Script id')->setHelp('ID on script tag from your fiverr profile')->onlyOnForms();
         yield TextField::new('fiverrSrc')->setLabel('Script src')->setHelp('Source (url) on script tag from your fiverr profile')->onlyOnForms();
 
+
         yield FormField::addPanel('Upwork');
         yield BooleanField::new('upworkEnable')->setLabel('Enable upwork')->setHelp('Show upwork widget on contact page')->onlyOnForms();
         yield TextField::new('upworkSrc')->setLabel('Profile url')->setHelp('Profile (url) from upwork settings')->onlyOnForms();
+        yield ImageField::new('upworkLogo')->setLabel('Upwork logo')->setHelp('Upwork logo to show on widget')
+            ->setBasePath('uploads/users')
+            ->setUploadDir('public/uploads/users')
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+            ->onlyOnForms();
 
         yield FormField::addTab('Services');
         yield AssociationField::new('service')->hideOnIndex();

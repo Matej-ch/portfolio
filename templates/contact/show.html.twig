@@ -95,7 +95,8 @@
                                      class="upwork-profile-img">
                                 <div class="overlay"></div>
                             </div>
-                            <img src="https://d2nb1f6l8b7ky0.cloudfront.net/fiverr_icon.png" class="upwork-icon">
+                            <img src="{{ asset('uploads/users/%s' | format(userInfo.decodedData.upwork.logo|default('https://via.placeholder.com/76'))) | default('https://via.placeholder.com/76') }}"
+                                 class="upwork-icon">
                             <div class="upwork-seller-text">Freelancer</div>
                             <div class="upwork-seller-category"> Web development</div>
                             <div class="upwork-rating-stars" style="display: block;"></div>
