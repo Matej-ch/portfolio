@@ -32,7 +32,7 @@ class Project
     #[ORM\Column(type: 'integer', nullable: false, options: ['default' => 1])]
     private int $isActive = 1;
 
-    #[ORM\Column(type: 'string', length: 1024, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(type: 'string', length: 100, unique: true)]
