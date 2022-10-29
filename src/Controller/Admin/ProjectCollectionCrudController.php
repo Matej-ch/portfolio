@@ -28,6 +28,9 @@ class ProjectCollectionCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Collections')
             ->setSearchFields(['name', 'description'])
             ->setDefaultSort(['id' => 'DESC'])
+            ->setPageTitle(Crud::PAGE_EDIT, static function (ProjectCollection $project) {
+                return sprintf('Edit %s', $project->getName());
+            })
             ->setPageTitle(Crud::PAGE_DETAIL, static function (ProjectCollection $project) {
                 return sprintf('Collection: %s', $project->getName());
             });
