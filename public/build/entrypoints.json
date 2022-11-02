@@ -7,7 +7,7 @@
         "/build/app.7d7e6213.js"
       ],
       "css": [
-        "/build/app.cd7752ae.css"
+        "/build/app.c88f4c74.css"
       ]
     },
     "shapes": {
@@ -24,6 +24,12 @@
       ],
       "css": [
         "/build/gallery.5d1f5c6c.css"
+      ]
+    },
+    "textareaField": {
+      "js": [
+        "/build/runtime.aba0209a.js",
+        "/build/textareaField.5b45d8b4.js"
       ]
     }
   }

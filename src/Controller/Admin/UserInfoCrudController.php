@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\UserInfo;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -53,9 +54,9 @@ class UserInfoCrudController extends AbstractCrudController
         yield FormField::addPanel('Fiverr');
         yield BooleanField::new('fiverrEnable')->setLabel('Enable fiverr')->setHelp('Show fiverr widget on contact page')->onlyOnForms();
         yield TextareaField::new('fiverrHtml')->setLabel('Fiverr html')
-            ->addCssClass('overflow-auto')
             ->setHelp('This is html from your fiverr profile')
-            ->setNumOfRows(20)
+            ->addWebpackEncoreEntries('textareaField')
+            ->setCssClass('js-textarea-container-with-overflow')
             ->onlyOnForms();
         yield TextField::new('fiverrId')->setLabel('Script id')->setHelp('ID on script tag from your fiverr profile')->onlyOnForms();
         yield TextField::new('fiverrSrc')->setLabel('Script src')->setHelp('Source (url) on script tag from your fiverr profile')->onlyOnForms();
