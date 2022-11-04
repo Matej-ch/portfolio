@@ -1,5 +1,5 @@
 {
-  "build/app.css": "/build/app.c88f4c74.css",
+  "build/app.css": "/build/app.3df02633.css",
   "build/app.js": "/build/app.7d7e6213.js",
   "build/shapes.js": "/build/shapes.9fd8a1c5.js",
   "build/gallery.css": "/build/gallery.5d1f5c6c.css",
@@ -24,5 +24,9 @@
   "build/fonts/fa-brands-400.woff": "/build/fonts/fa-brands-400.2285773e.woff",
   "build/fonts/fa-solid-900.woff2": "/build/fonts/fa-solid-900.1551f4f6.woff2",
   "build/fonts/fa-brands-400.woff2": "/build/fonts/fa-brands-400.d878b0a6.woff2",
-  "build/images/services-bc.webp": "/build/images/services-bc.2a3ecb4c.webp"
+  "build/images/services-bc.webp": "/build/images/services-bc.2a3ecb4c.webp",
+  "build/fonts/l7gfbjR61M69yt8Z2QKtlA.woff2": "/build/fonts/l7gfbjR61M69yt8Z2QKtlA.75c7d904.woff2",
+  "build/fonts/0nksC9P7MfYHj2oFtYm2ChTtgPs.woff2": "/build/fonts/0nksC9P7MfYHj2oFtYm2ChTtgPs.ab46dc2b.woff2",
+  "build/fonts/0nksC9P7MfYHj2oFtYm2ChTjgPvNiA.woff2": "/build/fonts/0nksC9P7MfYHj2oFtYm2ChTjgPvNiA.aa97b758.woff2",
+  "build/fonts/l7gfbjR61M69yt8Z2QytlBfK.woff2": "/build/fonts/l7gfbjR61M69yt8Z2QytlBfK.ab6575a8.woff2"
 }
