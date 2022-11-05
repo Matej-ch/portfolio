@@ -3,7 +3,7 @@ snc_redis:
     default:
       type: phpredis
       alias: default
-      dsn: redis://localhost:6379
+      dsn: redis://localhost
       #logging: '%kernel.debug%'
 
 # Define your clients here. The example below connects to database 0 of the default Redis server.
