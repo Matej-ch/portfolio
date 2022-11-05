@@ -24,7 +24,7 @@ class ProjectCollectionController extends AbstractController
             'collections' => $paginator,
             'previous' => $offset - ProjectRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProjectRepository::PAGINATOR_PER_PAGE),
-            'metaTags' => $metaTagParser->parse('app_projects')
+            'metaTags' => $metaTagParser->parse('app_collections')
         ]);
     }
 
@@ -33,7 +33,7 @@ class ProjectCollectionController extends AbstractController
     {
         return $this->render('collection/show.html.twig', [
             'collection' => $collection,
-            'metaTags' => $metaTagParser->parse('app_project_show'),
+            'metaTags' => $metaTagParser->parse('app_collection_show'),
         ]);
     }
 }

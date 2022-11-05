@@ -6,6 +6,7 @@ use App\Repository\ExternalSiteRepository;
 use App\Repository\ProjectCollectionRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\UserInfoRepository;
+use App\Service\MetaTagParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,8 @@ class LandingController extends AbstractController
         ProjectRepository           $projectRepository,
         ExternalSiteRepository      $externalSiteRepository,
         ProjectCollectionRepository $projectCollectionRepository,
-        CacheInterface              $cache): Response
+        CacheInterface              $cache,
+        MetaTagParser               $metaTagParser): Response
     {
 
         $sites = $cache->get("external.sites", function (ItemInterface $item) use ($externalSiteRepository) {
@@ -50,6 +52,7 @@ class LandingController extends AbstractController
             'projects' => $projects,
             'collections' => $collections,
             'sites' => $sites,
+            'metaTags' => $metaTagParser->parse('app_landing'),
         ]);
     }
 }
