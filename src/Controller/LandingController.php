@@ -37,7 +37,7 @@ class LandingController extends AbstractController
             return $userInfoRepository->findActive();
         });
 
-        $projects = $cache->get("projects", function (ItemInterface $item) use ($projectRepository) {
+        /*$projects = $cache->get("projects", function (ItemInterface $item) use ($projectRepository) {
             $item->expiresAfter(7200);
             return $projectRepository->findLanding();
         });
@@ -45,12 +45,12 @@ class LandingController extends AbstractController
         $collections = $cache->get("project.collection", function (ItemInterface $item) use ($projectCollectionRepository) {
             $item->expiresAfter(7200);
             return $projectCollectionRepository->findLanding();
-        });
+        });*/
 
         return $this->render('landing/index.html.twig', [
             'userInfo' => $userInfo,
-            'projects' => $projects,
-            'collections' => $collections,
+            'projects' => $projects ?? [],
+            'collections' => $collections ?? [],
             'sites' => $sites,
             'metaTags' => $metaTagParser->parse('app_landing'),
         ]);
