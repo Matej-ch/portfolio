@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Project;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -76,6 +77,6 @@ class ProjectRepository extends ServiceEntityRepository
         return $this->addIsActiveQueryBuilder($qb)
             ->andWhere('p.isLanding = :is_landing')->setParameter('is_landing', 1)
             ->getQuery()
-            ->getResult();
+            ->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 }

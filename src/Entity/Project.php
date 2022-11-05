@@ -63,7 +63,7 @@ class Project
     private ?string $shortDescription = null;
 
     #[ORM\ManyToOne(targetEntity: ProjectState::class, inversedBy: 'projects')]
-    private ?Collection $projectState = null;
+    private Collection $projectState;
 
     #[ORM\Column(nullable: true)]
     private ?bool $readmeIsEnabled = false;
@@ -283,12 +283,12 @@ class Project
         $this->updatedAt = new \DateTime(date('Y-m-d H:i:s'));
     }
 
-    public function getProjectState(): ?Collection
+    public function getProjectState(): Collection
     {
         return $this->projectState;
     }
 
-    public function setProjectState(?ProjectState $projectState): self
+    public function setProjectState(Collection $projectState): self
     {
         $this->projectState = $projectState;
 

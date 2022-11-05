@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ProjectCollection;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -65,6 +66,6 @@ class ProjectCollectionRepository extends ServiceEntityRepository
             ->addSelect('project')
             ->setParameter('is_landing', 1)
             ->getQuery()
-            ->getResult();
+            ->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 }
