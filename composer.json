@@ -25,6 +25,7 @@
     "scheb/2fa-totp": "6",
     "sensio/framework-extra-bundle": "^6.1",
     "sentry/sentry-symfony": "^4.2",
+    "snc/redis-bundle": "^4.3",
     "symfony/apache-pack": "^1.0",
     "symfony/asset": "6.1.*",
     "symfony/cache": "6.1.*",
