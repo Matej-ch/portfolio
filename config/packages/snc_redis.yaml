@@ -1,17 +1,18 @@
-snc_redis:
-  clients:
-    default:
-      type: phpredis
-      alias: default
-      dsn: redis://localhost
-      #logging: '%kernel.debug%'
+when@prod:
+  snc_redis:
+    clients:
+      default:
+        type: phpredis
+        alias: default
+        dsn: redis://localhost
+        #logging: '%kernel.debug%'
 
-# Define your clients here. The example below connects to database 0 of the default Redis server.
-#
-# See https://github.com/snc/SncRedisBundle/blob/master/docs/README.md for instructions on
-# how to configure the bundle.
-#
-#        default:
-#            type: phpredis
-#            alias: default
-#            dsn: redis://localhost:6379
+  # Define your clients here. The example below connects to database 0 of the default Redis server.
+  #
+  # See https://github.com/snc/SncRedisBundle/blob/master/docs/README.md for instructions on
+  # how to configure the bundle.
+  #
+  #        default:
+  #            type: phpredis
+  #            alias: default
+  #            dsn: redis://localhost:6379
