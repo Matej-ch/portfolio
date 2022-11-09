@@ -52,6 +52,24 @@
                  alt="{{ project.name }} image">
         {% endif %}
 
+        <div class="w-full flex flex-wrap gap-2 mt-4 py-4">
+
+            {% for language in project.language %}
+                {% if language.icon|length %}
+                    <a href="{{ path('app_projects', { q: language.name }) }}">
+                        <img width="35" height="35" style="max-width: 35px;height: auto"
+                             src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
+                             alt="{{ language.name }}">
+                    </a>
+
+                {% else %}
+                    <a class="btn-sm btn-gold"
+                       style="display: flex;align-items: center"
+                       href="{{ path('app_projects', { q: language.name }) }}">{{ language.name }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
         <div class="py-6 project-description">
             {{ project.description|raw }}
         </div>
@@ -82,27 +100,9 @@
         {% endif %}
 
 
-        <h2 class="text-xl leading-10 text-slate-700 font-bold border-b-2 border-slate-300 mb-2">Technical Sheet</h2>
+        <h2 class="text-xl leading-10 text-slate-700 font-bold border-b border-slate-300 pt-4">Project tags</h2>
 
-        <div class="w-full flex flex-wrap gap-2 mt-4 py-4">
-
-            {% for language in project.language %}
-                {% if language.icon|length %}
-                    <a href="{{ path('app_projects', { q: language.name }) }}">
-                        <img width="50" height="50" style="max-width: 50px;height: auto"
-                             src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
-                             alt="{{ language.name }}">
-                    </a>
-
-                {% else %}
-                    <a class="btn-sm btn-gold"
-                       href="{{ path('app_projects', { q: language.name }) }}">{{ language.name }}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-
-        <div class="py-4 border-t border-slate-300 text-center">
+        <div class="py-4 text-center">
             <div class="w-full flex flex-wrap gap-1">
                 {% for tag in project.tags %}
                     <a class="tag" href="{{ path('app_projects', { q: tag.name }) }}">{{ tag.name }}</a>
@@ -111,9 +111,10 @@
         </div>
 
         {% if project.collections|length %}
-            <div class="pt-10 pb-6 border-t border-slate-300 text-center">
-                <h3 class="font-bold text-slate-700 text-xl text-left border-b-2 mb-2">Collections containing
-                    project</h3>
+            <div class="pt-4 pb-6 text-center">
+                <h3 class="font-bold text-slate-700 text-xl text-left border-b border-slate-300 mb-2">
+                    Collections with project
+                </h3>
                 <div class="w-full flex flex-wrap gap-1">
                     {% for collection in project.collections %}
                         <a class="tag"
