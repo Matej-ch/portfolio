@@ -39,12 +39,22 @@ class ContactController extends AbstractController
     }
 
     #[Route('/contact', name: 'app_contact')]
-    public function show(Request $request, MetaTagParser $metaTagParser, UserInfoRepository $userInfoRepository): Response
+    public function show(Request $request, MetaTagParser $metaTagParser, UserInfoRepository $userInfoRepository, string $adminEmail): Response
     {
+
         $form = $this->getForm($request);
+
+        $userInfo = $userInfoRepository->findActive();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+
+            $email = (new \Symfony\Component\Mime\Email())
+                ->from($adminEmail)
+                ->to($userInfo->getWorkEmail())
+                ->subject("Contact from {$data['name']}")
+                ->text("{$data['name']} with email {$data['email']}" . $data['message'] . ". From website {$data['website']}");
+            dd($data);
 
             if ($request->get('fetch')) {
                 return new Response(null, 204);
@@ -54,7 +64,7 @@ class ContactController extends AbstractController
         return $this->render('contact/show.html.twig', [
             'form' => $form->createView(),
             'metaTags' => $metaTagParser->parse('app_contact'),
-            'userInfo' => $userInfoRepository->findActive()
+            'userInfo' => $userInfo
         ], new Response(null, $form->isSubmitted() ? 422 : 200));
     }
 
@@ -76,8 +86,8 @@ class ContactController extends AbstractController
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
-                'label' => 'Email',
-                'attr' => ['placeholder' => 'Email'],
+                'label' => 'Your email',
+                'attr' => ['placeholder' => 'Your email'],
                 'constraints' => [
                     new Email(),
                     new Length(['min' => 3]),
