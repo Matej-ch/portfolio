@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\UserInfoRepository;
 use App\Service\MetaTagParser;
 use Gregwar\CaptchaBundle\Type\CaptchaType;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -12,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
@@ -39,7 +42,7 @@ class ContactController extends AbstractController
     }
 
     #[Route('/contact', name: 'app_contact')]
-    public function show(Request $request, MetaTagParser $metaTagParser, UserInfoRepository $userInfoRepository, string $adminEmail): Response
+    public function show(Request $request, MetaTagParser $metaTagParser, UserInfoRepository $userInfoRepository, MailerInterface $mailer, string $adminEmail): Response
     {
 
         $form = $this->getForm($request);
@@ -49,12 +52,17 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $email = (new \Symfony\Component\Mime\Email())
-                ->from($adminEmail)
-                ->to($userInfo->getWorkEmail())
+            $email = (new TemplatedEmail())
+                ->from(new Address($adminEmail, $data['name']))
+                ->to(new Address($userInfo->getWorkEmail(), $userInfo->getName()))
                 ->subject("Contact from {$data['name']}")
-                ->text("{$data['name']} with email {$data['email']}" . $data['message'] . ". From website {$data['website']}");
-            dd($data);
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context(['name' => $data['name'],
+                    'email' => $data['email'],
+                    'message' => $data['message'],
+                    'website' => $data['website']]);
+
+            $mailer->send($email);
 
             if ($request->get('fetch')) {
                 return new Response(null, 204);
