@@ -25,6 +25,16 @@
     {% endblock %}
 
     <main>
+
+        {% for flash in app.flashes('success') %}
+            <div class="bg-emerald-300 text-emerald-800 p-4 rounded border-emerald-800 border mx-2 font-bold">{{ flash }}
+            </div>
+        {% endfor %}
+        {% for flash in app.flashes('danger') %}
+            <div class="bg-red-300 text-red-800 p-4 rounded border-red-800 border mx-2 font-bold">{{ flash }}
+            </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
     </main>
 

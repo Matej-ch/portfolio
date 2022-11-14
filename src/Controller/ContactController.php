@@ -23,12 +23,28 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class ContactController extends AbstractController
 {
     #[Route('/contact-modal', name: 'app_contact_modal')]
-    public function contactModal(Request $request): Response
+    public function contactModal(Request $request, UserInfoRepository $userInfoRepository, MailerInterface $mailer, string $adminEmail): Response
     {
         $form = $this->getForm($request);
 
+        $userInfo = $userInfoRepository->findActive();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+
+            $email = (new TemplatedEmail())
+                ->from(new Address($adminEmail, $data['name']))
+                ->to(new Address($userInfo->getWorkEmail(), $userInfo->getName()))
+                ->subject("Contact from {$data['name']}")
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context(['name' => $data['name'],
+                    'contactEmail' => $data['email'],
+                    'message' => $data['message'],
+                    'website' => $data['website']]);
+
+            $mailer->send($email);
+
+            $this->addFlash('success', 'Email sent');
 
             if ($request->get('fetch')) {
                 return new Response(null, 204);
@@ -58,11 +74,13 @@ class ContactController extends AbstractController
                 ->subject("Contact from {$data['name']}")
                 ->htmlTemplate('emails/contact.html.twig')
                 ->context(['name' => $data['name'],
-                    'email' => $data['email'],
+                    'contactEmail' => $data['email'],
                     'message' => $data['message'],
                     'website' => $data['website']]);
 
             $mailer->send($email);
+
+            $this->addFlash('success', 'Email sent');
 
             if ($request->get('fetch')) {
                 return new Response(null, 204);
