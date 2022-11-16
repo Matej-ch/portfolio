@@ -14,13 +14,14 @@
               "768": {"slidesPerView": 4,"spaceBetween": 10},
               "1024": {"slidesPerView": 5,"spaceBetween": 10}}}'
         }) }}
-                class="swiper">
+                class="swiper" style="max-width: 80rem">
             <div class="swiper-wrapper">
                 {% for project in projects %}
                     <div class="swiper-slide">
                         {% if project.bgImg %}
-                            <div class="card"
-                                 style="--background: url({{ asset('uploads/projects/%s' | format(project.bgImg)) }})">
+                            <div class="card">
+                                <img src="{{ asset('uploads/projects/%s' | format(project.bgImg)) }}"
+                                     alt="{{ project.name }}">
                                 <div class="content">
                                     <h2 class="title">{{ project.name }}</h2>
                                     <p class="copy">{{ project.shortDescription }}</p>
@@ -29,8 +30,8 @@
                                 </div>
                             </div>
                         {% else %}
-                            <div class="card"
-                                 style="--background: url({{ asset('uploads/projects/default.jpg') }})">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/250.jpeg?text=" alt="placeholder image">
                                 <div class="content">
                                     <h2 class="title">{{ project.name }}</h2>
                                     <p class="copy">{{ project.shortDescription }}</p>
