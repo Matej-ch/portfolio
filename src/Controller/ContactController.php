@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,9 +43,12 @@ class ContactController extends AbstractController
                     'message' => $data['message'],
                     'website' => $data['website']]);
 
-            $mailer->send($email);
-
-            $this->addFlash('success', 'Email sent');
+            try {
+                $mailer->send($email);
+                $this->addFlash('success', 'Email sent');
+            } catch (TransportExceptionInterface $e) {
+                $this->addFlash('success', 'Email error: ' . $e->getMessage());
+            }
 
             if ($request->get('fetch')) {
                 return new Response(null, 204);
@@ -78,7 +82,12 @@ class ContactController extends AbstractController
                     'message' => $data['message'],
                     'website' => $data['website']]);
 
-            $mailer->send($email);
+            try {
+                $mailer->send($email);
+                $this->addFlash('success', 'Email sent');
+            } catch (TransportExceptionInterface $e) {
+                $this->addFlash('success', 'Email error: ' . $e->getMessage());
+            }
 
             $this->addFlash('success', 'Email sent');
 
