@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 
-use App\Factory\AdminFactory;
 use App\Factory\ExternalSiteFactory;
 use App\Factory\LanguageFactory;
 use App\Factory\ProjectFactory;
@@ -19,8 +18,6 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
-        AdminFactory::createOne(['email' => 'admin@admin.com', 'username' => 'admin', 'roles' => ['ROLE_ADMIN']]);
-
         ExternalSiteFactory::createOne(['url' => 'https://github.com/', 'name' => 'Github', 'icon' => 'fab fa-github']);
         ExternalSiteFactory::createOne(['url' => 'https://linkedin.com/', 'name' => 'Linkedin', 'icon' => 'fab fa-linkedin']);
         ExternalSiteFactory::createOne(['url' => 'https://twitter.com', 'name' => 'Twitter', 'icon' => 'fab fa-twitter']);
