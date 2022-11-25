@@ -20,8 +20,9 @@
 * Run ```npm run build```
 * Create database if it doesn't exist ```php bin/console doctrine:database:create```
 * Run migrations ```php bin/console doctrine:migrations:migrate```
+* Create admin user to login ``php bin/console app:create-admin email username password``
 * (_Optional_) Load fixtures with custom data ```php bin/console doctrine:fixtures:load```
-    * this will generate default admin user with username ```admin``` password ```tada``` email ```admin@admil.com```
+
 * Generate custom password_hash ```php bin/console security:hash-password```
 * generate APP_SECRET ```APP_RUNTIME_ENV=prod php bin/console secrets:set APP_SECRET``` and
   add ```APP_SECRET='%env(APP_SECRET)%'``` to ```.env.prod``` file on
