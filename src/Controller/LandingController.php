@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ExternalSiteRepository;
+use App\Repository\LanguageRepository;
 use App\Repository\ProjectCollectionRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\UserInfoRepository;
@@ -22,7 +23,8 @@ class LandingController extends AbstractController
         ExternalSiteRepository      $externalSiteRepository,
         ProjectCollectionRepository $projectCollectionRepository,
         CacheInterface              $cache,
-        MetaTagParser               $metaTagParser): Response
+        MetaTagParser               $metaTagParser,
+        LanguageRepository          $languageRepository): Response
     {
 
         $sites = $cache->get("external.sites", function (ItemInterface $item) use ($externalSiteRepository) {
@@ -52,6 +54,7 @@ class LandingController extends AbstractController
             'projects' => $projects,
             'collections' => $collections,
             'sites' => $sites,
+            'languages' => $languageRepository->findAllActive(),
             'metaTags' => $metaTagParser->parse('app_landing'),
         ]);
     }
