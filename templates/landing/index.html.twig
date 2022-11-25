@@ -88,6 +88,21 @@
         <div class="landing__goto"><a href="{{ path('app_projects') }}">Checkout other projects</a></div>
     </div>
 
+    <div class="flex flex-row justify-center gap-4 mt-auto py-4 max-w-4xl mx-auto overflow-x-scroll"
+         style="scrollbar-width: none">
+        {% for language in languages %}
+            {% if language.icon|length %}
+                <a href="{{ path('app_projects', { q: language.name }) }}"
+                   title="{{ language.name }}" aria-label="Search by {{ language.name }}"
+                   class="opacity-75 hover:opacity-100">
+                    <img width="30" height="30" style="max-width: 30px;height: auto"
+                         src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
+                         alt="{{ language.name }}">
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
 {% endblock %}
 
 {% block metas %}
