@@ -21,7 +21,7 @@
     <div class="text-black landing container mx-auto">
         <header class="landing__header">
             <div class="self-center">
-                <a class="text-4xl leading-none font-bold whitespace-nowrap uppercase text-white logo"
+                <a class="text-4xl leading-none font-bold whitespace-nowrap uppercase logo"
                    data-turbo="false"
                    href={{ path('app_landing') }}>M</a>
             </div>
@@ -88,7 +88,7 @@
         <div class="landing__goto"><a href="{{ path('app_projects') }}">Checkout other projects</a></div>
     </div>
 
-    <div class="flex flex-row justify-center gap-4 mt-auto py-4 max-w-4xl mx-auto overflow-x-scroll"
+    <div class="flex md:flex-col justify-center gap-4 mt-auto px-4 pb-4 md:pb-0 pt-4 max-w-4xl md:max-h-96 overflow-x-scroll md:overflow-x-hidden md:overflow-y-scroll md:absolute md:right-0 md:top-1/4"
          style="scrollbar-width: none">
         {% for language in languages %}
             {% if language.icon|length %}

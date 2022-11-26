@@ -64,6 +64,9 @@
 - Load fixtures with default data
   ```symfony console doctrine:fixtures:load```
 
+- Create admin user to login
+  ```php bin/console app:create-admin email username password```
+
 generate password for user symfony console security:hash-password
 
 create default records in database (by default data will be purged)
