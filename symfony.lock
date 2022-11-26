@@ -117,9 +117,6 @@
     "endroid/qr-code": {
         "version": "4.0.0"
     },
-    "fakerphp/faker": {
-        "version": "v1.19.0"
-    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
@@ -610,13 +607,7 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.24.0"
     },
-    "symfony/polyfill-php73": {
-        "version": "v1.24.0"
-    },
     "symfony/polyfill-php80": {
-        "version": "v1.24.0"
-    },
-    "symfony/polyfill-php81": {
         "version": "v1.24.0"
     },
     "symfony/polyfill-uuid": {
@@ -810,14 +801,8 @@
     "webmozart/assert": {
         "version": "1.10.0"
     },
-    "zenstruck/assert": {
-        "version": "v1.0.0"
-    },
-    "zenstruck/callback": {
-        "version": "v1.4.1"
-    },
     "zenstruck/foundry": {
-        "version": "1.21",
+        "version": "1.24",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -825,7 +810,7 @@
             "ref": "37c2f894cc098ab4c08874b80cccc8e2f8de7976"
         },
         "files": [
-            "config/packages/zenstruck_foundry.yaml"
+            "./config/packages/zenstruck_foundry.yaml"
         ]
     }
 }

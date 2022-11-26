@@ -16,11 +16,11 @@ return [
     Sentry\SentryBundle\SentryBundle::class => ['prod' => true],
     Knp\Bundle\TimeBundle\KnpTimeBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['all' => true],
-    Zenstruck\Foundry\ZenstruckFoundryBundle::class => ['all' => true],
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
     Scheb\TwoFactorBundle\SchebTwoFactorBundle::class => ['all' => true],
     Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
     Gregwar\CaptchaBundle\GregwarCaptchaBundle::class => ['all' => true],
     Snc\RedisBundle\SncRedisBundle::class => ['prod' => true],
+    Zenstruck\Foundry\ZenstruckFoundryBundle::class => ['dev' => true, 'test' => true],
 ];
