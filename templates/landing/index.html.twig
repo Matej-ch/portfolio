@@ -88,19 +88,22 @@
         <div class="landing__goto"><a href="{{ path('app_projects') }}">Checkout other projects</a></div>
     </div>
 
-    <div class="flex md:flex-col justify-center gap-4 mt-auto px-4 pb-4 md:pb-0 pt-4 max-w-4xl md:max-h-96 overflow-x-scroll md:overflow-x-hidden md:overflow-y-scroll md:absolute md:right-0 md:top-1/4"
+    <div class="flex md:flex-col justify-center mt-auto px-4 pb-4 md:pb-0 pt-4 overflow-x-scroll md:overflow-x-hidden md:overflow-y-scroll md:absolute md:right-0 md:top-1/4"
          style="scrollbar-width: none">
-        {% for language in languages %}
-            {% if language.icon|length %}
-                <a href="{{ path('app_projects', { q: language.name }) }}"
-                   title="{{ language.name }}" aria-label="Search by {{ language.name }}"
-                   class="opacity-75 hover:opacity-100">
-                    <img width="30" height="30" style="max-width: 30px;height: auto"
-                         src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
-                         alt="{{ language.name }}">
-                </a>
-            {% endif %}
-        {% endfor %}
+        <div class="flex md:flex-col max-w-4xl gap-4 md:max-h-96">
+            {% for language in languages %}
+                {% if language.icon|length %}
+                    <a href="{{ path('app_projects', { q: language.name }) }}"
+                       title="{{ language.name }}" aria-label="Search by {{ language.name }}"
+                       class="opacity-75 hover:opacity-100">
+                        <img width="30" height="30" style="max-width: 30px;height: auto"
+                             src="{{ asset('uploads/languages/%s' | format(language.icon)) }}"
+                             alt="{{ language.name }}">
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
     </div>
 
 {% endblock %}
