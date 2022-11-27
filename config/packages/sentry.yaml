@@ -9,6 +9,8 @@ when@prod:
         - "%kernel.cache_dir%"
         - "%kernel.project_dir%/vendor"
       environment: "%kernel.environment%"
+      integrations:
+        - 'Sentry\Integration\IgnoreErrorsIntegration'
     tracing:
       enabled: false
       dbal: # DB queries
